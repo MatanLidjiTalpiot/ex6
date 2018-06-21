@@ -8,16 +8,20 @@ public class Variable {
     private String name;
     private Type type;
     private boolean isAssigned = false;
+    private boolean isFinal;
 
     /**
      * A constructor for a virable
      * @param name the name of the virable
      * @param type the type of the virable
      */
-    public Variable(String name, Type type){
+    public Variable(String name, Type type, boolean isFinal){
         this.name = name;
         this.type = type;
+        this.isFinal = isFinal;
     }
+
+
 
     public String getName() {
         return name;
@@ -37,6 +41,9 @@ public class Variable {
      * @return true if it is possible, false otherwise.
      */
     public boolean canAssign(Variable toAssign) {
+        if (isFinal){
+            return false;
+        }
         if (toAssign.getType() == this.type) {
             return true;
         }
