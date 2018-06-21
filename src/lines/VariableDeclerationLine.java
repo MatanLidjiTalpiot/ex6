@@ -1,10 +1,9 @@
 package lines;
 
-import foundation.InvalidTypeException;
+import foundation.Exceptions.InvalidTypeException;
 import foundation.Type;
 import foundation.Variable;
 import validator.ValidatorDeclartionLine;
-import validator.ValidatorStrategy;
 
 /**
  * A class that represents a VariableDeclerationLine.

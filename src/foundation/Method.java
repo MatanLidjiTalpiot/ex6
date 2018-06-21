@@ -32,7 +32,7 @@ public class Method {
             // different than the number the method calls - return false.
             return false;
         }
-        for (int i; i < numberOfVals; i++){
+        for (int i = 0; i < numberOfVals; i++){
             if (inputVarialbes.get(i).getType() != variablesToMatch.get(i).getType()){// if the types of
                 // two variables in the same place doesn't match - return false.
                 return false;

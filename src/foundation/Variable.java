@@ -1,5 +1,4 @@
 package foundation;
-import
 /**
  * A class that represents a virable
  */

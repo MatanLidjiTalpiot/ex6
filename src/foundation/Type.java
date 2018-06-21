@@ -1,5 +1,7 @@
 package foundation;
 
+import foundation.Exceptions.InvalidTypeException;
+
 /**
  * An enum class that represents all the types that are used in S java
  */
@@ -12,7 +14,7 @@ public enum Type {
      * @param strToMatch the string to match
      * @return the type the the string represents, if the string does not represent a type - null.
      */
-    public static Type strToType(String strToMatch) throws InvalidTypeException{
+    public static Type strToType(String strToMatch) throws InvalidTypeException {
         if (strToMatch.equals("int")){
             return INT;
         }
