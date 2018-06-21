@@ -1,6 +1,6 @@
 package validator;
 
-public class ValidatorMethodCallLine implements ValidatorStrategy {
+public class ValidatorMethodCallLine {
     private static ValidatorMethodCallLine ourInstance = new ValidatorMethodCallLine();
 
     public static ValidatorMethodCallLine getInstance() {

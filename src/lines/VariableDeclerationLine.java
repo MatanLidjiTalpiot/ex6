@@ -12,7 +12,7 @@ import foundation.Scope;
  */
 public class VariableDeclerationLine extends Line {
 
-    private static ValidatorDeclartionLine validator = ValidatorDeclartionLine.getInstance();
+    private static ValidatorStrategy validator = ValidatorDeclartionLine.getInstance();
     private Variable variable;
     private Type varType;
     /**
@@ -39,6 +39,6 @@ public class VariableDeclerationLine extends Line {
     }
 
     public boolean check(Scope scope){
-        return validator.validate(scope);
+        return validator.validate(scope,this);
     }
 }

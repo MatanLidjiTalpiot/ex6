@@ -1,6 +1,6 @@
 package validator;
 
-public class ValidatorDeclartionLine implements ValidatorStrategy {
+public class ValidatorDeclartionLine {
     private static ValidatorDeclartionLine ourInstance = new ValidatorDeclartionLine();
 
     public static ValidatorDeclartionLine getInstance() {
