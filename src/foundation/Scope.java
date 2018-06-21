@@ -10,6 +10,7 @@ import java.util.LinkedList;
 public class Scope {
 
     private LinkedList<Variable> variablesOfScope = new LinkedList<>();
+    private LinkedList<Method> methodsOfScope = new LinkedList<>();
     private Scope father;
     private boolean hasFather;
 
@@ -56,5 +57,9 @@ public class Scope {
             return father.getVariableByName(varName);
         }
         throw new NoSuchVariableException(varName);
+    }
+
+    public void addMethod(Method toAdd){
+        methodsOfScope.add(toAdd);
     }
 }
