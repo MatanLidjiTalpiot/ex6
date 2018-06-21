@@ -1,5 +1,7 @@
 package blocks;
 import foundation.*;
+import validator.ValidatorBlock;
+import validator.ValidatorStrategy;
 
 import java.util.LinkedList;
 
@@ -11,7 +13,7 @@ public class Block implements Checkable{
     protected Scope scope;
     protected boolean hasFatherScope;
     protected LinkedList<Checkable> content;
-
+    private static ValidatorStrategy validator = ValidatorBlock.getInstance();
     /**
      * A constructor for a block within a block
      * @param fatherScope
@@ -36,5 +38,19 @@ public class Block implements Checkable{
     public void addCheckable(Checkable toAdd){
         content.add(toAdd);
     }
+
+    /**
+     * A method that checks the validity of a block.
+     * @param scope the scope that the block is in.
+     * @return true if the block is valid, false otherwise.
+     */
+    public boolean check(Scope scope){
+        int i =0;
+        while(content.get(i).check(scope)){
+            i++;
+        }
+        return (i == content.size());
+    }
+
 
 }
