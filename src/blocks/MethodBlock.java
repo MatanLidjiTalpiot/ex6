@@ -1,16 +1,15 @@
 package blocks;
+import foundation.*;
 import foundation.Exceptions.InvalidTypeException;
-import foundation.Scope;
-import foundation.Type;
-import foundation.Variable;
-import foundation.Method;
+import validator.ValidatorMethodBlock;
+import validator.ValidatorStrategy;
 
 import java.util.LinkedList;
 
 /**
  * A class that represents a method block
  */
-public class MethodBlock extends Block {
+public class MethodBlock extends Block implements Checkable {
 
 
     private String methodName;
@@ -18,6 +17,7 @@ public class MethodBlock extends Block {
     private LinkedList<String> typeNamesByOrder;
     private LinkedList<Boolean> isFinalByOrder;
     private LinkedList<Variable> params;
+    private static ValidatorStrategy validator = ValidatorMethodBlock.getInstance();
 
     /**
      * A constuctor that builds a method block
@@ -60,4 +60,6 @@ public class MethodBlock extends Block {
         Method method = new Method(methodName, params);
         fatherScope.addMethod(method);
     }
+
+    //TODO check
 }

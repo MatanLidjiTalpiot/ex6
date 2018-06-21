@@ -1,16 +1,19 @@
 package blocks;
+import foundation.Checkable;
 import foundation.Exceptions.NoSuchVariableException;
 import foundation.Scope;
+import validator.ValidatorConditionBlock;
+import validator.ValidatorStrategy;
 
 import java.util.LinkedList;
 
 /**
  * A class that represents a Condition Block.
  */
-public class ConditionBlock extends Block {
+public class ConditionBlock extends Block implements Checkable{
 
     private LinkedList<String> conditions;
-
+    private static ValidatorStrategy validator = ValidatorConditionBlock.getInstance();
     /**
      * A constructor for the ConditionBlock.
      * @param conditions A linked list of conditions supposed to be variables - if it is a number or
@@ -39,4 +42,5 @@ public class ConditionBlock extends Block {
             }
         }
     }
+
 }
