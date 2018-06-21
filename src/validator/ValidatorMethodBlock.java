@@ -1,6 +1,6 @@
 package validator;
 
-public class ValidatorMethodBlock implements ValidatorStrategy {
+public class ValidatorMethodBlock{
     private static ValidatorMethodBlock ourInstance = new ValidatorMethodBlock();
 
     public static ValidatorMethodBlock getInstance() {

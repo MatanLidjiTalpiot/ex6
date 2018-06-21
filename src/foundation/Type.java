@@ -1,6 +1,4 @@
 package foundation;
-
-import com.sun.deploy.security.ValidationState;
 import foundation.Exceptions.InvalidTypeException;
 
 /**
@@ -38,19 +36,37 @@ public enum Type {
         if (type == INT){
             return "int";
         }
-        else if (type == DOUBLE){
+        if (type == DOUBLE){
             return "double";
         }
-        else if(type == STRING)){
+        if(type == STRING)){
             return "String";
         }
-        else if(type == BOOLEAN)){
+        if(type == BOOLEAN)){
             return "boolean";
         }
-        else if(type == CHAR)){
+        if(type == CHAR)){
             return "char";
         }
 
+    }
+
+    /**
+     * A method that gets the type of a String
+     * @param toCheck the String value to check
+     * @return the type that the String represents.
+     */
+    public static Type getTypeOf(String toCheck){
+        //TODO build this method
+    }
+
+    /**
+     * A method that checks whether a string value has a type that it represents.
+      * @param toCheck the String value to check
+     * @return true if it does, false othrewise.
+     */
+    public static boolean isType(String toCheck){
+        //TODO build this method
     }
 }
 

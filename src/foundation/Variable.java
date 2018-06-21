@@ -71,5 +71,24 @@ public class Variable {
         }
         return false;
     }
+    public boolean canAssign(Type type){
+        if (isFinal){
+            return false;
+        }
+        if(type == this.type){
+            return true;
+        }
+        if (this.type == Type.DOUBLE && type == Type.INT){
+            return true;
+        }
+        if(this.type == Type.STRING && type == Type.CHAR){
+            return true;
+        }
+        if (this.type == Type.BOOLEAN && (type == Type.INT || type == Type.DOUBLE)){
+            return true;
+        }
+        return false;
+
+    }
 }
 
