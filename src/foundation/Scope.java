@@ -62,4 +62,19 @@ public class Scope {
     public void addMethod(Method toAdd){
         methodsOfScope.add(toAdd);
     }
+
+    public boolean contains(String varName){
+        for (Variable var:variablesOfScope){
+            if (var.getName().equals(varName)){
+                return true;
+            }
+        }
+        if (this.hasFather){
+            return father.contains(varName);
+        }
+        else{
+            return false;
+        }
+
+    }
 }

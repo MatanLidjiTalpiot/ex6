@@ -1,4 +1,4 @@
 package blocks;
 
-public class BlockFactory {
+public class BlockFactory  {
 }

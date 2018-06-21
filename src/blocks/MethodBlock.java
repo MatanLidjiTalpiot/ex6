@@ -54,6 +54,8 @@ public class MethodBlock extends Block {
             params.add(new Variable(name,type, isFinal));
         }
     }
+
+
     public void createMethod(){
         Method method = new Method(methodName, params);
         fatherScope.addMethod(method);
