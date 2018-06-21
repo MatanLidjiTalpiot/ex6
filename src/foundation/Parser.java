@@ -50,8 +50,10 @@ public class Parser {
     private boolean lineAction(String line,Block block){
 
 
-
     }
+    private boolean declerationLineAction(String line, Block block, boolean isFinal) {
+    }
+
 }
 
 
