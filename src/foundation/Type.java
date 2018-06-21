@@ -1,5 +1,6 @@
 package foundation;
 
+import com.sun.deploy.security.ValidationState;
 import foundation.Exceptions.InvalidTypeException;
 
 /**
@@ -31,6 +32,25 @@ public enum Type {
             return CHAR;
         }
         else throw new InvalidTypeException(strToMatch);
+    }
+
+    public static String typeToStr(Type type){
+        if (type == INT){
+            return "int";
+        }
+        else if (type == DOUBLE){
+            return "double";
+        }
+        else if(type == STRING)){
+            return "String";
+        }
+        else if(type == BOOLEAN)){
+            return "boolean";
+        }
+        else if(type == CHAR)){
+            return "char";
+        }
+
     }
 }
 

@@ -1,4 +1,5 @@
 package foundation;
+import java.util.regex.*;
 import blocks.Block;
 
 import java.io.BufferedReader;
@@ -16,15 +17,19 @@ public class Parser {
     private Parser() {
     }
 
-    public Checkable parse(String filename) {
-        Block mainBlock = new Block();
+    public int parse(String filename, Block mainBlock) {
         try {
             File file = new File(filename);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            this.parseBlock(bufferedReader, mainBlock);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if(this.lineAction(line,mainBlock)){
+                    return 1;
+                }
+            }
             fileReader.close();
-            return mainBlock;
+            return 0;
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -42,7 +47,11 @@ public class Parser {
         return 1;
     }
 
-    private boolean lineAction(String line,Block block){ }
+    private boolean lineAction(String line,Block block){
+
+
+
+    }
 }
 
-//TODO finidh this
+
