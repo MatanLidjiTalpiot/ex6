@@ -7,7 +7,7 @@ public class Variable {
     private String name;
     private Type type;
     private boolean isAssigned = false;
-    private boolean isFinal;
+    private boolean isFinal = false;
 
     /**
      * A constructor for a virable
@@ -18,6 +18,16 @@ public class Variable {
         this.name = name;
         this.type = type;
         this.isFinal = isFinal;
+    }
+
+    /**
+     * A constructor for variable
+     * @param name
+     * @param type
+     */
+    public Variable(String name, Type type){
+        this.name = name;
+        this.type = type;
     }
 
 
@@ -32,6 +42,10 @@ public class Variable {
 
     public boolean isAssigned() {
         return isAssigned;
+    }
+
+    public boolean isFinal(){
+        return isFinal;
     }
 
     /**
