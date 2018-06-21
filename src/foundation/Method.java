@@ -13,12 +13,12 @@ public class Method {
     /**
      * A constructor for A method object
      * @param name the name of the method
-     * @param inputVarialbes the input variables the method demands.
+     * @param inputVariables the input variables the method demands.
      */
-    public Method(String name, LinkedList<Variable> inputVarialbes){
+    public Method(String name, LinkedList<Variable> inputVariables){
         this.methodName = name;
-        this.inputVarialbes = inputVarialbes;
-        this.numberOfVals = inputVarialbes.size();
+        this.inputVarialbes = inputVariables;
+        this.numberOfVals = inputVariables.size();
     }
 
     /**
@@ -32,7 +32,7 @@ public class Method {
             // different than the number the method calls - return false.
             return false;
         }
-        for (int i; i < numberOfVals; i++){
+        for (int i = 0; i < numberOfVals; i++){
             if (inputVarialbes.get(i).getType() != variablesToMatch.get(i).getType()){// if the types of
                 // two variables in the same place doesn't match - return false.
                 return false;
@@ -45,7 +45,7 @@ public class Method {
         return methodName;
     }
 
-    public LinkedList<Variable> getInputVarialbes() {
+    public LinkedList<Variable> getInputVariables() {
         return inputVarialbes;
     }
 }

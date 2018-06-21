@@ -1,5 +1,4 @@
 package foundation;
-import
 /**
  * A class that represents a virable
  */
@@ -23,7 +22,7 @@ public class Variable {
 
 
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
