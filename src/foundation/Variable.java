@@ -23,7 +23,7 @@ public class Variable {
 
 
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 

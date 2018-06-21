@@ -4,7 +4,7 @@ package foundation;
  * An enum class that represents all the types that are used in S java
  */
 public enum Type {
-    INT, DOUBLE, STRING, BOOLEAN, CHAR
+    INT, DOUBLE, STRING, BOOLEAN, CHAR;
 
 
     /**
@@ -13,7 +13,7 @@ public enum Type {
      * @return the type the the string represents, if the string does not represent a type - null.
      */
     public Type strToEnum(String strToMatch){
-        if(Type.valueOf())
+
     }
 }
 
