@@ -1,4 +1,8 @@
 package foundation;
+
+import foundation.Exceptions.InvalidAssignmentException;
+import foundation.Exceptions.InvalidTypeException;
+
 /**
  * A class that represents a virable
  */
@@ -57,6 +61,9 @@ public class Variable {
         if (isFinal){
             return false;
         }
+        if (!toAssign.isAssigned()){
+            return false;
+        }
         if (toAssign.getType() == this.type) {
             return true;
         }
@@ -90,5 +97,37 @@ public class Variable {
         return false;
 
     }
+
+    /**
+     * A method that assigns into the variable
+     * @param var the variable to assign
+     * @throws InvalidAssignmentException
+     */
+    public void assign(Variable var)throws InvalidAssignmentException{
+        if (canAssign(var)){
+            isAssigned = true;
+        }
+        else{
+            throw new InvalidAssignmentException(var.getName());
+        }
+    }
+
+    /**
+     * A method that assigns into a variable;
+     * @param toAssign A string value that represents something to assign.
+     * @throws InvalidTypeException
+     * @throws InvalidAssignmentException
+     */
+    public void assign(String toAssign)throws InvalidTypeException, InvalidAssignmentException{
+        Type toAssignType = Type.strToType(toAssign);
+        if (canAssign(toAssignType)){
+            isAssigned = true;
+        }
+        else{
+            throw new InvalidAssignmentException(toAssign);
+        }
+
+    }
+
 }
 

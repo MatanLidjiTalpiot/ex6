@@ -21,19 +21,19 @@ public class ValidatorVariableAssignmentLine {
      */
     public static boolean validate(Scope scope,VariableAssignmentLine lineToCheck) throws
             NoSuchVariableException{
+        String left = lineToCheck.getRight();
+        Variable leftVar = scope.getVariableByName(left);
+        Type rightType;
         String right = lineToCheck.getRight();
-        Variable rightVar = scope.getVariableByName(right);
-        Type leftType;
-        String left = lineToCheck.getLeft();
-        Variable leftVar;
-        if (Type.isType(left)){
-            leftType = Type.getTypeOf(left);
-            return (rightVar.canAssign(leftType));
+        Variable rightVar;
+        if (Type.isType(right)){
+            rightType = Type.getTypeOf(right);
+            return (leftVar.canAssign(rightType));
         }
         else{
-            if(scope.contains(left)){
-                leftVar = scope.getVariableByName(left);
-                return rightVar.canAssign(leftVar);
+            if(scope.contains(right)){
+                rightVar = scope.getVariableByName(right);
+                return leftVar.canAssign(rightVar);
             }
         }
         return false;
