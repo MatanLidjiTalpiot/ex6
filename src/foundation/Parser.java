@@ -55,7 +55,7 @@ public class Parser {
             if (Regex.isEndBlockLine(al.get(i))){
                 blockOpeners--;
             }
-            if (Regex.isStartBlockLine(al.get(i)){
+            if ((Regex.isStartBlockLine(al.get(i))).matches()){
                 blockOpeners++;
             }
             if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || Regex.isReturnLine(al.get
