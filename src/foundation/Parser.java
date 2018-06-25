@@ -202,7 +202,7 @@ public class Parser {
         LinkedList<String> conditions = new LinkedList<>();
         for (String part : parts) {
             if(Regex.isVariableName(part.trim()))
-                conditions.add(part);
+                conditions.add(part.trim());
             else
                 if(Type.getTypeOf(part) != Type.INT&&Type.getTypeOf(part) != Type.DOUBLE&&Type.getTypeOf
                         (part) != Type.BOOLEAN)
@@ -223,7 +223,6 @@ public class Parser {
 
         if((parts.length != 1) && (!parts[0].equals(""))){
             for (int i = 0; i < parts.length; i++) {
-                System.out.println(parts[i]);
                 Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i].trim());
                 if (!matcher1.matches()) {
                     throw new SyntaxException(rowNumber);
