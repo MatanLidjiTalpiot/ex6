@@ -11,7 +11,7 @@ public class Regex {
     }
 
     static Matcher isConditionBlock(String str){
-        Pattern ptrn = Pattern.compile("^(if|while)\\s*\\((.+)\\)\\s*");
+        Pattern ptrn = Pattern.compile("^\\s*(if|while)\\s*\\((.+)\\)\\s*");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
