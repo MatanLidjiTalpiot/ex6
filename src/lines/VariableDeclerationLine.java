@@ -4,7 +4,6 @@ import foundation.Exceptions.InvalidTypeException;
 import foundation.Type;
 import foundation.Variable;
 import validator.ValidatorDeclartionLine;
-import validator.ValidatorStrategy;
 import foundation.Scope;
 
 /**
@@ -14,7 +13,6 @@ public class VariableDeclerationLine extends Line {
 
     private static ValidatorDeclartionLine validator = ValidatorDeclartionLine.getInstance();
     private Variable variable;
-    private Type varType;
     /**
      * A constructor that creates a VarialbeDeclerationLine
      * @param varType a String representation of what should be the type of the variable
