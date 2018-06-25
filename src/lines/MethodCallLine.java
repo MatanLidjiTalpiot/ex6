@@ -2,6 +2,7 @@ package lines;
 import foundation.*;
 import java.util.LinkedList;
 
+import foundation.exceptions.FileException;
 import foundation.exceptions.IllegalParametersException;
 import foundation.exceptions.ParametersDontMatchException;
 import foundation.exceptions.NoSuchMethodException;
@@ -33,8 +34,7 @@ public class MethodCallLine implements Checkable{
         return paramsByOrder;
     }
 
-    public boolean check(Scope scope) throws NoSuchMethodException, IllegalParametersException,
-            ParametersDontMatchException{
+    public boolean check(Scope scope) throws FileException{
         return ValidatorMethodCallLine.validate(scope, this);
     }
 

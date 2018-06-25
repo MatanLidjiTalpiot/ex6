@@ -62,7 +62,7 @@ public class MethodBlock extends Block implements Checkable {
      * a method that adds a method to the scope
      */
     private void createMethod(){
-        Method method = new Method(methodName, params);
+        Method method = new Method(methodName, params, this);
         fatherScope.addMethod(method);
     }
 

@@ -75,7 +75,7 @@ public class Parser {
         for(;rowNumber < this.fileData.size()-1;){
             rowNumber++;
             if(!isMainBlock && Regex.isEndBlockLine(this.fileData.get(rowNumber))){
-                if(block.getTypeOfCheckable() == 1){
+                if(block.getTypeOfCheckable() == TypesOfCheckable.CONDITION_BLOCK){
                     return;
                 }
                 else{
