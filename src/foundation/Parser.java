@@ -61,7 +61,7 @@ public class Parser {
         Matcher matcher = Regex.isStartBlockLine(line);
         if (matcher.matches()) {
             line = matcher.group(1);
-            matcher = Regex.isConditionBlock(line);
+            matcher  = Regex.isConditionBlock(line);
             if (matcher.matches())
                 conditionBlockAction(matcher, block);
             else {
