@@ -12,7 +12,7 @@ import validator.ValidatorMethodCallLine;
 public class MethodCallLine implements Checkable{
     private String methodName;
     private LinkedList<String> paramsByOrder = new LinkedList<>();
-
+    private static TypesOfCheckable typeOfCheckable = TypesOfCheckable.METHOD_CALL_LINE;
 
     /**
      * A constructor for the MethodCallLine
@@ -36,5 +36,19 @@ public class MethodCallLine implements Checkable{
     public boolean check(Scope scope) throws NoSuchMethodException, IllegalParametersException,
             ParametersDontMatchException{
         return ValidatorMethodCallLine.validate(scope, this);
+    }
+
+    @Override
+    public boolean isBlock(){
+        return false;
+    }
+    @Override
+    public boolean isLine(){
+        return true;
+    }
+
+    @Override
+    public TypesOfCheckable getTypeOfCheckable() {
+        return typeOfCheckable;
     }
 }

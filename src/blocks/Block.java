@@ -2,6 +2,8 @@ package blocks;
 import foundation.*;
 import java.util.LinkedList;
 import foundation.exceptions.FileException;
+import lines.MethodCallLine;
+
 /**
  * An abstract class that represents a block in the file.
  */
@@ -10,7 +12,10 @@ public class Block implements Checkable{
     protected Scope scope;
     protected boolean hasFatherScope;
     protected LinkedList<Checkable> content = new LinkedList<>();
-    protected int typeOfBlock = 0;
+    private static TypesOfCheckable typeOfCheckable = TypesOfCheckable.BLOCK;
+
+
+
     /**
      * A constructor for a block within a block
      * @param fatherScope
@@ -42,9 +47,11 @@ public class Block implements Checkable{
      * @return true if the block is valid, false otherwise.
      */
     public boolean check(Scope scope)throws FileException{
-        int i =0;
-        while(i < content.size() && content.get(i).check(scope)){
-            i++;
+        for (int i = 0; i < content.size(); i++) {
+            if (content.get(i).getTypeOfCheckable() == TypesOfCheckable.METHOD_BLOCK) {
+                continue;
+            }
+            content.get(i).check(scope);
         }
         return (true);
     }
@@ -53,7 +60,17 @@ public class Block implements Checkable{
         return scope;
     }
 
-    public int getTypeOfBlock() {
-        return typeOfBlock;
+    public TypesOfCheckable getTypeOfCheckable() {
+        return typeOfCheckable;
     }
+
+    @Override
+    public boolean isBlock(){
+        return true;
+    }
+    @Override
+    public boolean isLine(){
+        return false;
+    }
+
 }

@@ -1,4 +1,5 @@
 package foundation;
+import blocks.MethodBlock;
 import foundation.exceptions.ParametersDontMatchException;
 import java.util.LinkedList;
 
@@ -9,16 +10,17 @@ public class Method {
     private LinkedList<Variable> inputVariables = new LinkedList<>();
     private String methodName;
     private int numberOfVals;
-
+    private MethodBlock methodBlock;
     /**
      * A constructor for A method object
      * @param name the name of the method
      * @param inputVariables the input variables the method demands.
      */
-    public Method(String name, LinkedList<Variable> inputVariables){
+    public Method(String name, LinkedList<Variable> inputVariables, MethodBlock methodBlock){
         this.methodName = name;
         this.inputVariables = inputVariables;
         this.numberOfVals = inputVariables.size();
+        this.methodBlock = methodBlock;
     }
 
     /**
@@ -48,5 +50,9 @@ public class Method {
 
     public LinkedList<Variable> getInputVariables() {
         return inputVariables;
+    }
+
+    public MethodBlock getMethodBlock() {
+        return methodBlock;
     }
 }

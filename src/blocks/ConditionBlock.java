@@ -1,5 +1,6 @@
 package blocks;
 import foundation.Checkable;
+import foundation.TypesOfCheckable;
 import foundation.exceptions.*;
 import foundation.Scope;
 import foundation.Type;
@@ -9,7 +10,7 @@ import java.util.LinkedList;
  * A class that represents a Condition Block.
  */
 public class ConditionBlock extends Block implements Checkable{
-
+    private static TypesOfCheckable typeOfCheckable = TypesOfCheckable.CONDITION_BLOCK;
     private LinkedList<String> conditions = new LinkedList<>();
     /**
      * A constructor for the ConditionBlock.
@@ -24,7 +25,7 @@ public class ConditionBlock extends Block implements Checkable{
             throw new InvalidPlacementForCondition("can't place condition here");
         }
         this.conditions = conditions;
-        this.typeOfBlock = 1;
+
     }
 
 
@@ -69,6 +70,20 @@ public class ConditionBlock extends Block implements Checkable{
     public boolean check(Scope scope)throws FileException{
         checkConditions(this.conditions);// note that this throws an Exception
         return super.check(scope);
+    }
+
+    @Override
+    public boolean isBlock(){
+        return true;
+    }
+    @Override
+    public boolean isLine(){
+        return false;
+    }
+
+    @Override
+    public TypesOfCheckable getTypeOfCheckable(){
+        return typeOfCheckable;
     }
 
 }

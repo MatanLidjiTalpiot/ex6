@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * A class that represents a method block
  */
 public class MethodBlock extends Block implements Checkable {
-
+    private static TypesOfCheckable typeOfcheckable = TypesOfCheckable.METHOD_BLOCK;
     private String methodName;
     private LinkedList<String> paramNamesByOrder = new LinkedList<>();
     private LinkedList<Type> typeNamesByOrder = new LinkedList<>();
@@ -32,7 +32,6 @@ public class MethodBlock extends Block implements Checkable {
             fatherScope) throws NestedMethodException, AlreadyDeclaredVariableExcpetion {
 
         super(fatherScope);
-        this.typeOfBlock = 2;
         if(fatherScope.hasFather()){ // according to this exercise demands are that a method can not be
             // written within another method or some kind of a condition block. hence, the block that the
             // method block is in is the block of all the file, and does not have a father.
@@ -70,5 +69,18 @@ public class MethodBlock extends Block implements Checkable {
     @Override
     public boolean check(Scope scope) throws FileException {
         return super.check(scope);
+    }
+    @Override
+    public boolean isBlock(){
+        return true;
+    }
+    @Override
+    public boolean isLine(){
+        return false;
+    }
+
+    @Override
+    public TypesOfCheckable getTypeOfCheckable() {
+        return typeOfcheckable;
     }
 }

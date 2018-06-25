@@ -5,7 +5,6 @@ import lines.*;
 import foundation.exceptions.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 
@@ -76,7 +75,7 @@ public class Parser {
         for(;rowNumber < this.fileData.size()-1;){
             rowNumber++;
             if(!isMainBlock && Regex.isEndBlockLine(this.fileData.get(rowNumber))){
-                if(block.getTypeOfBlock() == 1){
+                if(block.getTypeOfCheckable() == 1){
                     return;
                 }
                 else{

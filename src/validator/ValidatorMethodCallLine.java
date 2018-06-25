@@ -1,14 +1,11 @@
 package validator;
-import foundation.exceptions.IllegalParametersException;
-import foundation.exceptions.InvalidTypeException;
-import foundation.exceptions.NoSuchVariableException;
-import foundation.exceptions.ParametersDontMatchException;
+import foundation.exceptions.*;
 import foundation.Method;
 import foundation.Scope;
 import foundation.Type;
+import foundation.exceptions.NoSuchMethodException;
 import lines.MethodCallLine;
 import java.util.LinkedList;
-import foundation.exceptions.NoSuchMethodException;
 
 public class ValidatorMethodCallLine {
     private static ValidatorMethodCallLine ourInstance = new ValidatorMethodCallLine();
@@ -17,12 +14,12 @@ public class ValidatorMethodCallLine {
         return ourInstance;
     }
 
-    public static boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException,
-            IllegalParametersException, ParametersDontMatchException{
-        isMethod(scope, line);
-        LinkedList<Type> validTypesByOrder = checkParameters(scope, line);
-        Method method = scope.getMethodByName(line.getMethodName());
-        return (method.callingMatching(validTypesByOrder));
+    public static boolean validate(Scope scope, MethodCallLine line)throws FileException{
+            isMethod(scope, line);
+            LinkedList<Type> validTypesByOrder = checkParameters(scope, line);
+            Method method = scope.getMethodByName(line.getMethodName());
+            return (method.callingMatching(validTypesByOrder) && method.getMethodBlock().check(method
+                    .getMethodBlock().getScope()));
     }
 
     private static void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{

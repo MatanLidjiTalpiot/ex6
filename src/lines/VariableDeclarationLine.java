@@ -1,11 +1,8 @@
 package lines;
 
-import foundation.Checkable;
+import foundation.*;
 import foundation.exceptions.AlreadyDeclaredVariableExcpetion;
-import foundation.Type;
-import foundation.Variable;
 import validator.ValidatorDeclarationLine;
-import foundation.Scope;
 
 /**
  * A class that represents a VariableDeclarationLine.
@@ -13,6 +10,7 @@ import foundation.Scope;
 public class VariableDeclarationLine implements Checkable {
 
     private Variable variable;
+    private static TypesOfCheckable typeOfCheckable = TypesOfCheckable.VARIABLE_DECLARATION_LINE;
     /**
      * A constructor that creates a VarialbeDeclerationLine
      * @param varType a String representation of what should be the type of the variable
@@ -29,5 +27,19 @@ public class VariableDeclarationLine implements Checkable {
 
     public boolean check(Scope scope) throws AlreadyDeclaredVariableExcpetion{
         return ValidatorDeclarationLine.validate(scope,this);
+    }
+
+    @Override
+    public boolean isBlock(){
+        return false;
+    }
+    @Override
+    public boolean isLine(){
+        return true;
+    }
+
+    @Override
+    public TypesOfCheckable getTypeOfCheckable() {
+        return typeOfCheckable;
     }
 }

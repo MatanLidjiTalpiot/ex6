@@ -1,6 +1,8 @@
 package lines;
 
 import foundation.Checkable;
+import foundation.Type;
+import foundation.TypesOfCheckable;
 import foundation.exceptions.InvalidAssignmentException;
 import foundation.Scope;
 import validator.*;
@@ -9,7 +11,7 @@ import validator.*;
  * A class that represent A VariableAssignmentLine
  */
 public class VariableAssignmentLine implements Checkable {
-
+    private static TypesOfCheckable typeOfCheckable = TypesOfCheckable.VARIABLE_ASSIGNMENT_LINE;
     private String left;
     private String right;
     /**
@@ -33,5 +35,19 @@ public class VariableAssignmentLine implements Checkable {
 
     public boolean check(Scope scope)throws InvalidAssignmentException{
         return ValidatorVariableAssignmentLine.validate(scope, this);
+    }
+
+    @Override
+    public boolean isBlock(){
+        return false;
+    }
+    @Override
+    public boolean isLine(){
+        return true;
+    }
+
+    @Override
+    public TypesOfCheckable getTypeOfCheckable() {
+        return typeOfCheckable;
     }
 }
