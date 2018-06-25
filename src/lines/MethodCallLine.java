@@ -35,7 +35,7 @@ public class MethodCallLine extends Line{
         return typesByOrder;
     }
 
-    public boolean check(Scope scope){
+    public boolean check(Scope scope) throws NoSuchMethodException{
         return validator.validate(scope, this);
     }
 }

@@ -19,7 +19,7 @@ public class ValidatorMethodCallLine {
 
     }
 
-    private void checkParameters(Scope scope, MethodCallLine line)throws N{}
+    private void checkParameters(Scope scope, MethodCallLine line)throws IllegalParametersException {}
 
     private ValidatorMethodCallLine() {
     }
