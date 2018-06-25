@@ -171,19 +171,21 @@ public class Parser {
         LinkedList<Type> typeNamesByOrder = new LinkedList<>();
         LinkedList<Boolean> isFinalByOrder = new LinkedList<>();
 
-        for(int i = 0; i < parts.length; i++){
-            Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i]);
-            if (!matcher1.matches())
-                throw new SyntaxException(rowNumber);
-            if (matcher.group(1) == null)
-                isFinalByOrder.add(false);
-            else
-                isFinalByOrder.add(true);
-            typeNamesByOrder.add(Type.strToType(matcher.group(2)));
-            if (Regex.isVariableName(matcher.group(3)))
-                varNamesByOrder.add(matcher.group(3));
-            else
-                throw new SyntaxException(rowNumber);
+        if(parts.length != 1 && parts[0] != ""){
+            for (int i = 0; i < parts.length; i++) {
+                Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i]);
+                if (!matcher1.matches())
+                    throw new SyntaxException(rowNumber);
+                if (matcher.group(1) == null)
+                    isFinalByOrder.add(false);
+                else
+                    isFinalByOrder.add(true);
+                typeNamesByOrder.add(Type.strToType(matcher.group(2)));
+                if (Regex.isVariableName(matcher.group(3)))
+                    varNamesByOrder.add(matcher.group(3));
+                else
+                    throw new SyntaxException(rowNumber);
+            }
         }
 
         MethodBlock newBlock = new MethodBlock(matcher.group(1),varNamesByOrder, typeNamesByOrder,
