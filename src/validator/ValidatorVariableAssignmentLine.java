@@ -33,7 +33,7 @@ public class ValidatorVariableAssignmentLine {
                 return (leftVar.assign(right));
             }
         }
-        catch (NoSuchVariableException e){
+        catch (NoSuchVariableException e){ // not supposed to be catched...
             throw new InvalidAssignmentException("no variable" + left);
         }
     }
