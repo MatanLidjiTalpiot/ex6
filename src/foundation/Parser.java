@@ -86,15 +86,15 @@ public class Parser {
         throw new SyntaxException(this.rowNumber);
     }
 
-    private void simpleDeclerationLineAction(boolean isfinal, Type type, String str, Block block) {
+    private void simpleDeclerationLineAction(boolean isFinal, Type type, String str, Block block) {
         //  TODO wtf with the eceptions
         if(Regex.isVariableName(str)) {
-            block.addCheckable(new VariableDeclerationLine(type, str, isfinal));
+            block.addCheckable(new VariableDeclerationLine(type, str, isFinal));
         }
         else{
             Matcher matcher = Regex.isAssimentLine(str);
             if(matcher.matches() && Regex.isVariableName(matcher.group(1))){
-                block.addCheckable(new VariableDeclerationLine(type, matcher.group(1), isfinal));
+                block.addCheckable(new VariableDeclerationLine(type, matcher.group(1), isFinal));
                 assignmentLineAction(matcher, block);
             }
             else {

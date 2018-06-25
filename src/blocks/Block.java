@@ -13,7 +13,6 @@ public class Block implements Checkable{
     protected Scope scope;
     protected boolean hasFatherScope;
     protected LinkedList<Checkable> content;
-    private static ValidatorStrategy validator = ValidatorBlock.getInstance();
     /**
      * A constructor for a block within a block
      * @param fatherScope
@@ -44,7 +43,7 @@ public class Block implements Checkable{
      * @param scope the scope that the block is in.
      * @return true if the block is valid, false otherwise.
      */
-    public boolean check(Scope scope){
+    public boolean check(Scope scope)throws Exception{
         int i =0;
         while(content.get(i).check(scope)){
             i++;

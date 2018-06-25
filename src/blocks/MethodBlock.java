@@ -11,13 +11,11 @@ import java.util.LinkedList;
  */
 public class MethodBlock extends Block implements Checkable {
 
-
     private String methodName;
     private LinkedList<String> paramNamesByOrder;
-    private LinkedList<String> typeNamesByOrder;
+    private LinkedList<Type> typeNamesByOrder;
     private LinkedList<Boolean> isFinalByOrder;
     private LinkedList<Variable> params;
-    private static ValidatorStrategy validator = ValidatorMethodBlock.getInstance();
 
     /**
      * A constuctor that builds a method block
@@ -28,7 +26,7 @@ public class MethodBlock extends Block implements Checkable {
      * @param fatherScope the scope of the father.
      * @throws InvalidTypeException
      */
-    public MethodBlock(String methodName,LinkedList<String> varNamesByOrder,LinkedList<String>
+    public MethodBlock(String methodName,LinkedList<String> varNamesByOrder,LinkedList<Type>
             typeNamesByOrder, LinkedList<Boolean> isFinalByOrder,
                        Scope
             fatherScope) throws InvalidTypeException{
@@ -49,13 +47,15 @@ public class MethodBlock extends Block implements Checkable {
     private void createParam() throws InvalidTypeException{
         for (int i = 0; i < typeNamesByOrder.size(); i++){
             String name = paramNamesByOrder.get(i);
-            Type type = Type.strToType(typeNamesByOrder.get(i));
+            Type type = typeNamesByOrder.get(i);
             boolean isFinal = isFinalByOrder.get(i);
             params.add(new Variable(name,type, isFinal));
         }
     }
 
-
+    /**
+     * a method that adds a method to the scope
+     */
     public void createMethod(){
         Method method = new Method(methodName, params);
         fatherScope.addMethod(method);

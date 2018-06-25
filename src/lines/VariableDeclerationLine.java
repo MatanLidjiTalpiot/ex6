@@ -12,12 +12,12 @@ import foundation.Scope;
  */
 public class VariableDeclerationLine extends Line {
 
-    private static ValidatorStrategy validator = ValidatorDeclartionLine.getInstance();
+    private static ValidatorDeclartionLine validator = ValidatorDeclartionLine.getInstance();
     private Variable variable;
     private Type varType;
     /**
      * A constructor that creates a VarialbeDeclerationLine
-     * @param type a String representation of what should be the type of the variable
+     * @param varType a String representation of what should be the type of the variable
      * @param name the name of the variable;
      * @param isFinal if the variable is final
      * @throws InvalidTypeException if the type is not a type that exists.
@@ -29,8 +29,6 @@ public class VariableDeclerationLine extends Line {
     public VariableDeclerationLine(Type varType, String name) throws InvalidTypeException{
         variable = new Variable(name, varType);
     }
-
-
 
     public Variable getVariable() {
         return variable;
