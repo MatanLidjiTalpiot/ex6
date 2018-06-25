@@ -52,7 +52,8 @@ public enum Type {
     }
 
     /**
-     * A method that returns the type of a String
+     * A method that returns the type of a String, if the String doesn't have a type than it throws an
+     * Invalid type exception.
      * @param toCheck the String value to check
      * @return the type that the String represents.
      */

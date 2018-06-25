@@ -63,7 +63,7 @@ public class Scope {
         methodsOfScope.add(toAdd);
     }
 
-    public boolean contains(String varName){
+    public boolean contains(String varName) throws NoSuchVariableException{
         for (Variable var:variablesOfScope){
             if (var.getName().equals(varName)){
                 return true;
@@ -73,7 +73,7 @@ public class Scope {
             return father.contains(varName);
         }
         else{
-            return false;
+            throw new NoSuchVariableException(varName);
         }
 
     }
