@@ -1,6 +1,6 @@
 package lines;
 
-import foundation.Exceptions.NoSuchVariableException;
+import foundation.Exceptions.InvalidAssignmentException;
 import foundation.Scope;
 import validator.ValidatorVariableAssignmentLine;
 
@@ -31,7 +31,7 @@ public class VariableAssignmentLine extends Line {
     }
 
 
-    public boolean check(Scope scope)throws NoSuchVariableException{
+    public boolean check(Scope scope)throws InvalidAssignmentException{
         return validator.validate(scope, this);
     }
 }

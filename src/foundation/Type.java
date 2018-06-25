@@ -32,31 +32,34 @@ public enum Type {
         else throw new InvalidTypeException(strToMatch);
     }
 
-    public static String typeToStr(Type type){
-        if (type == INT){
+    public static String typeToStr(Type type) throws InvalidTypeException {
+        if (type == INT) {
             return "int";
         }
-        if (type == DOUBLE){
+        if (type == DOUBLE) {
             return "double";
         }
-        if(type == STRING)){
+        if (type == STRING) {
             return "String";
         }
-        if(type == BOOLEAN)){
+        if (type == BOOLEAN) {
             return "boolean";
         }
-        if(type == CHAR)){
+        else{
             return "char";
         }
 
     }
 
+
+
     /**
-     * A method that gets the type of a String
+     * A method that returns the type of a String, if the String doesn't have a type than it throws an
+     * Invalid type exception.
      * @param toCheck the String value to check
      * @return the type that the String represents.
      */
-    public static Type getTypeOf(String toCheck){
+    public static Type getTypeOf(String toCheck) throws InvalidTypeException{
         //TODO build this method
     }
 

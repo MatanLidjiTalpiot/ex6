@@ -1,7 +1,7 @@
 package lines;
 import foundation.*;
 import java.util.LinkedList;
-import validator.*;
+import validator.ValidatorMethodCallLine;
 /**
  * A class that represents a method call line.
  */
@@ -9,19 +9,17 @@ public class MethodCallLine extends Line{
     private String methodName;
     private LinkedList<String> varNamesByOrder;
     private LinkedList<Type> typesByOrder;
-    private static ValidatorStrategy validator = ValidatorMethodCallLine.getInstance();
+
+    private static ValidatorMethodCallLine validator = ValidatorMethodCallLine.getInstance();
 
     /**
      * A constuctor for the MethodCallLine
      * @param methodName the name of the method
-     * @param varNamesByOrder the variables Names By order
-     * @param typesByOrder the variables type by order.
+     * @param parametersNamesByOrder the variables Names By order
      */
-    public MethodCallLine(String methodName, LinkedList<String> varNamesByOrder, LinkedList<Type>
-            typesByOrder){
+    public MethodCallLine(String methodName, LinkedList<String> parametersNamesByOrder){
         this.methodName = methodName;
-        this.varNamesByOrder = varNamesByOrder;
-        this.typesByOrder = typesByOrder;
+        this.varNamesByOrder = parametersNamesByOrder;
     }
 
 
@@ -35,5 +33,9 @@ public class MethodCallLine extends Line{
 
     public LinkedList<Type> getTypesByOrder() {
         return typesByOrder;
+    }
+
+    public boolean check(Scope scope){
+        return validator.validate(scope, this);
     }
 }

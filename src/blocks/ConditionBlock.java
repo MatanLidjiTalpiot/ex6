@@ -1,10 +1,8 @@
 package blocks;
 import foundation.Checkable;
-import foundation.Exceptions.NoSuchVariableException;
+import foundation.Exceptions.InvalidConditionException;
 import foundation.Scope;
-import validator.ValidatorConditionBlock;
-import validator.ValidatorStrategy;
-
+import foundation.Type;
 import java.util.LinkedList;
 
 /**
@@ -13,34 +11,50 @@ import java.util.LinkedList;
 public class ConditionBlock extends Block implements Checkable{
 
     private LinkedList<String> conditions;
-    private static ValidatorStrategy validator = ValidatorConditionBlock.getInstance();
     /**
      * A constructor for the ConditionBlock.
      * @param conditions A linked list of conditions supposed to be variables - if it is a number or
      *                   (true\false) it doesn't matter.
      * @param fatherScope - the scope that the method is within.
      */
-    public ConditionBlock(LinkedList<String> conditions, Scope fatherScope)throws NoSuchVariableException{
+    public ConditionBlock(LinkedList<String> conditions, Scope fatherScope)throws InvalidConditionException{
         super(fatherScope);
         this.conditions = conditions;
-        checkConditions(this.conditions);
+        checkConditions(this.conditions);// note that this throws an Exception
     }
-    public ConditionBlock(Scope fatherScope){
-        super(fatherScope);
-    }
+
 
 
     /**
      * A method that checks the validity of the conditions.
      * @param conditions A linked list of conditions.
-     * @throws NoSuchVariableException
+     * @throws InvalidConditionException thrown if the condition is not valid.
      */
-    private void checkConditions(LinkedList<String> conditions)throws NoSuchVariableException{
+    private void checkConditions(LinkedList<String> conditions)throws InvalidConditionException{
         for (String condition:conditions){
-            if (!fatherScope.contains(condition)){
-                throw new NoSuchVariableException(condition);
+            try {
+                if (Type.isType(condition)) {
+                    Type conditionType = Type.getTypeOf(condition);
+                    if (!isValidCondition(conditionType)) {
+                        throw new InvalidConditionException(condition);
+                    }
+                } else if (!fatherScope.containsVar(condition)) {
+                    throw new InvalidConditionException(condition);
+                }
+            }
+            catch (Exception e){
+                throw new InvalidConditionException(condition);
             }
         }
+    }
+
+    /**
+     * A method that checks if the condition is from the right type.
+     * @param conditionType the type of the condition
+     * @return true if the type is a type that can be in a condition, false otherwise.
+     */
+    private boolean isValidCondition(Type conditionType){
+        return(conditionType == Type.BOOLEAN || conditionType == Type.DOUBLE || conditionType == Type.INT);
     }
 
 }
