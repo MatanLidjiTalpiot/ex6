@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 
+
 public class Parser {
     //TODO which is static method and which is not
     private static Parser ourInstance = new Parser();
@@ -49,10 +50,20 @@ public class Parser {
             al.add(line.trim());
         }
         ArrayList<Integer> toDelete = new ArrayList<>();
+        int blockOpeners = 0;
         for(int i = 0; i < al.size(); i++){
+            if (Regex.isEndBlockLine(al.get(i))){
+                blockOpeners--;
+            }
+            if (Regex.isStartBlockLine(al.get(i)){
+                blockOpeners++;
+            }
             if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || Regex.isReturnLine(al.get
-                    (i)) && !Regex.isEndBlockLine(al.get(i+1))){//TODO really patchy
-               toDelete.add(i);
+                    (i)) && !Regex.isEndBlockLine(al.get(i+1))){
+                if(Regex.isReturnLine(al.get(i)) && blockOpeners==0){
+                   throw new SyntaxException(rowNumber);
+                }
+                toDelete.add(i);
             }
         }
         for(int i = toDelete.size()-1; i >= 0; i--){
