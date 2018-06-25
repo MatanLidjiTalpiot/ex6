@@ -147,6 +147,7 @@ public class Parser {
     private void assignmentLineAction(Matcher matcher, Block block) throws FileException {
         if (Type.isType(matcher.group(2)) || Regex.isVariableName(matcher.group(2))){
             block.addCheckable(new VariableAssignmentLine(matcher.group(1),matcher.group(2)));
+            return;
         }
         throw new SyntaxException(this.rowNumber);
     }
@@ -200,7 +201,7 @@ public class Parser {
         String[] parts = matcher.group(2).split("&&|\\|\\|");
         LinkedList<String> conditions = new LinkedList<>();
         for (String part : parts) {
-            if(Regex.isVariableName(part))
+            if(Regex.isVariableName(part.trim()))
                 conditions.add(part);
             else
                 if(Type.getTypeOf(part) != Type.INT&&Type.getTypeOf(part) != Type.DOUBLE&&Type.getTypeOf

@@ -32,7 +32,7 @@ public class Regex {
     }
 
     static Matcher isAssiment(String str){
-        Pattern ptrn = Pattern.compile("^\\s*^([a-z A-Z _]+\\w+|[a-z A-Z]\\w*)$\\s*=\\s*(.*)\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*([a-z A-Z _]+\\w+|[a-z A-Z]\\w*)\\s*=\\s*(.*)\\s*$");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
