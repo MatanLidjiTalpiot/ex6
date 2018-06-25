@@ -3,43 +3,90 @@ import java.util.regex.*;
 
 public class Regex {
 
-    static Pattern firstWordInLine = Pattern.compile("^([^\\s]+).*$");
-
-    public static Pattern declerationLine(Type type) {
-        return Pattern.compile(Type.typeToStr(type)+"\\s+([^\\d]+\\w+|[a-z A-Z])\\s*;\\s*$");
+    static Matcher isStartBlockLine(String str) {
+        Pattern ptrn = Pattern.compile("^(.+)[{]$");
+        return ptrn.matcher(str);
     }
 
-    public static Pattern finalDeclerationLine(Type type) {
-        return Pattern.compile("^final\\s"+Type.typeToStr(type)+"\\s+([^\\d]+\\w+|[a-z A-Z])\\s*;\\s*$");
+    static Matcher isIfBlock(String str){
+        Pattern ptrn = Pattern.compile("^if\\s*\\((.+)\\)\\s");
+        return ptrn.matcher(str);
     }
 
-    static Pattern methodCallLine = Pattern.compile("^([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*;\\s*$");
-
-    static Pattern isMethodName = Pattern.compile("^([a-z A-Z]+\\w*)$");
-
-    static Pattern isVariableName = Pattern.compile("^([^\\d]+\\w+|[a-z A-Z])$");
-
-    static Pattern isStartBlockLine = Pattern.compile("^(.+)[{]$");
-
-    static Pattern isIfBlock = Pattern.compile("^if\\s*\\((.+)\\)\\s");
-
-    static Pattern isWhileBlock = Pattern.compile("^while\\s*\\((.+)\\)\\s*");
-
-    static Pattern isMethodBlock = Pattern.compile("^\\s*([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*;\\s*$");
-
-    public static Pattern declerationLineForMethodBlock(Type type) {
-        return Pattern.compile(Type.typeToStr(type)+"\\s+([^\\d]+\\w+|[a-z A-Z])\\s*$");
+    static Matcher isWhileBlock(String str){
+        Pattern ptrn = Pattern.compile("^while\\s*\\((.+)\\)\\s*");
+        return ptrn.matcher(str);
     }
 
-    static Pattern isBooleanValue = Pattern.compile("(\\s*true\\s*|\\s*false\\s*)");
+    static Matcher isMethodBlock(String str){
+        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*;\\s*$");
+        return ptrn.matcher(str);
+    }
 
-    static Pattern isIntValue = Pattern.compile("\\s*\\d+\\s*");
+    static Matcher isAssimentLine(String str){
+        Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*;$");
+        return ptrn.matcher(str);
+    }
 
-    static Pattern isDoubleValue = Pattern.compile("\\s*\\d+.\\d*\\s*");
+    static Matcher isDeclerationLine(String str){
+        Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");
+        return ptrn.matcher(str);
+    }
 
-    static Pattern isStringValue = Pattern.compile("\\s*\".*\"\\s*");
+    static Matcher isFinalDeclerationLine(String str){
+        Pattern ptrn = Pattern.compile("^\\s*final\\s*(\\S+)\\s+(.+);\\s*$");
+        return ptrn.matcher(str);
+    }
 
-    static Pattern isCharValue = Pattern.compile("\\s*\".?\"\\s*");
+    static Matcher isMethodCallLine(String str){
+        Pattern ptrn = Pattern.compile("^([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*;\\s*$");
+        return ptrn.matcher(str);
+    }
+
+    static Matcher isEndBlockLine(String str){
+        Pattern ptrn = Pattern.compile("^\\s*}\\s*$");
+        return ptrn.matcher(str);
+    }
+
+    static Matcher isLineEmpthy(String str){
+        Pattern ptrn = Pattern.compile("^\\s*$");
+        return ptrn.matcher(str);
+    }
+
+    static boolean isMethodName(String str){
+        Pattern ptrn = Pattern.compile("^([a-z A-Z]+\\w*)$");
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isVariableName(String str){
+        Pattern ptrn = Pattern.compile("^([^\\d]+\\w+|[a-z A-Z])$");
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isBooleanValue(String str){
+        Pattern ptrn = Pattern.compile("(\\s*true\\s*|\\s*false\\s*)");
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isIntValue(String str){
+        Pattern ptrn = Pattern.compile("\\s*\\d+\\s*");
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isDoubleValue(String str){
+        Pattern ptrn = Pattern.compile("\\s*\\d+.\\d*\\s*");
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isStringValue(String str){
+        Pattern ptrn = Pattern.compile("\\s*\".*\"\\s*");
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isCharValue(String str){
+        Pattern ptrn = Pattern.compile("\\s*\".?\"\\s*");
+        return ptrn.matcher(str).matches();
+    }
 
 
 
