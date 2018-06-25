@@ -8,9 +8,9 @@ import validator.ValidatorDeclartionLine;
 import foundation.Scope;
 
 /**
- * A class that represents a VariableDeclerationLine.
+ * A class that represents a VariableDeclarationLine.
  */
-public class VariableDeclerationLine extends Line {
+public class VariableDeclarationLine extends Line {
 
     private Variable variable;
     /**
@@ -20,7 +20,7 @@ public class VariableDeclerationLine extends Line {
      * @param isFinal if the variable is final
      * @throws InvalidTypeException if the type is not a type that exists.
      */
-    public VariableDeclerationLine(Type varType, String name, boolean isFinal)throws InvalidTypeException {
+    public VariableDeclarationLine(Type varType, String name, boolean isFinal)throws InvalidTypeException {
         variable = new Variable(name, varType,isFinal);
     }
 

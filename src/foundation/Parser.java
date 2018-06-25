@@ -89,12 +89,12 @@ public class Parser {
     private void simpleDeclerationLineAction(boolean isFinal, Type type, String str, Block block) {
         //  TODO wtf with the eceptions
         if(Regex.isVariableName(str)) {
-            block.addCheckable(new VariableDeclerationLine(type, str, isFinal));
+            block.addCheckable(new VariableDeclarationLine(type, str, isFinal));
         }
         else{
             Matcher matcher = Regex.isAssimentLine(str);
             if(matcher.matches() && Regex.isVariableName(matcher.group(1))){
-                block.addCheckable(new VariableDeclerationLine(type, matcher.group(1), isFinal));
+                block.addCheckable(new VariableDeclarationLine(type, matcher.group(1), isFinal));
                 assignmentLineAction(matcher, block);
             }
             else {
