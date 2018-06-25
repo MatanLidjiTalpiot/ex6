@@ -2,6 +2,7 @@ package oop.ex6.main;
 
 import blocks.Block;
 import foundation.Parser;
+import foundation.exceptions.FileException;
 
 import java.io.IOException;
 
@@ -22,9 +23,12 @@ public class Sjavac {
             System.err.println(e.getMessage());
             System.out.println(2);
         }
-        catch(Exception e){
+        catch(FileException e){
             System.err.println(e.getMessage());//TODO remove after debugging
             System.out.println(1);
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage() + "keep debugging")//TODO remove after debugging.
         }
 
     }
