@@ -1,6 +1,8 @@
 package foundation;
 import foundation.Exceptions.InvalidTypeException;
 
+import java.util.regex.Pattern;
+
 /**
  * An enum class that represents all the types that are used in S java
  */
@@ -11,7 +13,7 @@ public enum Type {
     /**
      * A method that matches a string to its type.
      * @param strToMatch the string to match
-     * @return the type the the string represents, if the string does not represent a type - null.
+     * @return the type the the string represents.
      */
     public static Type strToType(String strToMatch) throws InvalidTypeException {
         if (strToMatch.equals("int")){
@@ -32,6 +34,11 @@ public enum Type {
         else throw new InvalidTypeException(strToMatch);
     }
 
+    /**
+     * A method that matches a type to its name in string.
+     * @param type the string to match
+     * @return the string representation of a type.
+     */
     public static String typeToStr(Type type) throws InvalidTypeException {
         if (type == INT) {
             return "int";
@@ -48,10 +55,7 @@ public enum Type {
         else{
             return "char";
         }
-
     }
-
-
 
     /**
      * A method that returns the type of a String, if the String doesn't have a type than it throws an
@@ -60,19 +64,22 @@ public enum Type {
      * @return the type that the String represents.
      */
     public static Type getTypeOf(String toCheck) throws InvalidTypeException{
-        //TODO build this method
-    }
+        if (Regex.isBooleanValue(toCheck))
+            return BOOLEAN;
 
-    /**
-     * A method that checks whether a string value has a type that it represents.
-      * @param toCheck the String value to check
-     * @return true if it does, false othrewise.
-     */
-    public static boolean isType(String toCheck){
+        if (Regex.isIntValue(toCheck))
+            return INT;
 
-    }
-    public static boolean isFromType(String toCheck){
+        if (Regex.isDoubleValue(toCheck))
+            return DOUBLE;
 
+        if (Regex.isStringValue(toCheck))
+            return STRING;
+
+        if (Regex.isCharValue(toCheck))
+            return CHAR;
+
+        throw new InvalidTypeException(toCheck);
     }
 }
 
