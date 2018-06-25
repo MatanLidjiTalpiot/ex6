@@ -22,6 +22,10 @@ public class Regex {
         Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*;$");
         return ptrn.matcher(str);
     }
+    static Matcher isAssiment(String str){
+        Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*$");
+        return ptrn.matcher(str);
+    }
 
     static Matcher isDeclerationLine(String str){
         Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");
@@ -91,6 +95,11 @@ public class Regex {
     static boolean isCharValue(String str){
         Pattern ptrn = Pattern.compile("\\s*\".?\"\\s*");
         return ptrn.matcher(str).matches();
+    }
+
+    static Matcher stringFinder(String str){
+        Pattern ptrn = Pattern.compile("\"(.*?)\"");
+        return ptrn.matcher(str);
     }
 
 

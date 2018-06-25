@@ -25,74 +25,46 @@ public class Parser {
     private Parser() {
     }
 
-    public Block Parse(String fileName) throws SyntaxException, IOException{
+    //TODO i started checking from here
+    public Block Parse(String fileName) throws Exception{
         this.file = new File(fileName);
         this.fileReader = new FileReader(this.file);
         this.bufferedReader = new BufferedReader(fileReader);
         this.mainBlock = new Block();
-        this.rowNumber = -1;
+        this.rowNumber = 0;
 
-        this.parseMainBlock(this.mainBlock);
+        this.parseBlock(this.mainBlock, true);
 
         return this.mainBlock;
     }
 
-    private void parseMainBlock(Block block) throws IOException, SyntaxException {
-        String line, newLine;
-        while ((line = this.bufferedReader.readLine()) != null) {
-            rowNumber++;
-            newLine = this.linePreProcessing(line);
-            this.lineAction(newLine,block);
-        }
-    }
-
-    private void parseBlock(Block block) throws IOException, SyntaxException {
-        String line, newLine;
+    private void parseBlock(Block block, boolean isMainBlock) throws Exception {
+        String line;
         while ((line = this.bufferedReader.readLine()) != null) {
             rowNumber++;
             if(Regex.isEndBlockLine(line))
                 break;
-            newLine = this.linePreProcessing(line);
-            this.lineAction(newLine,block);
+            this.lineAction(line,block);
         }
     }
 
-    private String linePreProcessing(String line){
-        //TODO cheack if there are any other prepossessing
-        String[] parts = line.split("\"");
-        for(int i = 0; i<parts.length;i++) {
-            if(!parts[i].equals(""))
-                if (parts[i].substring(parts[i].length() - 1) == "\\") {
-                    //TODO CHEACK THIS FUCKING \\\\\\\ THING
-                    parts[i] += parts[i+1];
-                    parts[i+1] = "";
-                }
-        }
-        for(int i = 0; i<parts.length;i++) {
-            if(i%2 == 1)
-                parts[i] = "a";
-        }
-        return String.join("\"", parts);
-    }
-
-    private void lineAction(String line,Block block)throws SyntaxException {
+    private void lineAction(String line,Block block)throws Exception {
         //TODO fill it after all the other line actions are complete
     }
 
-    private void assignmentLineAction(Matcher matcher, Block block) throws SyntaxException {
-        if (Type.isFromType(matcher.group(2)) || Regex.isVariableName(matcher.group(2)) ){
+    private void assignmentLineAction(Matcher matcher, Block block) throws Exception {
+        if (Type.isType(matcher.group(2)) || Regex.isVariableName(matcher.group(2))){
             block.addCheckable(new VariableAssignmentLine(matcher.group(1),matcher.group(2)));
         }
         throw new SyntaxException(this.rowNumber);
     }
 
-    private void simpleDeclerationLineAction(boolean isFinal, Type type, String str, Block block) {
-        //  TODO wtf with the eceptions
+    private void simpleDeclarationLineAction(boolean isFinal, Type type, String str, Block block) throws Exception {
         if(Regex.isVariableName(str)) {
             block.addCheckable(new VariableDeclarationLine(type, str, isFinal));
         }
         else{
-            Matcher matcher = Regex.isAssimentLine(str);
+            Matcher matcher = Regex.isAssiment(str);
             if(matcher.matches() && Regex.isVariableName(matcher.group(1))){
                 block.addCheckable(new VariableDeclarationLine(type, matcher.group(1), isFinal));
                 assignmentLineAction(matcher, block);
@@ -103,50 +75,48 @@ public class Parser {
         }
     }
 
-    private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) {
+    private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) throws Exception{
         if (!Type.isType(matcher.group(1))) {
             throw new SyntaxException(this.rowNumber);
         }
         String[] parts = matcher.group(2).split(",");
         for (int i = 0; i < parts.length; i++) {
-            this.simpleDeclerationLineAction(isFinal,Type.getTypeOf(matcher.group(1)), parts[i], block);
+            this.simpleDeclarationLineAction(isFinal,Type.getTypeOf(matcher.group(1)), parts[i], block);
         }
     }
 
-    private void methodeCallLineAction(Matcher matcher, Block block){
+    private void methodeCallLineAction(Matcher matcher, Block block) throws Exception{
 
         String[] parts = matcher.group(2).split(",");
+        LinkedList<String> param = new LinkedList<>();
         for(String part : parts) {
-            if(!Regex.isVariableName(part) && !Type.isFromType(part))
-                return false;
-        }
-        // TODO how the fuck the methode call line work
-        LinkedList<String> param = new LinkedList<String>();
-        for(String part : parts) {
+            if(!Regex.isVariableName(part) && !Type.isType(part))
+                throw new SyntaxException(rowNumber);
             param.add(part);
         }
-        block.addCheckable(new MethodCallLine(matcher.group(1),param);
+        block.addCheckable(new MethodCallLine(matcher.group(1),param));
     }
 
-    private void conditionBlockAction(Matcher matcher, Block block)throws InvalidConditionException{
-        try {
-            String[] parts = matcher.group(2).split("&&|\\|\\|");
-            LinkedList<String> conditions = new LinkedList<>();
-            for (int i = 0; i < parts.length; i++) {
-                conditions.add(parts[i]);
-            }
-            ConditionBlock newBlock = new ConditionBlock(conditions, block.getScope());
-            parseBlock(newBlock);
-            block.addCheckable(newBlock);
-        }
-        catch (InvalidConditionException | IOException | SyntaxException e){
+    private void conditionBlockAction(Matcher matcher, Block block)throws Exception{
 
+        String[] parts = matcher.group(2).split("&&|\\|\\|");
+        LinkedList<String> conditions = new LinkedList<>();
+        for (String part : parts) {
+            if(Regex.isVariableName(part))
+                conditions.add(part);
+            else
+                if(Type.getTypeOf(part) != Type.INT||Type.getTypeOf(part) != Type.DOUBLE||Type.getTypeOf
+                        (part) != Type.BOOLEAN)
+                    throw new SyntaxException(rowNumber);
         }
+        ConditionBlock newBlock = new ConditionBlock(conditions, block.getScope());
+        parseBlock(newBlock,false);
+        block.addCheckable(newBlock);
     }
 
-    private void methodeBlockAction((Matcher matcher, Block block)throws SyntaxException,
-            InvalidTypeException, IOException{
+    private void methodeBlockAction(Matcher matcher, Block block)throws Exception{
         //TODO possibole fail in what heppend if it doesnt chach a group "final"
+
         String[] parts = matcher.group(2).split(",");
 
         LinkedList<String> varNamesByOrder = new LinkedList<>();
@@ -168,9 +138,10 @@ public class Parser {
                 throw new SyntaxException(rowNumber);
         }
 
-        MethodBlock newBlock = new MethodBlock(varNamesByOrder, typeNamesByOrder, isFinalByOrder, block.getScope());
-        parseBlock(newBlock);
+        MethodBlock newBlock = new MethodBlock(matcher.group(1),varNamesByOrder, typeNamesByOrder,
+                isFinalByOrder, block.getScope());
+        parseBlock(newBlock, false);
         block.addCheckable(newBlock);
     }
 }
-//TODO block in block, RETURN
+//TODO RETURN
