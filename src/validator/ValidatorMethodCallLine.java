@@ -6,7 +6,6 @@ import foundation.Exceptions.ParametersDontMatchException;
 import foundation.Method;
 import foundation.Scope;
 import foundation.Type;
-import foundation.Variable;
 import lines.MethodCallLine;
 import java.util.LinkedList;
 
@@ -71,8 +70,3 @@ public class ValidatorMethodCallLine {
 
 
         }
-    }
-
-    private ValidatorMethodCallLine() {
-    }
-}
