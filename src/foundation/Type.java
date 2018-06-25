@@ -14,6 +14,7 @@ public enum Type {
      * @return the type the the string represents.
      */
     public static Type strToType(String strToMatch) throws InvalidTypeException {
+        strToMatch = strToMatch.trim();
         if (strToMatch.equals("int")){
             return INT;
         }
@@ -62,6 +63,7 @@ public enum Type {
      * @return the type that the String represents.
      */
     public static Type getTypeOf(String toCheck) throws InvalidTypeException{
+        toCheck = toCheck.trim();
         if (Regex.isBooleanValue(toCheck))
             return BOOLEAN;
 

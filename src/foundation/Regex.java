@@ -11,7 +11,7 @@ public class Regex {
     }
 
     static Matcher isConditionBlock(String str){
-        Pattern ptrn = Pattern.compile("^\\s*(if|while)\\s*\\(\\s*(\\S+)\\s*\\)\\s*");
+        Pattern ptrn = Pattern.compile("^\\s*(if|while)\\s*\\((.+)\\)\\s*");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -32,7 +32,7 @@ public class Regex {
     }
 
     static Matcher isAssiment(String str){
-        Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*^([a-z A-Z _]+\\w+|[a-z A-Z]\\w*)$\\s*=\\s*(.*)\\s*$");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -92,7 +92,7 @@ public class Regex {
     }
 
     static boolean isVariableName(String str){
-        Pattern ptrn = Pattern.compile("^([^\\d]+\\w+|[a-z A-Z])$");
+        Pattern ptrn = Pattern.compile("^([a-z A-Z _]+\\w+|[a-z A-Z]\\w*)$");
         return ptrn.matcher(str).matches();
     }
 

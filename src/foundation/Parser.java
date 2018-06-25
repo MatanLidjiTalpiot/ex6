@@ -112,13 +112,8 @@ public class Parser {
     }
 
     private void lineAction(String line,Block block)throws FileException, IOException{
-        Matcher matcher  = Regex.isAssimentLine(line);
-        if (matcher.matches()){
-            assignmentLineAction(matcher,block);
-            return;
-        }
 
-        matcher  = Regex.isFinalDeclerationLine(line);
+        Matcher matcher  = Regex.isFinalDeclerationLine(line);
         if (matcher.matches()){
             declerationLineAction(matcher,block,true);
             return;
@@ -127,6 +122,12 @@ public class Parser {
         matcher  = Regex.isDeclerationLine(line);
         if (matcher.matches()){
             declerationLineAction(matcher,block,false);
+            return;
+        }
+
+        matcher  = Regex.isAssimentLine(line);
+        if (matcher.matches()){
+            assignmentLineAction(matcher,block);
             return;
         }
 
@@ -169,12 +170,16 @@ public class Parser {
 
     private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) throws
             FileException {
-        if (!Type.isType(matcher.group(1))) {
+        Type type1 = Type.INT;
+        try{
+            type1 = Type.strToType(matcher.group(1));
+        }
+        catch (InvalidTypeException e){
             throw new SyntaxException(this.rowNumber);
         }
         String[] parts = matcher.group(2).split(",");
         for (int i = 0; i < parts.length; i++) {
-            this.simpleDeclarationLineAction(isFinal,Type.getTypeOf(matcher.group(1)), parts[i], block);
+            this.simpleDeclarationLineAction(isFinal,type1, parts[i], block);
         }
     }
 
