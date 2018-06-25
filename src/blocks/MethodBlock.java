@@ -1,8 +1,7 @@
 package blocks;
 import foundation.*;
 import foundation.Exceptions.InvalidTypeException;
-import validator.ValidatorMethodBlock;
-import validator.ValidatorStrategy;
+
 
 import java.util.LinkedList;
 

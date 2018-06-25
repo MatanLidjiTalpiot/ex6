@@ -1,8 +1,5 @@
 package blocks;
 import foundation.*;
-import validator.ValidatorBlock;
-import validator.ValidatorStrategy;
-
 import java.util.LinkedList;
 
 /**
