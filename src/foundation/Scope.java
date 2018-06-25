@@ -31,6 +31,10 @@ public class Scope {
         return father;
     }
 
+    public boolean hasFather(){
+        return hasFather;
+    }
+
     /**
      * A method that adds a variable
      * @param toAdd a Variable.
