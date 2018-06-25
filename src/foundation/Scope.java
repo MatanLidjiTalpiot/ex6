@@ -63,18 +63,22 @@ public class Scope {
         methodsOfScope.add(toAdd);
     }
 
-    public boolean contains(String varName) throws NoSuchVariableException{
+    public boolean containsVar(String varName) throws NoSuchVariableException{
         for (Variable var:variablesOfScope){
             if (var.getName().equals(varName)){
                 return true;
             }
         }
         if (this.hasFather){
-            return father.contains(varName);
+            return father.containsVar(varName);
         }
         else{
             throw new NoSuchVariableException(varName);
         }
+
+    }
+
+    public boolean containsMethod(String methodName) throws NoSuchMethodException {
 
     }
 }

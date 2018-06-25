@@ -26,7 +26,7 @@ public class ValidatorVariableAssignmentLine {
         Variable leftVar = scope.getVariableByName(left);
         String right = lineToCheck.getRight();
         Variable rightVar;
-            if (scope.contains(right)) {
+            if (scope.containsVar(right)) {
                 rightVar = scope.getVariableByName(right);
                 return (leftVar.assign(rightVar));
             } else {

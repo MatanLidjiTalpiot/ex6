@@ -38,7 +38,7 @@ public class ConditionBlock extends Block implements Checkable{
                     if (!isValidCondition(conditionType)) {
                         throw new InvalidConditionException(condition);
                     }
-                } else if (!fatherScope.contains(condition)) {
+                } else if (!fatherScope.containsVar(condition)) {
                     throw new InvalidConditionException(condition);
                 }
             }

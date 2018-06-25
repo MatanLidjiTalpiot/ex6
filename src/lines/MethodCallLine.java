@@ -36,6 +36,6 @@ public class MethodCallLine extends Line{
     }
 
     public boolean check(Scope scope){
-        return validator(scope, this);
+        return validator.validate(scope, this);
     }
 }
