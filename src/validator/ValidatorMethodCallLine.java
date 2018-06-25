@@ -2,6 +2,7 @@ package validator;
 import foundation.Exceptions.IllegalParametersException;
 import foundation.Exceptions.InvalidTypeException;
 import foundation.Exceptions.NoSuchVariableException;
+import foundation.Exceptions.ParametersDontMatchException;
 import foundation.Method;
 import foundation.Scope;
 import foundation.Type;
@@ -14,13 +15,14 @@ public class ValidatorMethodCallLine {
 
     public static ValidatorMethodCallLine getInstance() {
         return ourInstance;
-        LinkedList<Type>
     }
 
-    public boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException, IllegalParametersException{
+    public boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException,
+            IllegalParametersException, ParametersDontMatchException{
         isMethod(scope, line);
         LinkedList<Type> validTypesByOrder = checkParameters(scope, line);
-
+        Method method = scope.getMethodByName(line.getMethodName());
+        return (method.callingMatching(validTypesByOrder));
     }
 
     private void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{
