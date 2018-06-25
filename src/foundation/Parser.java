@@ -198,7 +198,7 @@ public class Parser {
             if(Regex.isVariableName(part))
                 conditions.add(part);
             else
-                if(Type.getTypeOf(part) != Type.INT||Type.getTypeOf(part) != Type.DOUBLE||Type.getTypeOf
+                if(Type.getTypeOf(part) != Type.INT&&Type.getTypeOf(part) != Type.DOUBLE&&Type.getTypeOf
                         (part) != Type.BOOLEAN)
                     throw new SyntaxException(rowNumber);
         }
