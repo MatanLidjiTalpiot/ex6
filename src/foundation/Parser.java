@@ -62,12 +62,14 @@ public class Parser {
         if (matcher.matches()) {
             line = matcher.group(1);
             matcher  = Regex.isConditionBlock(line);
-            if (matcher.matches())
+            if (matcher.matches()) {
                 conditionBlockAction(matcher, block);
+            }
             else {
                 matcher = Regex.isMethodBlock(line);
-                if (matcher.matches())
+                if (matcher.matches()) {
                     methodeBlockAction(matcher, block);
+                }
                 else{
                     throw new SyntaxException(rowNumber);
                 }
@@ -75,20 +77,24 @@ public class Parser {
 
         } else {
             matcher = Regex.isAssimentLine(line);
-            if (matcher.matches())
+            if (matcher.matches()) {
                 assignmentLineAction(matcher, block);
+            }
             else {
                 matcher = Regex.isFinalDeclerationLine(line);
-                if (matcher.matches())
-                    declerationLineAction(matcher, block,true);
+                if (matcher.matches()) {
+                    declerationLineAction(matcher, block, true);
+                }
                 else {
                     matcher = Regex.isDeclerationLine(line);
-                    if (matcher.matches())
-                        declerationLineAction(matcher, block,false);
+                    if (matcher.matches()) {
+                        declerationLineAction(matcher, block, false);
+                    }
                     else {
                         matcher = Regex.isMethodCallLine(line);
-                        if (matcher.matches())
+                        if (matcher.matches()) {
                             methodeCallLineAction(matcher, block);
+                        }
                         else{
                             throw new SyntaxException(rowNumber);
                         }
@@ -163,15 +169,14 @@ public class Parser {
     }
 
     private void methodeBlockAction(Matcher matcher, Block block)throws FileException, IOException{
-        //TODO possibole fail in what heppend if it doesnt chach a group "final"
-
-        String[] parts = matcher.group(2).split(",");
 
         LinkedList<String> varNamesByOrder = new LinkedList<>();
         LinkedList<Type> typeNamesByOrder = new LinkedList<>();
         LinkedList<Boolean> isFinalByOrder = new LinkedList<>();
 
-        if(parts.length != 1 && parts[0] != ""){
+        String[] parts = matcher.group(2).split(",");
+
+        if((parts.length != 1) && (!parts[0].equals(""))){
             for (int i = 0; i < parts.length; i++) {
                 Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i]);
                 if (!matcher1.matches())
