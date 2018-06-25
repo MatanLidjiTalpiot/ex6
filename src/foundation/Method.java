@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * A class that represents a Method.
  */
 public class Method {
-    private LinkedList<Variable> inputVariables;
+    private LinkedList<Variable> inputVariables = new LinkedList<>();
     private String methodName;
     private int numberOfVals;
 

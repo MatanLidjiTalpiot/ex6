@@ -12,9 +12,9 @@ import java.util.LinkedList;
 public class MethodBlock extends Block implements Checkable {
 
     private String methodName;
-    private LinkedList<String> paramNamesByOrder;
-    private LinkedList<Type> typeNamesByOrder;
-    private LinkedList<Boolean> isFinalByOrder;
+    private LinkedList<String> paramNamesByOrder = new LinkedList<>();
+    private LinkedList<Type> typeNamesByOrder = new LinkedList<>();
+    private LinkedList<Boolean> isFinalByOrder = new LinkedList<>();
     private LinkedList<Variable> params = new LinkedList<>();
 
     /**

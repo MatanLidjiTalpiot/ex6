@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class ConditionBlock extends Block implements Checkable{
 
-    private LinkedList<String> conditions;
+    private LinkedList<String> conditions = new LinkedList<>();
     /**
      * A constructor for the ConditionBlock.
      * @param conditions A linked list of conditions supposed to be variables - if it is a number or
