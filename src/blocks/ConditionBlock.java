@@ -2,6 +2,7 @@ package blocks;
 import foundation.Checkable;
 import foundation.Exceptions.InvalidConditionException;
 import foundation.Exceptions.InvalidTypeException;
+import foundation.Exceptions.NoSuchVariableException;
 import foundation.Scope;
 import foundation.Type;
 import java.util.LinkedList;
@@ -39,12 +40,17 @@ public class ConditionBlock extends Block implements Checkable{
                     if (!isValidCondition(conditionType)) {
                         throw new InvalidConditionException(condition);
                     }
-                } else if (!fatherScope.containsVar(condition)) {
+                } else if (!fatherScope.containsVar(condition) || !fatherScope.getVariableByName(condition)
+                        .isAssigned()) {
                     throw new InvalidConditionException(condition);
                 }
             }
             catch (InvalidTypeException e){
                 throw new InvalidConditionException(condition);
+            }
+            catch(NoSuchVariableException e){
+                throw new InvalidConditionException("wasn't supposed to be called, check your code");
+                        //TODO remove message after debugging.
             }
         }
     }

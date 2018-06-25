@@ -1,6 +1,5 @@
 package blocks;
 import foundation.*;
-import foundation.Exceptions.InvalidTypeException;
 import foundation.Exceptions.NestedMethodException;
 
 
@@ -31,7 +30,9 @@ public class MethodBlock extends Block implements Checkable {
             fatherScope) throws NestedMethodException {
 
         super(fatherScope);
-        if(fatherScope.hasFather()){
+        if(fatherScope.hasFather()){ // according to this exercise demands are that a method can not be
+            // written within another method or some kind of a condition block. hence, the block that the
+            // method block is in is the block of all the file, and does not have a father.
             throw new NestedMethodException("illegal nesting of blocks");
         }
         this.methodName = methodName;
@@ -58,10 +59,13 @@ public class MethodBlock extends Block implements Checkable {
     /**
      * a method that adds a method to the scope
      */
-    public void createMethod(){
+    private void createMethod(){
         Method method = new Method(methodName, params);
         fatherScope.addMethod(method);
     }
 
-    //TODO check
+    @Override
+    public boolean check(Scope scope) throws Exception {
+        return super.check(scope);
+    }
 }
