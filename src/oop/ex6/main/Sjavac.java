@@ -29,6 +29,7 @@ public class Sjavac {
         }
         catch(Exception e){
             System.err.println(e.getMessage() + "keep debugging")//TODO remove after debugging.
+            System.out.println(2);
         }
 
     }
