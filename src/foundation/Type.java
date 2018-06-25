@@ -52,11 +52,11 @@ public enum Type {
     }
 
     /**
-     * A method that gets the type of a String
+     * A method that returns the type of a String
      * @param toCheck the String value to check
      * @return the type that the String represents.
      */
-    public static Type getTypeOf(String toCheck){
+    public static Type getTypeOf(String toCheck) throws InvalidTypeException{
         //TODO build this method
     }
 

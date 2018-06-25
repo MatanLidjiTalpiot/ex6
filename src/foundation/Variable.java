@@ -122,7 +122,7 @@ public class Variable {
      */
     public boolean assign(String toAssign)throws InvalidAssignmentException{
         try {
-            Type toAssignType = Type.strToType(toAssign);
+            Type toAssignType = Type.getTypeOf(toAssign);
 
             if (canAssign(toAssignType)) {
                 isAssigned = true;

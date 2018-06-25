@@ -17,21 +17,24 @@ public class ValidatorVariableAssignmentLine {
      * @param scope the scope that the line is in.
      * @param lineToCheck the line that we are checking
      * @return true of the assignment is legal, false otherwise.
-     * @throws NoSuchVariableException
+     * @throws InvalidAssignmentException An exception when the assignment is illegal.
      */
     public static boolean validate(Scope scope,VariableAssignmentLine lineToCheck) throws
-            NoSuchVariableException, InvalidAssignmentException{
+            InvalidAssignmentException{
         String left = lineToCheck.getRight();
+        try{
         Variable leftVar = scope.getVariableByName(left);
         String right = lineToCheck.getRight();
         Variable rightVar;
-
-        if (scope.contains(right)){
-            rightVar = scope.getVariableByName(right);
-            return (leftVar.assign(rightVar));
+            if (scope.contains(right)) {
+                rightVar = scope.getVariableByName(right);
+                return (leftVar.assign(rightVar));
+            } else {
+                return (leftVar.assign(right));
+            }
         }
-        else{
-            return (leftVar.assign(right));
+        catch (NoSuchVariableException e){
+            throw new InvalidAssignmentException("no variable" + left);
         }
     }
 

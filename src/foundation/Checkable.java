@@ -4,7 +4,7 @@ import foundation.Exceptions.NoSuchVariableException;
 
 public interface Checkable {
 
-    boolean check(Scope scope)throws NoSuchVariableException;
+    boolean check(Scope scope)throws Exception;
 }
 
 
