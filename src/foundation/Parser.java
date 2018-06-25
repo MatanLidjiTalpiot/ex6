@@ -1,5 +1,9 @@
 package foundation;
 
+import blocks.ConditionBlock;
+import blocks.MethodBlock;
+import foundation.Exceptions.InvalidConditionException;
+import foundation.Exceptions.InvalidTypeException;
 import lines.*;
 import blocks.Block;
 import foundation.Exceptions.SyntaxException;
@@ -44,8 +48,8 @@ public class Parser {
     private void parseMainBlock(Block block) throws IOException, SyntaxException {
         String line, newLine;
         while ((line = this.bufferedReader.readLine()) != null) {
-            newLine = this.linePreProcessing(line);
             rowNumber++;
+            newLine = this.linePreProcessing(line);
             this.lineAction(newLine,block);
         }
     }
@@ -53,12 +57,13 @@ public class Parser {
     private void parseBlock(Block block) throws IOException, SyntaxException {
         String line, newLine;
         while ((line = this.bufferedReader.readLine()) != null) {
-            newLine = this.linePreProcessing(line);
             rowNumber++;
+            if(Regex.isEndBlockLine(line))
+                break;
+            newLine = this.linePreProcessing(line);
             this.lineAction(newLine,block);
         }
     }
-
 
     private String linePreProcessing(String line){
         //TODO cheack if there are any other prepossessing
@@ -131,7 +136,49 @@ public class Parser {
         block.addCheckable(new MethodCallLine(matcher.group(1),param);
     }
 
+    private void conditionBlockAction(Matcher matcher, Block block)throws InvalidConditionException{
+        try {
+            String[] parts = matcher.group(2).split("&&|\\|\\|");
+            LinkedList<String> conditions = new LinkedList<>();
+            for (int i = 0; i < parts.length; i++) {
+                conditions.add(parts[i]);
+            }
+            ConditionBlock newBlock = new ConditionBlock(conditions, block.getScope());
+            parseBlock(newBlock);
+            block.addCheckable(newBlock);
+        }
+        catch (InvalidConditionException | IOException | SyntaxException e){
+
+        }
     }
 
+    private void methodeBlockAction((Matcher matcher, Block block)throws SyntaxException,
+            InvalidTypeException, IOException{
+        //TODO possibole fail in what heppend if it doesnt chach a group "final"
+        String[] parts = matcher.group(2).split(",");
 
+        LinkedList<String> varNamesByOrder = new LinkedList<>();
+        LinkedList<Type> typeNamesByOrder = new LinkedList<>();
+        LinkedList<Boolean> isFinalByOrder = new LinkedList<>();
+
+        for(int i = 0; i < parts.length; i++){
+            Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i]);
+            if (!matcher1.matches())
+                throw new SyntaxException(rowNumber);
+            if (matcher.group(1).equals("final"))
+                isFinalByOrder.add(true);
+            else
+                isFinalByOrder.add(false);
+            typeNamesByOrder.add(Type.strToType(matcher.group(2)));
+            if (Regex.isVariableName(matcher.group(3)))
+                varNamesByOrder.add(matcher.group(3));
+            else
+                throw new SyntaxException(rowNumber);
+        }
+
+        MethodBlock newBlock = new MethodBlock(varNamesByOrder, typeNamesByOrder, isFinalByOrder, block.getScope());
+        parseBlock(newBlock);
+        block.addCheckable(newBlock);
+    }
 }
+//TODO block in block, RETURN

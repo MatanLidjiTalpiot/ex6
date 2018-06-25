@@ -14,7 +14,7 @@ public class Regex {
     }
 
     static Matcher isMethodBlock(String str){
-        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*;\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*$");
         return ptrn.matcher(str);
     }
 
@@ -38,9 +38,9 @@ public class Regex {
         return ptrn.matcher(str);
     }
 
-    static Matcher isEndBlockLine(String str){
+    static boolean isEndBlockLine(String str){
         Pattern ptrn = Pattern.compile("^\\s*}\\s*$");
-        return ptrn.matcher(str);
+        return ptrn.matcher(str).matches();
     }
 
     static Matcher isLineEmpthy(String str){
@@ -56,6 +56,11 @@ public class Regex {
     static boolean isMethodName(String str){
         Pattern ptrn = Pattern.compile("^([a-z A-Z]+\\w*)$");
         return ptrn.matcher(str).matches();
+    }
+
+    static Matcher varDeclerationInMethodeBlock(String str){
+        Pattern ptrn = Pattern.compile("^\\s*(final\\s+)?([S a-z]+)\\s+([^\\d]+\\w+|[a-z A-Z])$");
+        return ptrn.matcher(str);
     }
 
     static boolean isVariableName(String str){

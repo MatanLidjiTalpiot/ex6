@@ -52,5 +52,7 @@ public class Block implements Checkable{
         return (i == content.size());
     }
 
-
+    public Scope getScope() {
+        return scope;
+    }
 }
