@@ -1,8 +1,6 @@
 package blocks;
 import foundation.Checkable;
-import foundation.exceptions.InvalidConditionException;
-import foundation.exceptions.InvalidTypeException;
-import foundation.exceptions.NoSuchVariableException;
+import foundation.exceptions.*;
 import foundation.Scope;
 import foundation.Type;
 import java.util.LinkedList;
@@ -19,8 +17,12 @@ public class ConditionBlock extends Block implements Checkable{
      *                   (true\false) it doesn't matter.
      * @param fatherScope - the scope that the method is within.
      */
-    public ConditionBlock(LinkedList<String> conditions, Scope fatherScope)throws InvalidConditionException{
+    public ConditionBlock(LinkedList<String> conditions, Scope fatherScope)throws
+            InvalidConditionException, ConditionBlockInMainBlockException {
         super(fatherScope);
+        if(fatherScope.hasFather()){
+            throw new ConditionBlockInMainBlockException("invalid condition block placement");
+        }
         this.conditions = conditions;
         checkConditions(this.conditions);// note that this throws an Exception
         this.typeOfBlock = 1;
