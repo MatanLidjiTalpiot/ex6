@@ -1,5 +1,6 @@
 package lines;
 
+import foundation.Checkable;
 import foundation.Exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.Type;
 import foundation.Variable;
@@ -9,7 +10,7 @@ import foundation.Scope;
 /**
  * A class that represents a VariableDeclarationLine.
  */
-public class VariableDeclarationLine extends Line {
+public class VariableDeclarationLine implements Checkable {
 
     private Variable variable;
     /**

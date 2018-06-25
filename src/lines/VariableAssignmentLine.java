@@ -1,5 +1,6 @@
 package lines;
 
+import foundation.Checkable;
 import foundation.Exceptions.InvalidAssignmentException;
 import foundation.Scope;
 import validator.*;
@@ -7,7 +8,7 @@ import validator.*;
 /**
  * A class that represent A VariableAssignmentLine
  */
-public class VariableAssignmentLine extends Line {
+public class VariableAssignmentLine implements Checkable {
 
     private String left;
     private String right;

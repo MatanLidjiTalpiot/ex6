@@ -8,7 +8,7 @@ import validator.ValidatorMethodCallLine;
 /**
  * A class that represents a method call line.
  */
-public class MethodCallLine extends Line{
+public class MethodCallLine implements Checkable{
     private String methodName;
     private LinkedList<String> paramsByOrder;
 
