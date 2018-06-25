@@ -7,19 +7,18 @@ import validator.ValidatorMethodCallLine;
  */
 public class MethodCallLine extends Line{
     private String methodName;
-    private LinkedList<String> varNamesByOrder;
-    private LinkedList<Type> typesByOrder;
+    private LinkedList<String> paramsByOrder;
 
     private static ValidatorMethodCallLine validator = ValidatorMethodCallLine.getInstance();
 
     /**
-     * A constuctor for the MethodCallLine
+     * A constructor for the MethodCallLine
      * @param methodName the name of the method
-     * @param parametersNamesByOrder the variables Names By order
+     * @param parametersByOrder the variables Names By order
      */
-    public MethodCallLine(String methodName, LinkedList<String> parametersNamesByOrder){
+    public MethodCallLine(String methodName, LinkedList<String> parametersByOrder){
         this.methodName = methodName;
-        this.varNamesByOrder = parametersNamesByOrder;
+        this.paramsByOrder = parametersByOrder;
     }
 
 
@@ -27,12 +26,8 @@ public class MethodCallLine extends Line{
         return methodName;
     }
 
-    public LinkedList<String> getVarNamesByOrder() {
-        return varNamesByOrder;
-    }
-
-    public LinkedList<Type> getTypesByOrder() {
-        return typesByOrder;
+    public LinkedList<String> getParamsByOrder() {
+        return paramsByOrder;
     }
 
     public boolean check(Scope scope) throws NoSuchMethodException{

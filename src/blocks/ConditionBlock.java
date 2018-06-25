@@ -1,6 +1,7 @@
 package blocks;
 import foundation.Checkable;
 import foundation.Exceptions.InvalidConditionException;
+import foundation.Exceptions.InvalidTypeException;
 import foundation.Scope;
 import foundation.Type;
 import java.util.LinkedList;
@@ -42,7 +43,7 @@ public class ConditionBlock extends Block implements Checkable{
                     throw new InvalidConditionException(condition);
                 }
             }
-            catch (Exception e){
+            catch (InvalidTypeException e){
                 throw new InvalidConditionException(condition);
             }
         }

@@ -63,7 +63,7 @@ public class Scope {
         methodsOfScope.add(toAdd);
     }
 
-    public boolean containsVar(String varName) throws NoSuchVariableException{
+    public boolean containsVar(String varName){
         for (Variable var:variablesOfScope){
             if (var.getName().equals(varName)){
                 return true;
@@ -73,12 +73,56 @@ public class Scope {
             return father.containsVar(varName);
         }
         else{
-            throw new NoSuchVariableException(varName);
+            return false;
         }
 
     }
 
-    public boolean containsMethod(String methodName) throws NoSuchMethodException {
-
+    /**
+     * A method that checks if there is access from the scope to a method by it's name.
+     * @param methodName the name of the method that we are looking for.
+     * @return true if there is access, false otherwise.
+     */
+    public boolean containsMethod(String methodName){
+        for (Method method: methodsOfScope) {
+            if (method.getMethodName().equals(methodName)) {
+                return true;
+            }
+        }
+        if (hasFather){
+            return father.containsMethod(methodName);
+        }
+        else{
+            return false;
+        }
     }
+
+    /**
+     * A method that returns a method by it's name, if there is no access form this scope than an
+     * exception is thrown.
+     * @param methodName the name of the method to return
+     * @return a method with name of the methodName we are looking for.
+     * @throws NoSuchMethodException if there is no access to a method with this name from this scope.
+     */
+    public Method getMethodByName(String methodName) throws NoSuchMethodException{
+        if (containsMethod(methodName)){
+            for (Method method: methodsOfScope){
+                if (method.getMethodName().equals(methodName)){
+                    return method;
+                }
+            }
+            if (hasFather){
+                return father.getMethodByName(methodName);
+            }
+            else {
+                throw new NoSuchMethodException(methodName);
+            }
+        }
+        else {
+            throw new NoSuchMethodException(methodName);
+        }
+    }
+
+
+
 }
