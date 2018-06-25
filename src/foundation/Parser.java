@@ -39,17 +39,63 @@ public class Parser {
     }
 
     private void parseBlock(Block block, boolean isMainBlock) throws Exception {
-        String line;
-        while ((line = this.bufferedReader.readLine()) != null) {
+        String line,rawLine;
+        boolean privLineReturn = false;
+        while ((rawLine = this.bufferedReader.readLine()) != null) {
             rowNumber++;
-            if(Regex.isEndBlockLine(line))
-                break;
-            this.lineAction(line,block);
+            line = rawLine.trim();
+            if (!isMainBlock){
+                if(Regex.isEndBlockLine(line)&&privLineReturn)
+                    break;
+                if (Regex.isEndBlockLine(line)&&!privLineReturn)
+                    throw new SyntaxException(rowNumber);
+                if(Regex.isReturnLine(line))
+                    privLineReturn = true;
+            }
+            if (!privLineReturn&&!Regex.isCommentLine(line)&&!Regex.isLineEmpthy(line))
+                this.lineAction(line,block);
         }
     }
 
     private void lineAction(String line,Block block)throws Exception {
-        //TODO fill it after all the other line actions are complete
+        Matcher matcher = Regex.isStartBlockLine(line);
+        if (matcher.matches()) {
+            line = matcher.group(1);
+            matcher = Regex.isConditionBlock(line);
+            if (matcher.matches())
+                conditionBlockAction(matcher, block);
+            else {
+                matcher = Regex.isMethodBlock(line);
+                if (matcher.matches())
+                    methodeBlockAction(matcher, block);
+                else{
+                    throw new SyntaxException(rowNumber);
+                }
+            }
+
+        } else {
+            matcher = Regex.isAssimentLine(line);
+            if (matcher.matches())
+                assignmentLineAction(matcher, block);
+            else {
+                matcher = Regex.isFinalDeclerationLine(line);
+                if (matcher.matches())
+                    declerationLineAction(matcher, block,true);
+                else {
+                    matcher = Regex.isDeclerationLine(line);
+                    if (matcher.matches())
+                        declerationLineAction(matcher, block,false);
+                    else {
+                        matcher = Regex.isMethodCallLine(line);
+                        if (matcher.matches())
+                            methodeCallLineAction(matcher, block);
+                        else{
+                            throw new SyntaxException(rowNumber);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void assignmentLineAction(Matcher matcher, Block block) throws Exception {
@@ -127,10 +173,10 @@ public class Parser {
             Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i]);
             if (!matcher1.matches())
                 throw new SyntaxException(rowNumber);
-            if (matcher.group(1).equals("final"))
-                isFinalByOrder.add(true);
-            else
+            if (matcher.group(1) == null)
                 isFinalByOrder.add(false);
+            else
+                isFinalByOrder.add(true);
             typeNamesByOrder.add(Type.strToType(matcher.group(2)));
             if (Regex.isVariableName(matcher.group(3)))
                 varNamesByOrder.add(matcher.group(3));
@@ -144,4 +190,4 @@ public class Parser {
         block.addCheckable(newBlock);
     }
 }
-//TODO RETURN
+//TODO preprosses

@@ -5,41 +5,58 @@ public class Regex {
 
     static Matcher isStartBlockLine(String str) {
         Pattern ptrn = Pattern.compile("^(.+)[{]$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static Matcher isConditionBlock(String str){
         Pattern ptrn = Pattern.compile("^(if|while)\\s*\\((.+)\\)\\s*");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static Matcher isMethodBlock(String str){
         Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static Matcher isAssimentLine(String str){
         Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*;$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
+
     static Matcher isAssiment(String str){
         Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static Matcher isDeclerationLine(String str){
         Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static Matcher isFinalDeclerationLine(String str){
         Pattern ptrn = Pattern.compile("^\\s*final\\s*(\\S+)\\s+(.+);\\s*$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static Matcher isMethodCallLine(String str){
         Pattern ptrn = Pattern.compile("^([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*;\\s*$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static boolean isEndBlockLine(String str){
@@ -47,14 +64,19 @@ public class Regex {
         return ptrn.matcher(str).matches();
     }
 
-    static Matcher isLineEmpthy(String str){
+    static boolean isLineEmpthy(String str){
         Pattern ptrn = Pattern.compile("^\\s*$");
-        return ptrn.matcher(str);
+        return ptrn.matcher(str).matches();
     }
 
-    static Matcher isCommentLine(String str){
+    static boolean isCommentLine(String str){
         Pattern ptrn = Pattern.compile("^\\s*\\\\\\\\$");
-        return ptrn.matcher(str);
+        return ptrn.matcher(str).matches();
+    }
+
+    static boolean isReturnLine(String str){
+        Pattern ptrn = Pattern.compile("return\\s*;");
+        return ptrn.matcher(str).matches();
     }
 
     static boolean isMethodName(String str){
@@ -64,7 +86,9 @@ public class Regex {
 
     static Matcher varDeclerationInMethodeBlock(String str){
         Pattern ptrn = Pattern.compile("^\\s*(final\\s+)?([S a-z]+)\\s+([^\\d]+\\w+|[a-z A-Z])$");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
     static boolean isVariableName(String str){
@@ -78,12 +102,12 @@ public class Regex {
     }
 
     static boolean isIntValue(String str){
-        Pattern ptrn = Pattern.compile("\\s*\\d+\\s*");
+        Pattern ptrn = Pattern.compile("[\\s]*-?[\\d]+[\\s]*");
         return ptrn.matcher(str).matches();
     }
 
     static boolean isDoubleValue(String str){
-        Pattern ptrn = Pattern.compile("\\s*\\d+.\\d*\\s*");
+        Pattern ptrn = Pattern.compile("[\\s]*-?[\\d]+.[\\d]*[\\s]*");
         return ptrn.matcher(str).matches();
     }
 
@@ -99,7 +123,9 @@ public class Regex {
 
     static Matcher stringFinder(String str){
         Pattern ptrn = Pattern.compile("\"(.*?)\"");
-        return ptrn.matcher(str);
+        Matcher matcher = ptrn.matcher(str);
+        matcher.matches();
+        return matcher;
     }
 
 
