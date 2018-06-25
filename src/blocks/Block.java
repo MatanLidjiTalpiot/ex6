@@ -9,7 +9,7 @@ public class Block implements Checkable{
     protected Scope fatherScope;
     protected Scope scope;
     protected boolean hasFatherScope;
-    protected LinkedList<Checkable> content;
+    protected LinkedList<Checkable> content = new LinkedList<>();
     /**
      * A constructor for a block within a block
      * @param fatherScope

@@ -11,7 +11,7 @@ import validator.ValidatorMethodCallLine;
  */
 public class MethodCallLine implements Checkable{
     private String methodName;
-    private LinkedList<String> paramsByOrder;
+    private LinkedList<String> paramsByOrder = new LinkedList<>();
 
 
     /**
