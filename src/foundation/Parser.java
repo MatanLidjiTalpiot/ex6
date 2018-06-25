@@ -4,6 +4,7 @@ import blocks.*;
 import lines.*;
 import foundation.exceptions.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 
@@ -11,11 +12,9 @@ public class Parser {
     //TODO which is static method and which is not
     private static Parser ourInstance = new Parser();
 
-    private File file;
-    private FileReader fileReader;
-    private BufferedReader bufferedReader;
     private Block mainBlock;
     private int rowNumber;
+    private ArrayList<String> fileData;
 
 
     public static Parser getInstance() {
@@ -27,81 +26,121 @@ public class Parser {
 
     //TODO i started checking from here
     public Block Parse(String fileName) throws IOException, FileException{
-        this.file = new File(fileName);
-        this.fileReader = new FileReader(this.file);
-        this.bufferedReader = new BufferedReader(fileReader);
+        this.fileData = preProcess(fileName);
+
         this.mainBlock = new Block();
-        this.rowNumber = 0;
+        this.rowNumber = -1;
 
         this.parseBlock(this.mainBlock, true);
 
         return this.mainBlock;
     }
 
-    private void parseBlock(Block block, boolean isMainBlock) throws FileException, IOException {
-        String line,rawLine;
-        boolean privLineReturn = false;
-        while ((rawLine = this.bufferedReader.readLine()) != null) {
-            rowNumber++;
-            line = rawLine.trim();
-            if (!isMainBlock){
-                if(Regex.isEndBlockLine(line)&&privLineReturn)
-                    break;
-                if (Regex.isEndBlockLine(line)&&!privLineReturn)
-                    throw new SyntaxException(rowNumber);
-                if(Regex.isReturnLine(line))
-                    privLineReturn = true;
+    private ArrayList preProcess(String fileName)throws IOException, FileException{
+
+        File file = new File(fileName);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        ArrayList<String> al = new ArrayList<>();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            al.add(line);
+        }
+
+        for(String element : al){
+            if(Regex.isLineEmpthy(element)||Regex.isCommentLine(element)){
+                al.remove(element);
             }
-            if (!privLineReturn&&!Regex.isCommentLine(line)&&!Regex.isLineEmpthy(line))
-                this.lineAction(line,block);
+        }
+        for(String element : al){
+            if(Regex.isReturnLine(element) && !Regex.isEndBlockLine(al.get(al.indexOf(element)+1))){
+                al.remove(element);
+            }
+        }
+
+        return al;
+
+    }
+
+    private void parseBlock(Block block, boolean isMainBlock) throws FileException, IOException {
+        for(;rowNumber < this.fileData.size();){
+            rowNumber++;
+            if(!isMainBlock && Regex.isEndBlockLine(this.fileData.get(rowNumber))){
+                if(block.getTypeOfBlock() == 1){
+                    return;
+                }
+                else{
+                    if(Regex.isReturnLine(this.fileData.get(rowNumber - 1))){
+                        return;
+                    }
+                    else{
+                        throw new SyntaxException(rowNumber);
+                    }
+                }
+            }
+            this.rowAction(this.fileData.get(rowNumber),block);
         }
     }
 
-    private void lineAction(String line,Block block)throws FileException, IOException {
-        Matcher matcher = Regex.isStartBlockLine(line);
-        if (matcher.matches()) {
-            line = matcher.group(1);
-            matcher  = Regex.isConditionBlock(line);
-            if (matcher.matches()) {
-                conditionBlockAction(matcher, block);
-            }
-            else {
-                matcher = Regex.isMethodBlock(line);
-                if (matcher.matches()) {
-                    methodeBlockAction(matcher, block);
-                }
-                else{
-                    throw new SyntaxException(rowNumber);
-                }
-            }
+    private void rowAction(String line,Block block)throws FileException, IOException {
 
-        } else {
-            matcher = Regex.isAssimentLine(line);
-            if (matcher.matches()) {
-                assignmentLineAction(matcher, block);
-            }
-            else {
-                matcher = Regex.isFinalDeclerationLine(line);
-                if (matcher.matches()) {
-                    declerationLineAction(matcher, block, true);
-                }
-                else {
-                    matcher = Regex.isDeclerationLine(line);
-                    if (matcher.matches()) {
-                        declerationLineAction(matcher, block, false);
-                    }
-                    else {
-                        matcher = Regex.isMethodCallLine(line);
-                        if (matcher.matches()) {
-                            methodeCallLineAction(matcher, block);
-                        }
-                        else{
-                            throw new SyntaxException(rowNumber);
-                        }
-                    }
-                }
-            }
+        Matcher matcher  = Regex.isStartBlockLine(line);
+        if (matcher.matches()){
+            this.blockAction(matcher.group(1),block);
         }
+        else{
+            this.lineAction(line,block);
+        }
+    }
+
+    private void blockAction(String line,Block block)throws FileException, IOException {
+
+        Matcher matcher = Regex.isConditionBlock(line);
+        if(matcher.matches()){
+            conditionBlockAction(matcher, block);
+            return;
+        }
+
+        matcher = Regex.isMethodBlock(line);
+        if(matcher.matches()){
+            methodeBlockAction(matcher, block);
+            return;
+        }
+
+        throw new SyntaxException(rowNumber);
+    }
+
+    private void lineAction(String line,Block block)throws FileException, IOException{
+        Matcher matcher  = Regex.isAssimentLine(line);
+        if (matcher.matches()){
+            assignmentLineAction(matcher,block);
+            return;
+        }
+
+        matcher  = Regex.isFinalDeclerationLine(line);
+        if (matcher.matches()){
+            declerationLineAction(matcher,block,true);
+            return;
+        }
+
+        matcher  = Regex.isDeclerationLine(line);
+        if (matcher.matches()){
+            declerationLineAction(matcher,block,false);
+            return;
+        }
+
+        matcher  = Regex.isMethodCallLine(line);
+        if (matcher.matches()){
+            methodeCallLineAction(matcher,block);
+            return;
+        }
+
+        if(Regex.isReturnLine(line)){
+            return;
+        }
+
+        throw new SyntaxException(rowNumber);
     }
 
     private void assignmentLineAction(Matcher matcher, Block block) throws FileException {

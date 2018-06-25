@@ -10,6 +10,7 @@ public class Block implements Checkable{
     protected Scope scope;
     protected boolean hasFatherScope;
     protected LinkedList<Checkable> content = new LinkedList<>();
+    protected int typeOfBlock = 0;
     /**
      * A constructor for a block within a block
      * @param fatherScope
@@ -50,5 +51,9 @@ public class Block implements Checkable{
 
     public Scope getScope() {
         return scope;
+    }
+
+    public int getTypeOfBlock() {
+        return typeOfBlock;
     }
 }

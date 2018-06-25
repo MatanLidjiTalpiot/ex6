@@ -23,6 +23,7 @@ public class ConditionBlock extends Block implements Checkable{
         super(fatherScope);
         this.conditions = conditions;
         checkConditions(this.conditions);// note that this throws an Exception
+        this.typeOfBlock = 1;
     }
 
 

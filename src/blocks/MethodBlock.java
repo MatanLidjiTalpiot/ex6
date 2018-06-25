@@ -31,6 +31,7 @@ public class MethodBlock extends Block implements Checkable {
             fatherScope) throws NestedMethodException {
 
         super(fatherScope);
+        this.typeOfBlock = 2;
         if(fatherScope.hasFather()){ // according to this exercise demands are that a method can not be
             // written within another method or some kind of a condition block. hence, the block that the
             // method block is in is the block of all the file, and does not have a father.
