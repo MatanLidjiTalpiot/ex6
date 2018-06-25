@@ -5,6 +5,7 @@ import lines.*;
 import foundation.exceptions.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 
@@ -45,26 +46,23 @@ public class Parser {
         ArrayList<String> al = new ArrayList<>();
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            al.add(line);
+            al.add(line.trim());
         }
-
-        for(String element : al){
-            if(Regex.isLineEmpthy(element)||Regex.isCommentLine(element)){
-                al.remove(element);
+        ArrayList<Integer> toDelete = new ArrayList<>();
+        for(int i = 0; i < al.size(); i++){
+            if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || Regex.isReturnLine(al.get
+                    (i)) && !Regex.isEndBlockLine(al.get(i+1))){//TODO really patchy
+               toDelete.add(i);
             }
         }
-        for(String element : al){
-            if(Regex.isReturnLine(element) && !Regex.isEndBlockLine(al.get(al.indexOf(element)+1))){
-                al.remove(element);
-            }
+        for(int i = toDelete.size()-1; i >= 0; i--){
+           al.remove(toDelete.get(i));
         }
-
         return al;
-
     }
 
     private void parseBlock(Block block, boolean isMainBlock) throws FileException, IOException {
-        for(;rowNumber < this.fileData.size();){
+        for(;rowNumber < this.fileData.size()-1;){
             rowNumber++;
             if(!isMainBlock && Regex.isEndBlockLine(this.fileData.get(rowNumber))){
                 if(block.getTypeOfBlock() == 1){
@@ -79,7 +77,9 @@ public class Parser {
                     }
                 }
             }
-            this.rowAction(this.fileData.get(rowNumber),block);
+            if(!this.fileData.get(rowNumber).equals("")) {
+                this.rowAction(this.fileData.get(rowNumber), block);
+            }
         }
     }
 
