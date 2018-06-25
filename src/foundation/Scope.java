@@ -1,5 +1,6 @@
 package foundation;
 
+import foundation.exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.exceptions.NoSuchVariableException;
 
 import java.util.LinkedList;
@@ -39,7 +40,10 @@ public class Scope {
      * A method that adds a variable
      * @param toAdd a Variable.
      */
-    public void addVariable(Variable toAdd){
+    public void addVariable(Variable toAdd) throws AlreadyDeclaredVariableExcpetion {
+        if (this.containsVar(toAdd.getName())){
+            throw new AlreadyDeclaredVariableExcpetion(toAdd.getName());
+        }
         variablesOfScope.add(toAdd);
     }
 
@@ -47,8 +51,10 @@ public class Scope {
      * A mehtod that adds a linked list if variables
      * @param toAdd A linked list of Variables
      */
-    public void addVariables(LinkedList<Variable> toAdd){
-        variablesOfScope.addAll(toAdd);
+    public void addVariables(LinkedList<Variable> toAdd) throws AlreadyDeclaredVariableExcpetion{
+        for (Variable var : toAdd){
+            addVariable(var);
+        }
     }
 
     public Variable getVariableByName(String varName) throws NoSuchVariableException {

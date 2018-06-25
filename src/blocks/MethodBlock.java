@@ -1,5 +1,6 @@
 package blocks;
 import foundation.*;
+import foundation.exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.exceptions.FileException;
 import foundation.exceptions.NestedMethodException;
 
@@ -28,7 +29,7 @@ public class MethodBlock extends Block implements Checkable {
     public MethodBlock(String methodName,LinkedList<String> varNamesByOrder,LinkedList<Type>
             typeNamesByOrder, LinkedList<Boolean> isFinalByOrder,
                        Scope
-            fatherScope) throws NestedMethodException {
+            fatherScope) throws NestedMethodException, AlreadyDeclaredVariableExcpetion {
 
         super(fatherScope);
         this.typeOfBlock = 2;
