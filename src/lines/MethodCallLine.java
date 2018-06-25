@@ -1,6 +1,9 @@
 package lines;
 import foundation.*;
 import java.util.LinkedList;
+
+import foundation.Exceptions.IllegalParametersException;
+import foundation.Exceptions.ParametersDontMatchException;
 import validator.ValidatorMethodCallLine;
 /**
  * A class that represents a method call line.
@@ -8,7 +11,6 @@ import validator.ValidatorMethodCallLine;
 public class MethodCallLine extends Line{
     private String methodName;
     private LinkedList<String> paramsByOrder;
-
     private static ValidatorMethodCallLine validator = ValidatorMethodCallLine.getInstance();
 
     /**
@@ -30,7 +32,8 @@ public class MethodCallLine extends Line{
         return paramsByOrder;
     }
 
-    public boolean check(Scope scope) throws NoSuchMethodException{
+    public boolean check(Scope scope) throws NoSuchMethodException, IllegalParametersException,
+            ParametersDontMatchException{
         return validator.validate(scope, this);
     }
 }
