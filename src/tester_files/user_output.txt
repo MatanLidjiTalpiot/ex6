@@ -1,0 +1,52 @@
+20:13:51
+
+school solution#User solution#result#Test name
+
+0		1		failed		\BaraksTests\if\01.sjava		##################################
+1		1		passed		\BaraksTests\if\02.sjava		
+0		1		failed		\BaraksTests\if\03.sjava		##################################
+0		1		failed		\BaraksTests\if\04.sjava		##################################
+0		1		failed		\BaraksTests\if\05.sjava		##################################
+0		1		failed		\BaraksTests\if\06.sjava		##################################
+0		1		failed		\BaraksTests\if\07.sjava		##################################
+0		1		failed		\BaraksTests\if\08.sjava		##################################
+0		1		failed		\BaraksTests\if\09.sjava		##################################
+0		1		failed		\BaraksTests\if\10.sjava		##################################
+0		1		failed		\BaraksTests\if\11.sjava		##################################
+1		1		passed		\BaraksTests\if\12.sjava		
+1		1		passed		\BaraksTests\if\13.sjava		
+0		1		failed		\BaraksTests\if\14.sjava		##################################
+1		1		passed		\BaraksTests\if\15.sjava		
+1		1		passed		\BaraksTests\if\16.sjava		
+1		1		passed		\BaraksTests\if\17.sjava		
+1		1		passed		\BaraksTests\if\18.sjava		
+1		1		passed		\BaraksTests\if\22.sjava		
+1		1		passed		\BaraksTests\if\23.sjava		
+1		1		passed		\BaraksTests\if\24.sjava		
+1		1		passed		\BaraksTests\if\25.sjava		
+1		1		passed		\BaraksTests\if\26.sjava		
+1		1		passed		\BaraksTests\if\27.sjava		
+1		1		passed		\BaraksTests\if\28.sjava		
+0		1		failed		\BaraksTests\if\29.sjava		##################################
+0		1		failed		\BaraksTests\if\30.sjava		##################################
+1		1		passed		\BaraksTests\if\31.sjava		
+0		1		failed		\BaraksTests\methods\01.sjava		##################################
+1		1		passed		\BaraksTests\methods\02.sjava		
+0		1		failed		\BaraksTests\methods\03.sjava		##################################
+0		1		failed		\BaraksTests\methods\04.sjava		##################################
+0		1		failed		\BaraksTests\methods\06.sjava		##################################
+0		1		failed		\BaraksTests\methods\07.sjava		##################################
+1		1		passed		\BaraksTests\methods\08.sjava		
+1		1		passed		\BaraksTests\methods\09.sjava		
+1		1		passed		\BaraksTests\methods\10.sjava		
+1		1		passed		\BaraksTests\methods\11.sjava		
+1		1		passed		\BaraksTests\methods\12.sjava		
+1		1		passed		\BaraksTests\methods\13.sjava		
+0		1		failed		\BaraksTests\methods\14.sjava		##################################
+1		1		passed		\BaraksTests\methods\16.sjava		
+1		1		passed		\BaraksTests\methods\17.sjava		
+0		1		failed		\BaraksTests\methods\18.sjava		##################################
+1		1		passed		\BaraksTests\methods\19.sjava		
+1		1		passed		\BaraksTests\methods\20.sjava		
+1		1		passed		\BaraksTests\methods\21.sjava		
+1		1		passed		\BaraksTests\methods\22.sjava		
