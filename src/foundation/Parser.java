@@ -1,17 +1,9 @@
 package foundation;
 
-import blocks.ConditionBlock;
-import blocks.MethodBlock;
-import foundation.Exceptions.InvalidConditionException;
-import foundation.Exceptions.InvalidTypeException;
+import blocks.*;
 import lines.*;
-import blocks.Block;
-import foundation.Exceptions.SyntaxException;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import foundation.Exceptions.*;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 

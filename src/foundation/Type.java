@@ -81,6 +81,19 @@ public enum Type {
 
         throw new InvalidTypeException(toCheck);
     }
+
+    /**
+     * A method that returns if a given value is a certain type.
+     * @param toCheck the String value to check
+     * @return true if it belongs to a type
+     */
+    public static Type isType(String toCheck) throws InvalidTypeException{
+        if (Regex.isBooleanValue(toCheck) || Regex.isIntValue(toCheck) || Regex.isDoubleValue(toCheck) ||
+                Regex.isStringValue(toCheck)||Regex.isCharValue(toCheck))
+            return true;
+        return false;
+    }
+
 }
 
 
