@@ -1,10 +1,9 @@
 package lines;
 
 import foundation.Exceptions.AlreadyDeclaredVariableExcpetion;
-import foundation.Exceptions.InvalidTypeException;
 import foundation.Type;
 import foundation.Variable;
-import validator.ValidatorDeclartionLine;
+import validator.ValidatorDeclarationLine;
 import foundation.Scope;
 
 /**
@@ -18,9 +17,8 @@ public class VariableDeclarationLine extends Line {
      * @param varType a String representation of what should be the type of the variable
      * @param name the name of the variable;
      * @param isFinal if the variable is final
-     * @throws InvalidTypeException if the type is not a type that exists.
      */
-    public VariableDeclarationLine(Type varType, String name, boolean isFinal)throws InvalidTypeException {
+    public VariableDeclarationLine(Type varType, String name, boolean isFinal){
         variable = new Variable(name, varType,isFinal);
     }
 
@@ -29,6 +27,6 @@ public class VariableDeclarationLine extends Line {
     }
 
     public boolean check(Scope scope) throws AlreadyDeclaredVariableExcpetion{
-        return ValidatorDeclartionLine.validate(scope,this);
+        return ValidatorDeclarationLine.validate(scope,this);
     }
 }

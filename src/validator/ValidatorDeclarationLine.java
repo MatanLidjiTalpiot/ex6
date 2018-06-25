@@ -3,10 +3,10 @@ import foundation.Exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.Scope;
 import lines.VariableDeclarationLine;
 
-public class ValidatorDeclartionLine {
-    private static ValidatorDeclartionLine ourInstance = new ValidatorDeclartionLine();
+public class ValidatorDeclarationLine {
+    private static ValidatorDeclarationLine ourInstance = new ValidatorDeclarationLine();
 
-    public static ValidatorDeclartionLine getInstance() {
+    public static ValidatorDeclarationLine getInstance() {
         return ourInstance;
     }
     public static boolean validate(Scope scope, VariableDeclarationLine line) throws
@@ -20,6 +20,6 @@ public class ValidatorDeclartionLine {
         }
     }
 
-    private ValidatorDeclartionLine() {
+    private ValidatorDeclarationLine() {
     }
 }
