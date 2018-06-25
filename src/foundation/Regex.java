@@ -18,7 +18,7 @@ public class Regex {
     }
 
     static Matcher isMethodBlock(String str){
-        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\((.*)\\)\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\(([a-z A-Z _ 0-9 ,]*)\\)\\s*$");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;

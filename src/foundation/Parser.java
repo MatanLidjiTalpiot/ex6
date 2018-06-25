@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Parser {
@@ -51,11 +52,15 @@ public class Parser {
         ArrayList<Integer> toDelete = new ArrayList<>();
         int blockOpeners = 0;
         for(int i = 0; i < al.size(); i++){
+
             if (Regex.isEndBlockLine(al.get(i))){
                 blockOpeners--;
             }
             if ((Regex.isStartBlockLine(al.get(i))).matches()){
                 blockOpeners++;
+            }
+            if(Regex.isReturnLine(al.get(i))&& i+1 == al.size()) {
+                throw new SyntaxException(i);
             }
             if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || Regex.isReturnLine(al.get
                     (i)) && !Regex.isEndBlockLine(al.get(i+1))){
@@ -231,13 +236,13 @@ public class Parser {
 
         String[] parts = (matcher.group(2)).split(",");
 
-        if((parts.length != 1) && (!parts[0].equals(""))){
+        if((parts.length != 1) || (!Pattern.matches("^\\s*$", parts[0]))){
             for (int i = 0; i < parts.length; i++) {
                 Matcher matcher1 = Regex.varDeclerationInMethodeBlock(parts[i].trim());
                 if (!matcher1.matches()) {
                     throw new SyntaxException(rowNumber);
                 }
-                if (matcher.group(1) == null) {
+                if (matcher1.group(1) == null) {
                     isFinalByOrder.add(false);
                 }
                 else {
