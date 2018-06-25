@@ -9,6 +9,6 @@ public class NoSuchMethodException extends FileException {
      * @param message the message that will be shown in the exception.
      */
     public NoSuchMethodException(String message){
-        super(message);
+        super(message + " NoSuchMethodException");
     }
 }

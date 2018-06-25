@@ -21,7 +21,7 @@ public class ValidatorVariableAssignmentLine {
      */
     public static boolean validate(Scope scope,VariableAssignmentLine lineToCheck) throws
             InvalidAssignmentException{
-        String left = lineToCheck.getRight();
+        String left = lineToCheck.getLeft();
         try{
         Variable leftVar = scope.getVariableByName(left);
         String right = lineToCheck.getRight();

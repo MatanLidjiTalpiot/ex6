@@ -6,7 +6,7 @@ package foundation.exceptions;
 public class InvalidConditionException extends FileException {
 
     public InvalidConditionException(String condition){
-        super(condition + " is not a valid condition");
+        super(condition + " InvalidConditionException");
     }
 
 }

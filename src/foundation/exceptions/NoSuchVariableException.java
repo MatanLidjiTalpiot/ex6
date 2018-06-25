@@ -9,6 +9,6 @@ public class NoSuchVariableException extends FileException {
      * @param varName the name of the variable that doesn't exists.
      */
     public NoSuchVariableException(String varName){
-        super(varName + "is not a declared Variable");
+        super(varName + " NoSuchVariableException");
     }
 }

@@ -1,12 +1,9 @@
 package blocks;
 import foundation.Checkable;
-import foundation.exceptions.InvalidConditionException;
-import foundation.exceptions.InvalidTypeException;
-import foundation.exceptions.NoSuchVariableException;
+import foundation.exceptions.*;
 import foundation.Scope;
 import foundation.Type;
 import java.util.LinkedList;
-import foundation.exceptions.InvalidPlacementForCondition;
 
 /**
  * A class that represents a Condition Block.
@@ -27,7 +24,6 @@ public class ConditionBlock extends Block implements Checkable{
             throw new InvalidPlacementForCondition("can't place condition here");
         }
         this.conditions = conditions;
-        checkConditions(this.conditions);// note that this throws an Exception
         this.typeOfBlock = 1;
     }
 
@@ -68,6 +64,11 @@ public class ConditionBlock extends Block implements Checkable{
      */
     private boolean isValidCondition(Type conditionType){
         return(conditionType == Type.BOOLEAN || conditionType == Type.DOUBLE || conditionType == Type.INT);
+    }
+
+    public boolean check(Scope scope)throws FileException{
+        checkConditions(this.conditions);// note that this throws an Exception
+        return super.check(scope);
     }
 
 }

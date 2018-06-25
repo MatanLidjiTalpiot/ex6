@@ -10,6 +10,6 @@ public class AlreadyDeclaredVariableExcpetion extends FileException {
      * @param message
      */
     public AlreadyDeclaredVariableExcpetion(String message){
-        super(message + ": is already a declared variable");
+        super(message + " AlreadyDeclaredVariableExcpetion");
     }
 }

@@ -9,6 +9,6 @@ public class IllegalParametersException extends FileException {
      * @param message the message to display with the exception.
      */
     public IllegalParametersException(String message){
-        super("Illegal parameter: " + message );
+        super(message + " IllegalParametersException");
     }
 }

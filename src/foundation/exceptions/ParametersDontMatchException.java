@@ -9,6 +9,6 @@ public class ParametersDontMatchException extends FileException {
      * @param message the message to display with the exception.
      */
     public ParametersDontMatchException(String message){
-        super(message);
+        super(message + "ParametersDontMatchException");
     }
 }

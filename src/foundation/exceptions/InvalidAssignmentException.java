@@ -9,6 +9,6 @@ public class InvalidAssignmentException extends FileException {
      * @param message An informative message.
      */
     public InvalidAssignmentException(String message){
-        super(message);
+        super(message + "InvalidAssignmentException");
     }
 }
