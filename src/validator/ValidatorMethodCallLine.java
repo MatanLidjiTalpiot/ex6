@@ -15,7 +15,6 @@ public class ValidatorMethodCallLine {
 
     public static ValidatorMethodCallLine getInstance() {
         return ourInstance;
-        LinkedList<Type>
     }
 
     public boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException,
