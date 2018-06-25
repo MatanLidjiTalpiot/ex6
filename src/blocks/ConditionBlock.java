@@ -23,7 +23,7 @@ public class ConditionBlock extends Block implements Checkable{
     public ConditionBlock(LinkedList<String> conditions, Scope fatherScope)throws InvalidConditionException,
             InvalidPlacementForCondition{
         super(fatherScope);
-        if(fatherScope.hasFather()){
+        if(!fatherScope.hasFather()){
             throw new InvalidPlacementForCondition("can't place condition here");
         }
         this.conditions = conditions;
