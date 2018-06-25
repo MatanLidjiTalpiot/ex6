@@ -2,7 +2,7 @@ package lines;
 
 import foundation.Exceptions.InvalidAssignmentException;
 import foundation.Scope;
-import validator.ValidatorVariableAssignmentLine;
+import validator.*;
 
 /**
  * A class that represent A VariableAssignmentLine
@@ -11,7 +11,6 @@ public class VariableAssignmentLine extends Line {
 
     private String left;
     private String right;
-    private static ValidatorVariableAssignmentLine validator = ValidatorVariableAssignmentLine.getInstance();
     /**
      * A constructor for A VariableAssignmentLine
      * @param left the name of the variable on the left side of the assignment line.
@@ -32,6 +31,6 @@ public class VariableAssignmentLine extends Line {
 
 
     public boolean check(Scope scope)throws InvalidAssignmentException{
-        return validator.validate(scope, this);
+        return ValidatorVariableAssignmentLine.validate(scope, this);
     }
 }

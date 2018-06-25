@@ -16,7 +16,7 @@ public class ValidatorMethodCallLine {
         return ourInstance;
     }
 
-    public boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException,
+    public static boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException,
             IllegalParametersException, ParametersDontMatchException{
         isMethod(scope, line);
         LinkedList<Type> validTypesByOrder = checkParameters(scope, line);
@@ -24,7 +24,7 @@ public class ValidatorMethodCallLine {
         return (method.callingMatching(validTypesByOrder));
     }
 
-    private void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{
+    private static void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{
         scope.containsMethod(line.getMethodName());
 
     }

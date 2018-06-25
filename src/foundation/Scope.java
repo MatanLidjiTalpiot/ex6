@@ -87,7 +87,7 @@ public class Scope {
      * @param methodName the name of the method that we are looking for.
      * @return true if there is access, false otherwise.
      */
-    public boolean containsMethod(String methodName){
+    public boolean containsMethod(String methodName) throws NoSuchMethodException{
         for (Method method: methodsOfScope) {
             if (method.getMethodName().equals(methodName)) {
                 return true;
@@ -97,7 +97,7 @@ public class Scope {
             return father.containsMethod(methodName);
         }
         else{
-            return false;
+            throw new NoSuchMethodException(methodName);
         }
     }
 
