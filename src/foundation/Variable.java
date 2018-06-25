@@ -103,9 +103,10 @@ public class Variable {
      * @param var the variable to assign
      * @throws InvalidAssignmentException
      */
-    public void assign(Variable var)throws InvalidAssignmentException{
+    public boolean assign(Variable var)throws InvalidAssignmentException{
         if (canAssign(var)){
             isAssigned = true;
+            return true;
         }
         else{
             throw new InvalidAssignmentException(var.getName());
@@ -113,17 +114,25 @@ public class Variable {
     }
 
     /**
-     * A method that assigns into a variable;
-     * @param toAssign A string value that represents something to assign.
-     * @throws InvalidTypeException
+     * A method that tries to assign into the variable, if it doesn't succeed it throws an Invalid
+     * Assignment Exception.
+     * @param toAssign the value to assign.
+     * @return true if succeeded to assign, otherwise throws exception.
      * @throws InvalidAssignmentException
      */
-    public void assign(String toAssign)throws InvalidTypeException, InvalidAssignmentException{
-        Type toAssignType = Type.strToType(toAssign);
-        if (canAssign(toAssignType)){
-            isAssigned = true;
+    public boolean assign(String toAssign)throws InvalidAssignmentException{
+        try {
+            Type toAssignType = Type.strToType(toAssign);
+
+            if (canAssign(toAssignType)) {
+                isAssigned = true;
+                return true;
+            }
+            else {
+                throw new InvalidAssignmentException(toAssign);
+            }
         }
-        else{
+        catch(InvalidTypeException e){
             throw new InvalidAssignmentException(toAssign);
         }
 
