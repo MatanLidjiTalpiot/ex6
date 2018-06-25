@@ -9,13 +9,17 @@ public class ValidatorMethodCallLine {
         return ourInstance;
     }
 
-    public boolean validate(Scope scope, MethodCallLine line){
+    public boolean validate(Scope scope, MethodCallLine line)throws NoSuchMethodException{
+        isMethod(scope, line);
 
     }
 
     private void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{
-        if
+        scope.containsMethod(line.getMethodName());
+
     }
+
+    private void checkParameters(Scope scope, MethodCallLine line)throws N{}
 
     private ValidatorMethodCallLine() {
     }
