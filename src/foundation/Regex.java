@@ -8,13 +8,8 @@ public class Regex {
         return ptrn.matcher(str);
     }
 
-    static Matcher isIfBlock(String str){
-        Pattern ptrn = Pattern.compile("^if\\s*\\((.+)\\)\\s");
-        return ptrn.matcher(str);
-    }
-
-    static Matcher isWhileBlock(String str){
-        Pattern ptrn = Pattern.compile("^while\\s*\\((.+)\\)\\s*");
+    static Matcher isConditionBlock(String str){
+        Pattern ptrn = Pattern.compile("^(if|while)\\s*\\((.+)\\)\\s*");
         return ptrn.matcher(str);
     }
 
@@ -50,6 +45,11 @@ public class Regex {
 
     static Matcher isLineEmpthy(String str){
         Pattern ptrn = Pattern.compile("^\\s*$");
+        return ptrn.matcher(str);
+    }
+
+    static Matcher isCommentLine(String str){
+        Pattern ptrn = Pattern.compile("^\\s*\\\\\\\\$");
         return ptrn.matcher(str);
     }
 

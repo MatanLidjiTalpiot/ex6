@@ -66,7 +66,10 @@ public enum Type {
      * @return true if it does, false othrewise.
      */
     public static boolean isType(String toCheck){
-        //TODO build this method
+
+    }
+    public static boolean isFromType(String toCheck){
+
     }
 }
 

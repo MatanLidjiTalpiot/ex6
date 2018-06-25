@@ -22,13 +22,11 @@ public class VariableDeclerationLine extends Line {
      * @param isFinal if the variable is final
      * @throws InvalidTypeException if the type is not a type that exists.
      */
-    public VariableDeclerationLine(String type, String name, boolean isFinal)throws InvalidTypeException {
-        this.varType = Type.strToType(type);
+    public VariableDeclerationLine(Type varType, String name, boolean isFinal)throws InvalidTypeException {
         variable = new Variable(name, varType,isFinal);
     }
 
-    public VariableDeclerationLine(String type, String name) throws InvalidTypeException{
-        this.varType = Type.strToType(type);
+    public VariableDeclerationLine(Type varType, String name) throws InvalidTypeException{
         variable = new Variable(name, varType);
     }
 
