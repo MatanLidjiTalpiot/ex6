@@ -19,6 +19,7 @@ public class Sjavac {
             System.out.println(0);
         }
         catch (IOException e){
+            System.err.println(e.getMessage());
             System.out.println(2);
         }
         catch(Exception e){

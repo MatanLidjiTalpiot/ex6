@@ -42,10 +42,10 @@ public class Block implements Checkable{
      */
     public boolean check(Scope scope)throws FileException{
         int i =0;
-        while(content.get(i).check(scope)){
+        while(i < content.size() && content.get(i).check(scope)){
             i++;
         }
-        return (i == content.size());
+        return (true);
     }
 
     public Scope getScope() {
