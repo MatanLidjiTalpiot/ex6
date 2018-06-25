@@ -2,7 +2,7 @@ package foundation;
 
 import blocks.*;
 import lines.*;
-import foundation.Exceptions.*;
+import foundation.exceptions.*;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
@@ -26,7 +26,7 @@ public class Parser {
     }
 
     //TODO i started checking from here
-    public Block Parse(String fileName) throws Exception{
+    public Block Parse(String fileName) throws IOException, FileException{
         this.file = new File(fileName);
         this.fileReader = new FileReader(this.file);
         this.bufferedReader = new BufferedReader(fileReader);
@@ -38,7 +38,7 @@ public class Parser {
         return this.mainBlock;
     }
 
-    private void parseBlock(Block block, boolean isMainBlock) throws Exception {
+    private void parseBlock(Block block, boolean isMainBlock) throws FileException, IOException {
         String line,rawLine;
         boolean privLineReturn = false;
         while ((rawLine = this.bufferedReader.readLine()) != null) {
@@ -57,7 +57,7 @@ public class Parser {
         }
     }
 
-    private void lineAction(String line,Block block)throws Exception {
+    private void lineAction(String line,Block block)throws FileException, IOException {
         Matcher matcher = Regex.isStartBlockLine(line);
         if (matcher.matches()) {
             line = matcher.group(1);
@@ -98,14 +98,15 @@ public class Parser {
         }
     }
 
-    private void assignmentLineAction(Matcher matcher, Block block) throws Exception {
+    private void assignmentLineAction(Matcher matcher, Block block) throws FileException {
         if (Type.isType(matcher.group(2)) || Regex.isVariableName(matcher.group(2))){
             block.addCheckable(new VariableAssignmentLine(matcher.group(1),matcher.group(2)));
         }
         throw new SyntaxException(this.rowNumber);
     }
 
-    private void simpleDeclarationLineAction(boolean isFinal, Type type, String str, Block block) throws Exception {
+    private void simpleDeclarationLineAction(boolean isFinal, Type type, String str, Block block) throws
+            FileException {
         if(Regex.isVariableName(str)) {
             block.addCheckable(new VariableDeclarationLine(type, str, isFinal));
         }
@@ -121,7 +122,8 @@ public class Parser {
         }
     }
 
-    private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) throws Exception{
+    private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) throws
+            FileException {
         if (!Type.isType(matcher.group(1))) {
             throw new SyntaxException(this.rowNumber);
         }
@@ -131,7 +133,7 @@ public class Parser {
         }
     }
 
-    private void methodeCallLineAction(Matcher matcher, Block block) throws Exception{
+    private void methodeCallLineAction(Matcher matcher, Block block) throws FileException{
 
         String[] parts = matcher.group(2).split(",");
         LinkedList<String> param = new LinkedList<>();
@@ -143,7 +145,7 @@ public class Parser {
         block.addCheckable(new MethodCallLine(matcher.group(1),param));
     }
 
-    private void conditionBlockAction(Matcher matcher, Block block)throws Exception{
+    private void conditionBlockAction(Matcher matcher, Block block)throws IOException, FileException{
 
         String[] parts = matcher.group(2).split("&&|\\|\\|");
         LinkedList<String> conditions = new LinkedList<>();
@@ -160,7 +162,7 @@ public class Parser {
         block.addCheckable(newBlock);
     }
 
-    private void methodeBlockAction(Matcher matcher, Block block)throws Exception{
+    private void methodeBlockAction(Matcher matcher, Block block)throws FileException, IOException{
         //TODO possibole fail in what heppend if it doesnt chach a group "final"
 
         String[] parts = matcher.group(2).split(",");

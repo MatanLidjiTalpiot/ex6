@@ -1,7 +1,7 @@
 package blocks;
 import foundation.*;
 import java.util.LinkedList;
-
+import foundation.exceptions.FileException;
 /**
  * An abstract class that represents a block in the file.
  */
@@ -40,7 +40,7 @@ public class Block implements Checkable{
      * @param scope the scope that the block is in.
      * @return true if the block is valid, false otherwise.
      */
-    public boolean check(Scope scope)throws Exception{
+    public boolean check(Scope scope)throws FileException{
         int i =0;
         while(content.get(i).check(scope)){
             i++;

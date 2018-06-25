@@ -1,6 +1,6 @@
 package validator;
-import foundation.Exceptions.InvalidAssignmentException;
-import foundation.Exceptions.NoSuchVariableException;
+import foundation.exceptions.InvalidAssignmentException;
+import foundation.exceptions.NoSuchVariableException;
 import foundation.Variable;
 import lines.VariableAssignmentLine;
 import foundation.Scope;

@@ -1,7 +1,7 @@
 package foundation;
 
-import foundation.Exceptions.InvalidAssignmentException;
-import foundation.Exceptions.InvalidTypeException;
+import foundation.exceptions.InvalidAssignmentException;
+import foundation.exceptions.InvalidTypeException;
 
 /**
  * A class that represents a virable

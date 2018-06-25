@@ -1,7 +1,5 @@
 package foundation;
-import foundation.Exceptions.InvalidTypeException;
-
-import java.util.regex.Pattern;
+import foundation.exceptions.InvalidTypeException;
 
 /**
  * An enum class that represents all the types that are used in S java

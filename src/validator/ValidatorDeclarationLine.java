@@ -1,5 +1,5 @@
 package validator;
-import foundation.Exceptions.AlreadyDeclaredVariableExcpetion;
+import foundation.exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.Scope;
 import lines.VariableDeclarationLine;
 

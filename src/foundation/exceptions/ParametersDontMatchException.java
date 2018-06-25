@@ -1,9 +1,9 @@
-package foundation.Exceptions;
+package foundation.exceptions;
 
 /**
  * An exception for when a call for a method does not match the demands of the method.
  */
-public class ParametersDontMatchException extends Exception {
+public class ParametersDontMatchException extends FileException {
     /**
      * A constructor for this Exception
      * @param message the message to display with the exception.

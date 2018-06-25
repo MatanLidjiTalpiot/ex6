@@ -1,6 +1,7 @@
 package main;
 
 import blocks.Block;
+import foundation.exceptions.FileException;
 import foundation.Parser;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class Sjavac {
         catch (IOException e){
             System.out.println(2);
         }
-        catch(Exception e){
+        catch(FileException e){
             System.err.println(e.getMessage());//TODO remove after debugging
             System.out.println(1);
         }

@@ -1,6 +1,7 @@
 package blocks;
 import foundation.*;
-import foundation.Exceptions.NestedMethodException;
+import foundation.exceptions.FileException;
+import foundation.exceptions.NestedMethodException;
 
 
 import java.util.LinkedList;
@@ -65,7 +66,7 @@ public class MethodBlock extends Block implements Checkable {
     }
 
     @Override
-    public boolean check(Scope scope) throws Exception {
+    public boolean check(Scope scope) throws FileException {
         return super.check(scope);
     }
 }

@@ -1,9 +1,9 @@
 package foundation;
 
-import foundation.Exceptions.NoSuchVariableException;
+import foundation.exceptions.NoSuchVariableException;
 
 import java.util.LinkedList;
-
+import foundation.exceptions.NoSuchMethodException;
 /**
  * A class that represents a Scope.
  */

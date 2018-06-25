@@ -2,8 +2,9 @@ package lines;
 import foundation.*;
 import java.util.LinkedList;
 
-import foundation.Exceptions.IllegalParametersException;
-import foundation.Exceptions.ParametersDontMatchException;
+import foundation.exceptions.IllegalParametersException;
+import foundation.exceptions.ParametersDontMatchException;
+import foundation.exceptions.NoSuchMethodException;
 import validator.ValidatorMethodCallLine;
 /**
  * A class that represents a method call line.

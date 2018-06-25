@@ -1,9 +1,9 @@
-package foundation.Exceptions;
+package foundation.exceptions;
 
 /**
  * A class that represents an Illegal parameter exception in a method call
  */
-public class IllegalParametersException extends Exception {
+public class IllegalParametersException extends FileException {
     /**
      * A constructor for an illegal parameter
      * @param message the message to display with the exception.

@@ -1,7 +1,7 @@
 package lines;
 
 import foundation.Checkable;
-import foundation.Exceptions.InvalidAssignmentException;
+import foundation.exceptions.InvalidAssignmentException;
 import foundation.Scope;
 import validator.*;
 

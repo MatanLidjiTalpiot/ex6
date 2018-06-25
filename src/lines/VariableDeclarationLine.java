@@ -1,7 +1,7 @@
 package lines;
 
 import foundation.Checkable;
-import foundation.Exceptions.AlreadyDeclaredVariableExcpetion;
+import foundation.exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.Type;
 import foundation.Variable;
 import validator.ValidatorDeclarationLine;

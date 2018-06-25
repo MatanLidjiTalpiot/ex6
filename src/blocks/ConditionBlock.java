@@ -1,8 +1,8 @@
 package blocks;
 import foundation.Checkable;
-import foundation.Exceptions.InvalidConditionException;
-import foundation.Exceptions.InvalidTypeException;
-import foundation.Exceptions.NoSuchVariableException;
+import foundation.exceptions.InvalidConditionException;
+import foundation.exceptions.InvalidTypeException;
+import foundation.exceptions.NoSuchVariableException;
 import foundation.Scope;
 import foundation.Type;
 import java.util.LinkedList;

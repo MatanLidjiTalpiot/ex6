@@ -1,13 +1,14 @@
 package validator;
-import foundation.Exceptions.IllegalParametersException;
-import foundation.Exceptions.InvalidTypeException;
-import foundation.Exceptions.NoSuchVariableException;
-import foundation.Exceptions.ParametersDontMatchException;
+import foundation.exceptions.IllegalParametersException;
+import foundation.exceptions.InvalidTypeException;
+import foundation.exceptions.NoSuchVariableException;
+import foundation.exceptions.ParametersDontMatchException;
 import foundation.Method;
 import foundation.Scope;
 import foundation.Type;
 import lines.MethodCallLine;
 import java.util.LinkedList;
+import foundation.exceptions.NoSuchMethodException;
 
 public class ValidatorMethodCallLine {
     private static ValidatorMethodCallLine ourInstance = new ValidatorMethodCallLine();

@@ -1,9 +1,9 @@
-package foundation.Exceptions;
+package foundation.exceptions;
 
 /**
  * An exception class.
  */
-public class NoSuchVariableException extends Exception {
+public class NoSuchVariableException extends FileException {
     /**
      * A constructor for NoSuchVariableException
      * @param varName the name of the variable that doesn't exists.

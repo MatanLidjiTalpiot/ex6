@@ -1,5 +1,5 @@
 package foundation;
-import foundation.Exceptions.ParametersDontMatchException;
+import foundation.exceptions.ParametersDontMatchException;
 import java.util.LinkedList;
 
 /**
