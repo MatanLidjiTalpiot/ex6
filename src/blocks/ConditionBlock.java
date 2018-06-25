@@ -54,7 +54,7 @@ public class ConditionBlock extends Block implements Checkable{
      * @return true if the type is a type that can be in a condition, false otherwise.
      */
     private boolean isValidCondition(Type conditionType){
-        return(conditionType == Type.BOOLEAN || conditionType == Type.DOUBLE || conditionType == Type.INT)
+        return(conditionType == Type.BOOLEAN || conditionType == Type.DOUBLE || conditionType == Type.INT);
     }
 
 }
