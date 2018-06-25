@@ -29,7 +29,7 @@ public class ValidatorMethodCallLine {
 
     }
 
-    private LinkedList<Type> checkParameters(Scope scope, MethodCallLine line)throws
+    private static LinkedList<Type> checkParameters(Scope scope, MethodCallLine line)throws
             IllegalParametersException{
         LinkedList<String> parameters = line.getParamsByOrder();
         LinkedList<Type> validTypesByOrder = new LinkedList<>();

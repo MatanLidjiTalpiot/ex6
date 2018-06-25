@@ -11,7 +11,7 @@ import validator.ValidatorMethodCallLine;
 public class MethodCallLine extends Line{
     private String methodName;
     private LinkedList<String> paramsByOrder;
-    private static ValidatorMethodCallLine validator = ValidatorMethodCallLine.getInstance();
+
 
     /**
      * A constructor for the MethodCallLine
@@ -34,6 +34,6 @@ public class MethodCallLine extends Line{
 
     public boolean check(Scope scope) throws NoSuchMethodException, IllegalParametersException,
             ParametersDontMatchException{
-        return validator.validate(scope, this);
+        return ValidatorMethodCallLine.validate(scope, this);
     }
 }

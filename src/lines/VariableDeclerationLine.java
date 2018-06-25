@@ -12,7 +12,6 @@ import foundation.Scope;
  */
 public class VariableDeclerationLine extends Line {
 
-    private static ValidatorDeclartionLine validator = ValidatorDeclartionLine.getInstance();
     private Variable variable;
     /**
      * A constructor that creates a VarialbeDeclerationLine
@@ -30,6 +29,6 @@ public class VariableDeclerationLine extends Line {
     }
 
     public boolean check(Scope scope) throws AlreadyDeclaredVariableExcpetion{
-        return validator.validate(scope,this);
+        return ValidatorDeclartionLine.validate(scope,this);
     }
 }

@@ -9,7 +9,8 @@ public class ValidatorDeclartionLine {
     public static ValidatorDeclartionLine getInstance() {
         return ourInstance;
     }
-    public boolean validate(Scope scope, VariableDeclerationLine line) throws AlreadyDeclaredVariableExcpetion{
+    public static boolean validate(Scope scope, VariableDeclerationLine line) throws
+            AlreadyDeclaredVariableExcpetion{
         if(scope.containsVar(line.getVariable().getName())){
             throw new AlreadyDeclaredVariableExcpetion(line.getVariable().getName());
         }
