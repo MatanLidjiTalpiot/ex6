@@ -1,5 +1,6 @@
 package lines;
 
+import foundation.Exceptions.AlreadyDeclaredVariableExcpetion;
 import foundation.Exceptions.InvalidTypeException;
 import foundation.Type;
 import foundation.Variable;
@@ -32,7 +33,7 @@ public class VariableDeclerationLine extends Line {
         return variable;
     }
 
-    public boolean check(Scope scope){
+    public boolean check(Scope scope) throws AlreadyDeclaredVariableExcpetion{
         return validator.validate(scope,this);
     }
 }
