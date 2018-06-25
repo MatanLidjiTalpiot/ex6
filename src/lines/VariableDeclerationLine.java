@@ -25,10 +25,6 @@ public class VariableDeclerationLine extends Line {
         variable = new Variable(name, varType,isFinal);
     }
 
-    public VariableDeclerationLine(Type varType, String name) throws InvalidTypeException{
-        variable = new Variable(name, varType);
-    }
-
     public Variable getVariable() {
         return variable;
     }
