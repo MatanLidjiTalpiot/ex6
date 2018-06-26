@@ -149,11 +149,12 @@ public class Parser {
             declerationLineAction(matcher,block,true);
             return;
         }
-
-        matcher  = Regex.isDeclerationLine(line);
-        if (matcher.matches()){
-            declerationLineAction(matcher,block,false);
-            return;
+        if(!line.contains("(")&&!line.contains(")")) {
+            matcher = Regex.isDeclerationLine(line);
+            if (matcher.matches()) {
+                declerationLineAction(matcher, block, false);
+                return;
+            }
         }
 
         matcher  = Regex.isAssimentLine(line);

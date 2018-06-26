@@ -29,7 +29,7 @@ public class MethodBlock extends Block implements Checkable {
     public MethodBlock(String methodName,LinkedList<String> varNamesByOrder,LinkedList<Type>
             typeNamesByOrder, LinkedList<Boolean> isFinalByOrder,
                        Scope
-            fatherScope) throws NestedMethodException, AlreadyDeclaredVariableExcpetion {
+            fatherScope) throws FileException {
 
         super(fatherScope);
         if(fatherScope.hasFather()){ // according to this exercise demands are that a method can not be
@@ -67,7 +67,6 @@ public class MethodBlock extends Block implements Checkable {
             }
             //TODO i changed it from params.add(new Variable(name,type, isFinal)); assuming the TODO before.
 
-        }
     }
 
     /**
