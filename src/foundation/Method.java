@@ -57,10 +57,18 @@ public class Method {
         return methodBlock;
     }
 
+    /**
+     * A method that after using it marks the function as checks because if it runs after the first time
+     * in Sjava than it will work always.
+     */
     public void check(){
         hasBeenChecked = true;
     }
 
+    /**
+     * A method that returns wheter the method was already checked or not.
+     * @return wheter the method has been checked or not.
+     */
     public boolean hasBeenChecked(){
         return hasBeenChecked;
     }
