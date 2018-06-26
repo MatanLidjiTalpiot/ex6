@@ -73,7 +73,7 @@ public class ConditionBlock extends Block implements Checkable{
 
     public boolean check(Scope scope)throws FileException{
         checkConditions(this.conditions);// note that this throws an Exception
-        return super.check(scope);
+        return super.check(this.scope);
     }
 
     @Override

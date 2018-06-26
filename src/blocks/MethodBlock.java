@@ -71,7 +71,7 @@ public class MethodBlock extends Block implements Checkable {
 
     @Override
     public boolean check(Scope scope) throws FileException {
-        return super.check(scope);
+        return super.check(this.scope);
     }
     @Override
     public boolean isBlock(){
