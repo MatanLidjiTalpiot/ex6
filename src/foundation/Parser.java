@@ -62,8 +62,8 @@ public class Parser {
             if(Regex.isReturnLine(al.get(i))&& i+1 == al.size()) {
                 throw new SyntaxException(i);
             }
-            if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || Regex.isReturnLine(al.get
-                    (i)) && !Regex.isEndBlockLine(al.get(i+1))){
+            if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || (Regex.isReturnLine(al.get
+                    (i)) && !Regex.isEndBlockLine(al.get(i+1)))){
                 if(Regex.isReturnLine(al.get(i)) && blockOpeners==0){
                    throw new SyntaxException(rowNumber);
                 }

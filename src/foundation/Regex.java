@@ -32,7 +32,7 @@ public class Regex {
     }
 
     static Matcher isAssiment(String str){
-        Pattern ptrn = Pattern.compile("^\\s*([a-z A-Z _]+\\w+|[a-z A-Z]\\w*)\\s*=\\s*(.*)\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*$");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -70,7 +70,7 @@ public class Regex {
     }
 
     static boolean isCommentLine(String str){
-        Pattern ptrn = Pattern.compile("^\\s*\\\\\\\\$");
+        Pattern ptrn = Pattern.compile("^\\\\\\\\.*$");
         return ptrn.matcher(str).matches();
     }
 
@@ -117,7 +117,7 @@ public class Regex {
     }
 
     static boolean isCharValue(String str){
-        Pattern ptrn = Pattern.compile("\\s*\".?\"\\s*");
+        Pattern ptrn = Pattern.compile("\\s*\'.?\'\\s*");
         return ptrn.matcher(str).matches();
     }
 
