@@ -232,6 +232,10 @@ public class Parser {
 
         String[] parts = matcher.group(2).split(",");
         LinkedList<String> param = new LinkedList<>();
+        if(parts.length == 1 && Regex.isLineEmpthy(parts[0])){
+            block.addCheckable(new MethodCallLine(matcher.group(1),param));
+            return;
+        }
         for(String part : parts) {
             if(!Regex.isVariableName(part) && !Type.isType(part))
                 throw new SyntaxException(rowNumber);
