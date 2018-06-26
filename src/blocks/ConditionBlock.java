@@ -1,9 +1,7 @@
 package blocks;
-import foundation.Checkable;
-import foundation.TypesOfCheckable;
+import foundation.*;
 import foundation.exceptions.*;
-import foundation.Scope;
-import foundation.Type;
+
 import java.util.LinkedList;
 
 /**
@@ -46,6 +44,13 @@ public class ConditionBlock extends Block implements Checkable{
                 } else if (!fatherScope.containsVar(condition) || !fatherScope.getVariableByName(condition)
                         .isAssigned()) {
                     throw new InvalidConditionException(condition);
+                }
+                else{
+                    Variable var = fatherScope.getVariableByName(condition);
+                    if(var.getType()!= Type.INT || var.getType() != Type.DOUBLE || var.getType() != Type
+                            .BOOLEAN){
+                        throw new InvalidConditionException(condition);
+                    }
                 }
             }
             catch (InvalidTypeException e){
