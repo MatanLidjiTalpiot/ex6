@@ -154,5 +154,9 @@ public class Variable {
         isAssigned = true;
     }
 
+    public void setNotAssigned(){
+        isAssigned = false;
+    }
+
 }
 

@@ -144,4 +144,11 @@ public class Scope {
     }
 
 
+    public LinkedList<Variable> getVariablesOfAllScope(LinkedList<Variable> listOfVars) {
+        listOfVars.addAll(this.variablesOfScope);
+        if (this.hasFather){
+            return father.getVariablesOfAllScope(listOfVars);
+        }
+        return listOfVars;
+    }
 }

@@ -80,9 +80,38 @@ public class MethodBlock extends Block implements Checkable {
         fatherScope.addMethod(method);
     }
 
-    @Override
-    public boolean check(Scope scope) throws FileException {
+    public boolean run(Scope scope) throws FileException {
         return super.check(this.scope);
+    }
+
+    @Override
+    public boolean check(Scope scope) throws FileException{
+        return methodBlockCheck(this.scope);
+    }
+
+    private boolean methodBlockCheck(Scope scope)throws FileException{
+        LinkedList<Variable> toSetBackToNotAssigned = new LinkedList<>();
+
+        for (int i = 0; i < content.size(); i++){
+            Checkable c = content.get(i);
+            if(c.getTypeOfCheckable() == TypesOfCheckable.VARIABLE_ASSIGNMENT_LINE){
+                LinkedList<Variable> checkIfNotAssigned = scope.getVariablesOfAllScope(new
+                        LinkedList<Variable>());
+                for(Variable var : checkIfNotAssigned){
+                    if(!var.isAssigned() && !toSetBackToNotAssigned.contains(var)){
+                        toSetBackToNotAssigned.add(var);
+                    }
+                }
+            }
+            c.check(scope);
+        }
+        for (Variable var : toSetBackToNotAssigned){
+            var.setNotAssigned();
+        }
+
+
+
+        return true;
     }
     @Override
     public boolean isBlock(){

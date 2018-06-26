@@ -1,4 +1,4 @@
-19:34:14
+21:22:23
 
 school solution#User solution#result#Test name
 
@@ -348,15 +348,15 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test250.sjava		
 0		0		passed		\SchoolTests\test251.sjava		
 1		1		passed		\SchoolTests\test252.sjava		
-0		1		failed		\SchoolTests\test253.sjava		##################################
+0		0		passed		\SchoolTests\test253.sjava		
 1		1		passed		\SchoolTests\test254.sjava		
 0		0		passed		\SchoolTests\test255.sjava		
-1		0		failed		\SchoolTests\test257.sjava		##################################
+1		1		passed		\SchoolTests\test257.sjava		
 1		1		passed		\SchoolTests\test261.sjava		
 1		1		passed		\SchoolTests\test262.sjava		
 1		1		passed		\SchoolTests\test263.sjava		
 1		1		passed		\SchoolTests\test264.sjava		
-1		0		failed		\SchoolTests\test265.sjava		##################################
+1		1		passed		\SchoolTests\test265.sjava		
 0		0		passed		\SchoolTests\test266.sjava		
 0		0		passed		\SchoolTests\test267.sjava		
 1		1		passed		\SchoolTests\test268.sjava		
@@ -433,7 +433,7 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test452.sjava		
 1		1		passed		\SchoolTests\test453.sjava		
 1		1		passed		\SchoolTests\test454.sjava		
-1		0		failed		\SchoolTests\test455.sjava		##################################
+1		1		passed		\SchoolTests\test455.sjava		
 1		1		passed		\SchoolTests\test456.sjava		
 1		1		passed		\SchoolTests\test457.sjava		
 1		1		passed		\SchoolTests\test458.sjava		
@@ -462,5 +462,5 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test504.sjava		
 0		0		passed		\SchoolTests\test505.sjava		
 
-passed 455 out of 459 tests.
+passed 459 out of 459 tests.
 

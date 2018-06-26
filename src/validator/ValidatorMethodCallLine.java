@@ -23,7 +23,7 @@ public class ValidatorMethodCallLine {
             }
             else {
                 method.check();
-                return (method.callingMatching(validTypesByOrder) && method.getMethodBlock().check(method
+                return (method.callingMatching(validTypesByOrder) && method.getMethodBlock().run(method
                         .getMethodBlock().getScope()));
             }
     }
