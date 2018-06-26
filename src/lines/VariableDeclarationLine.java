@@ -2,6 +2,7 @@ package lines;
 
 import foundation.*;
 import foundation.exceptions.AlreadyDeclaredVariableExcpetion;
+import foundation.exceptions.FinalNotInitializedException;
 import validator.ValidatorDeclarationLine;
 
 /**
@@ -17,8 +18,18 @@ public class VariableDeclarationLine implements Checkable {
      * @param name the name of the variable;
      * @param isFinal if the variable is final
      */
-    public VariableDeclarationLine(Type varType, String name, boolean isFinal){
-        variable = new Variable(name, varType,isFinal);
+    public VariableDeclarationLine(Type varType, String name, boolean isFinal, boolean hasAssignment)
+            throws FinalNotInitializedException{
+        variable = new Variable(name, varType,isFinal, hasAssignment);
+    }
+
+    /**
+     * A constructor for a decleration line.
+     * @param varType the type of the variable
+     * @param name the name of the variable
+     */
+    public VariableDeclarationLine(Type varType, String name){
+        variable = new Variable(name, varType);
     }
 
     public Variable getVariable() {
