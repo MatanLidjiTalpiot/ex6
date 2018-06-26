@@ -223,6 +223,11 @@ public class Parser {
             throw new SyntaxException(this.rowNumber);
         }
         String[] parts = matcher.group(2).split(",");
+        Pattern numOfOCommasP = Pattern.compile("(,)");
+        Matcher numOfOCommasM = numOfOCommasP.matcher(matcher.group(2));
+        if(numOfOCommasM.groupCount()+1 != parts.length){
+            throw new SyntaxException(rowNumber);
+        }
         for (int i = 0; i < parts.length; i++) {
             this.simpleDeclarationLineAction(isFinal,type1, parts[i].trim(), block);
         }
