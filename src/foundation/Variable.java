@@ -37,14 +37,7 @@ public class Variable {
      * @param isFinal whether the variable is final or not, in this constructor it is not supposed to be.
      * @throws FinalNotInitializedException an exception fot when a final variable is not initialized.
      */
-    public Variable(String name, Type type, boolean isFinal)throws FinalNotInitializedException{//for
-        // cases when is final is false
-        if (isFinal){
-            throw new FinalNotInitializedException(name);
-        }
-        this.name = name;
-        this.type = type;
-    }
+
     /**
      * A constructor for variable
      * @param name
