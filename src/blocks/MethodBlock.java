@@ -49,15 +49,21 @@ public class MethodBlock extends Block implements Checkable {
     /**
      * A method that creates the parameters of the method.
      */
-    private void createParam() {
+    private void createParam() throws FileException{
         for (int i = 0; i < typeNamesByOrder.size(); i++){
             String name = paramNamesByOrder.get(i);
             Type type = typeNamesByOrder.get(i);
             boolean isFinal = isFinalByOrder.get(i);
+            if(isFinal){
+                params.add(new Variable(name, type, isFinal, true));
+            }
+            else{
+                params.add(new Variable((name,type)));
+            }
             // TODO check if a paremeter can be final in S java, i think it cant
-            params.add(new Variable(name,type));
-            for (Variable param : params){
-                param.treatAsAssigned();
+//            params.add(new Variable(name,type));
+//            for (Variable param : params){
+//                param.treatAsAssigned();
             }
             //TODO i changed it from params.add(new Variable(name,type, isFinal)); assuming the TODO before.
 
