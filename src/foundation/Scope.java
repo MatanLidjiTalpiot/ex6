@@ -41,7 +41,7 @@ public class Scope {
      * @param toAdd a Variable.
      */
     public void addVariable(Variable toAdd) throws AlreadyDeclaredVariableExcpetion {
-        if (this.containsVar(toAdd.getName())){
+        if (!this.canAddVar(toAdd)){
             throw new AlreadyDeclaredVariableExcpetion(toAdd.getName());
         }
         variablesOfScope.add(toAdd);
@@ -133,6 +133,15 @@ public class Scope {
         }
     }
 
+
+    public boolean canAddVar(Variable varToAdd){
+        for(Variable var : variablesOfScope){
+            if (var.getName().equals(varToAdd)){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 }

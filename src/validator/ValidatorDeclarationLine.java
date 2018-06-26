@@ -12,7 +12,7 @@ public class ValidatorDeclarationLine {
     }
     public static boolean validate(Scope scope, VariableDeclarationLine line) throws
             AlreadyDeclaredVariableExcpetion {
-        if(scope.containsVar(line.getVariable().getName())){
+        if(!scope.canAddVar(line.getVariable())){
             throw new AlreadyDeclaredVariableExcpetion(line.getVariable().getName());
         }
         else{
