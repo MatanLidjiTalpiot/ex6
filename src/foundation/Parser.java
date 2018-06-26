@@ -161,7 +161,7 @@ public class Parser {
 
     private void assignmentLineAction(Matcher matcher, Block block) throws FileException {
         if (Type.isType(matcher.group(2)) || Regex.isVariableName(matcher.group(2))){
-            block.addCheckable(new VariableAssignmentLine(matcher.group(1),matcher.group(2)));
+            block.addCheckable(new VariableAssignmentLine(matcher.group(1).trim(),matcher.group(2).trim()));
             return;
         }
         throw new SyntaxException(this.rowNumber);
@@ -170,13 +170,25 @@ public class Parser {
     private void simpleDeclarationLineAction(boolean isFinal, Type type, String str, Block block) throws
             FileException {
         if(Regex.isVariableName(str)) {
-            block.addCheckable(new VariableDeclarationLine(type, str, isFinal));
+            if(isFinal) {
+                block.addCheckable(new VariableDeclarationLine(type, str.trim(), isFinal, false));
+            }
+            else{
+                block.addCheckable(new VariableDeclarationLine(type, str.trim()));
+            }
         }
         else{
             Matcher matcher = Regex.isAssiment(str);
             if(matcher.matches() && Regex.isVariableName(matcher.group(1))){
-                block.addCheckable(new VariableDeclarationLine(type, matcher.group(1), isFinal));
-                assignmentLineAction(matcher, block);
+                if(isFinal) {
+                    block.addCheckable(new VariableDeclarationLine(type, (matcher.group(1)).trim(),
+                            isFinal,true));
+                    assignmentLineAction(matcher, block);
+                }
+                else{
+                    block.addCheckable(new VariableDeclarationLine(type, (matcher.group(1)).trim()));
+                    assignmentLineAction(matcher, block);
+                }
             }
             else {
                 throw new SyntaxException(this.rowNumber);

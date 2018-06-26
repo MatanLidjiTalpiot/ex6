@@ -25,7 +25,7 @@ public class Regex {
     }
 
     static Matcher isAssimentLine(String str){
-        Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*;$");
+        Pattern ptrn = Pattern.compile("^\\s*([^\\d]+\\w+|[a-z A-Z])\\s*=\\s*(.*)\\s*;$");//^([a-z A-Z _]+\w+|[a-z A-Z]\w*)\s*=\s*(.+);$
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -39,7 +39,7 @@ public class Regex {
     }
 
     static Matcher isDeclerationLine(String str){
-        Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");//TODO need to fix
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;

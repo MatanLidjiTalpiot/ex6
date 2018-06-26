@@ -1,4 +1,4 @@
-04:25:48
+04:05:43
 
 school solution#User solution#result#Test name
 
@@ -118,7 +118,7 @@ school solution#User solution#result#Test name
 1		1		passed		\BaraksTests\variables\14.sjava		
 1		1		passed		\BaraksTests\variables\15.sjava		
 0		0		passed		\BaraksTests\variables\16.sjava		
-1		1		passed		\BaraksTests\variables\17.sjava		
+1		0		failed		\BaraksTests\variables\17.sjava		##################################
 1		1		passed		\BaraksTests\variables\18.sjava		
 0		0		passed		\BaraksTests\variables\19.sjava		
 0		0		passed		\BaraksTests\variables\20.sjava		
@@ -147,7 +147,7 @@ school solution#User solution#result#Test name
 0		0		passed		\BaraksTests\variables\43.sjava		
 1		1		passed		\BaraksTests\variables\44.sjava		
 0		0		passed		\BaraksTests\variables\45.sjava		
-1		1		passed		\BaraksTests\variables\46.sjava		
+1		0		failed		\BaraksTests\variables\46.sjava		##################################
 1		1		passed		\BaraksTests\variables\47.sjava		
 1		1		passed		\BaraksTests\variables\48.sjava		
 0		0		passed		\BaraksTests\variables\49.sjava		
@@ -462,5 +462,5 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test504.sjava		
 0		0		passed		\SchoolTests\test505.sjava		
 
-passed 414 out of 459 tests.
+passed 412 out of 459 tests.
 
