@@ -4,7 +4,7 @@ import java.util.regex.*;
 public class Regex {
 
     static Matcher isStartBlockLine(String str) {
-        Pattern ptrn = Pattern.compile("^(.+)[{]$");
+        Pattern ptrn = Pattern.compile("^(.+)[{]\\s*$");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -18,7 +18,7 @@ public class Regex {
     }
 
     static Matcher isMethodBlock(String str){
-        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-z A-Z]+\\w*)\\s*\\(([a-z A-Z _ 0-9 ,]*)\\)\\s*$");
+        Pattern ptrn = Pattern.compile("^\\s*void\\s+([a-zA-Z]+\\w*)\\s*\\(([a-zA-Z\\s_0-9,]*)\\)\\s*$");
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -39,7 +39,7 @@ public class Regex {
     }
 
     static Matcher isDeclerationLine(String str){
-        Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");//TODO need to fix
+        Pattern ptrn = Pattern.compile("^\\s*(int|double|String|char|boolean)\\s+([^;]+);\\s*$");//TODO need to fix
         Matcher matcher = ptrn.matcher(str);
         matcher.matches();
         return matcher;
@@ -92,7 +92,7 @@ public class Regex {
     }
 
     static boolean isVariableName(String str){
-        Pattern ptrn = Pattern.compile("^([a-z A-Z _]+\\w+|[a-z A-Z]\\w*)$");
+        Pattern ptrn = Pattern.compile("^([a-zA-Z_]+\\w+|[a-zA-Z]\\w*)$");
         return ptrn.matcher(str).matches();
     }
 

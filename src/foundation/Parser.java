@@ -222,10 +222,14 @@ public class Parser {
         catch (InvalidTypeException e){
             throw new SyntaxException(this.rowNumber);
         }
+        int k = 0;
+        for(char ch: matcher.group(2).toCharArray()){
+            if(ch == ','){
+                k++;
+            }
+        }
         String[] parts = matcher.group(2).split(",");
-        Pattern numOfOCommasP = Pattern.compile("(,)");
-        Matcher numOfOCommasM = numOfOCommasP.matcher(matcher.group(2));
-        if(numOfOCommasM.groupCount()+1 != parts.length){
+        if(parts.length-1!=k){
             throw new SyntaxException(rowNumber);
         }
         for (int i = 0; i < parts.length; i++) {
