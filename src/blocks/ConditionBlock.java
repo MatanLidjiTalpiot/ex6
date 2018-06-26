@@ -47,8 +47,7 @@ public class ConditionBlock extends Block implements Checkable{
                 }
                 else{
                     Variable var = fatherScope.getVariableByName(condition);
-                    if(var.getType()!= Type.INT || var.getType() != Type.DOUBLE || var.getType() != Type
-                            .BOOLEAN){
+                    if(var.getType() == Type.STRING || var.getType() == Type.CHAR){
                         throw new InvalidConditionException(condition);
                     }
                 }
