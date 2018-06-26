@@ -47,10 +47,15 @@ public class Block implements Checkable{
      * @return true if the block is valid, false otherwise.
      */
     public boolean check(Scope scope)throws FileException{
+        LinkedList<Integer> uncheckedCheckables = new LinkedList<>();
         for (int i = 0; i < content.size(); i++) {
             if (content.get(i).getTypeOfCheckable() == TypesOfCheckable.METHOD_BLOCK) {
+                uncheckedCheckables.add(i);
                 continue;
             }
+            content.get(i).check(scope);
+        }
+        for(int i : uncheckedCheckables){
             content.get(i).check(scope);
         }
         return (true);
