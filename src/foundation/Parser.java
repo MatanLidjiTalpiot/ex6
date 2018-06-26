@@ -49,26 +49,10 @@ public class Parser {
         ArrayList<String> al = new ArrayList<>();
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            al.add(line.trim());
+            al.add(line);
         }
-        ArrayList<Integer> toDelete = new ArrayList<>();
-        int blockOpeners = 0;
-        for(int i = 0; i < al.size(); i++){
-            if (Regex.isCommentLine(al.get(i))||Regex.isLineEmpthy(al.get(i))){
-                toDelete.add(i);
-            }else{
-                if(Regex.isReturnLine(al.get(i)) && !Regex.isEndBlockLine(al.get(Math.min(i+1,al.size()-1)))){
-                    toDelete.add(i);
-                }
-            }
 
-            if(Regex.isReturnLine(al.get(i))&& i+1 == al.size()) {
-                throw new SyntaxException(i);
-            }
-        }
-        for (int j = toDelete.size()-1; j >= 0; j--) {
-            al.remove(toDelete.get(j));
-        }
+        int blockOpeners = 0;
         for(int i = 0; i < al.size(); i++) {
             if (Regex.isEndBlockLine(al.get(i))) {
                 blockOpeners--;
@@ -83,8 +67,24 @@ public class Parser {
                 }
             }
         }
+        for(int i = 0; i < al.size(); i++){
+            if (Regex.isCommentLine(al.get(i))||Regex.isLineEmpthy(al.get(i))){
+                al.set(i,"");
+            }else{
+                if(Regex.isReturnLine(al.get(i)) && !Regex.isEndBlockLine(al.get(Math.min(i+1,al.size()-1)))){
+                    al.set(i,"");
+                }
+            }
+
+            if(Regex.isReturnLine(al.get(i))&& i+1 == al.size()) {
+                throw new SyntaxException(i);
+            }
+        }
         if(blockOpeners!=0){
             throw new SyntaxException(0);
+        }
+        for(int i = 0; i < al.size(); i++){
+            al.set(i,al.get(i).trim());
         }
         return al;
     }
@@ -142,6 +142,9 @@ public class Parser {
     private void lineAction(String line,Block block)throws FileException, IOException{
 
         Matcher matcher  = Regex.isFinalDeclerationLine(line);
+        if(Regex.isReturnLine(line)){
+            return;
+        }
         if (matcher.matches()){
             declerationLineAction(matcher,block,true);
             return;
@@ -220,7 +223,7 @@ public class Parser {
         }
         String[] parts = matcher.group(2).split(",");
         for (int i = 0; i < parts.length; i++) {
-            this.simpleDeclarationLineAction(isFinal,type1, parts[i], block);
+            this.simpleDeclarationLineAction(isFinal,type1, parts[i].trim(), block);
         }
     }
 
@@ -273,8 +276,8 @@ public class Parser {
                 else {
                     isFinalByOrder.add(true);
                 }
-                typeNamesByOrder.add(Type.strToType(matcher1.group(2)));
-                if (Regex.isVariableName(matcher1.group(3)))
+                typeNamesByOrder.add(Type.strToType(matcher1.group(2).trim()));
+                if (Regex.isVariableName(matcher1.group(3).trim()))
                     varNamesByOrder.add(matcher1.group(3));
                 else
                     throw new SyntaxException(rowNumber);

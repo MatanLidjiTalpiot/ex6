@@ -70,7 +70,7 @@ public class Regex {
     }
 
     static boolean isCommentLine(String str){
-        Pattern ptrn = Pattern.compile("^\\\\\\\\.*$");
+        Pattern ptrn = Pattern.compile("^\\/\\/.*$");
         return ptrn.matcher(str).matches();
     }
 

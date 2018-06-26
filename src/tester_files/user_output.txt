@@ -1,4 +1,4 @@
-12:45:24
+13:21:39
 
 school solution#User solution#result#Test name
 
@@ -69,22 +69,22 @@ school solution#User solution#result#Test name
 1		1		passed		\BaraksTests\return\04.sjava		
 1		1		passed		\BaraksTests\return\05.sjava		
 1		1		passed		\BaraksTests\return\06.sjava		
-0		1		failed		\BaraksTests\return\07.sjava		##################################
-0		1		failed		\BaraksTests\return\08.sjava		##################################
+0		0		passed		\BaraksTests\return\07.sjava		
+0		0		passed		\BaraksTests\return\08.sjava		
 0		0		passed		\BaraksTests\return\09.sjava		
 1		1		passed		\BaraksTests\return\10.sjava		
 0		0		passed		\BaraksTests\return\11.sjava		
 1		1		passed		\BaraksTests\return\12.sjava		
 1		1		passed		\BaraksTests\return\13.sjava		
 0		0		passed		\BaraksTests\return\14.sjava		
-0		1		failed		\BaraksTests\structure\01.sjava		##################################
+0		0		passed		\BaraksTests\structure\01.sjava		
 1		1		passed		\BaraksTests\structure\02.sjava		
 1		1		passed		\BaraksTests\structure\03.sjava		
-0		1		failed		\BaraksTests\structure\04.sjava		##################################
-0		1		failed		\BaraksTests\structure\05.sjava		##################################
-0		1		failed		\BaraksTests\structure\06.sjava		##################################
-0		1		failed		\BaraksTests\structure\07.sjava		##################################
-0		1		failed		\BaraksTests\structure\08.sjava		##################################
+0		0		passed		\BaraksTests\structure\04.sjava		
+0		0		passed		\BaraksTests\structure\05.sjava		
+0		0		passed		\BaraksTests\structure\06.sjava		
+0		0		passed		\BaraksTests\structure\07.sjava		
+0		0		passed		\BaraksTests\structure\08.sjava		
 1		1		passed		\BaraksTests\structure\09.sjava		
 1		1		passed		\BaraksTests\structure\10.sjava		
 1		1		passed		\BaraksTests\structure\11.sjava		
@@ -275,7 +275,7 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test054.sjava		
 1		1		passed		\SchoolTests\test055.sjava		
 0		0		passed		\SchoolTests\test056.sjava		
-1		1		passed		\SchoolTests\test057.sjava		
+1		0		failed		\SchoolTests\test057.sjava		##################################
 0		0		passed		\SchoolTests\test058.sjava		
 0		0		passed		\SchoolTests\test059.sjava		
 1		1		passed		\SchoolTests\test061.sjava		
@@ -362,7 +362,7 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test268.sjava		
 1		1		passed		\SchoolTests\test269.sjava		
 1		1		passed		\SchoolTests\test270.sjava		
-0		1		failed		\SchoolTests\test271.sjava		##################################
+0		0		passed		\SchoolTests\test271.sjava		
 1		1		passed		\SchoolTests\test272.sjava		
 1		1		passed		\SchoolTests\test273.sjava		
 1		1		passed		\SchoolTests\test274.sjava		
@@ -418,12 +418,12 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test429.sjava		
 1		0		failed		\SchoolTests\test430.sjava		##################################
 1		1		passed		\SchoolTests\test431.sjava		
-0		0		passed		\SchoolTests\test432.sjava		
+0		1		failed		\SchoolTests\test432.sjava		##################################
 0		0		passed		\SchoolTests\test433.sjava		
 1		1		passed		\SchoolTests\test434.sjava		
 1		1		passed		\SchoolTests\test435.sjava		
 1		1		passed		\SchoolTests\test436.sjava		
-0		0		passed		\SchoolTests\test437.sjava		
+0		1		failed		\SchoolTests\test437.sjava		##################################
 0		0		passed		\SchoolTests\test438.sjava		
 1		1		passed		\SchoolTests\test439.sjava		
 1		1		passed		\SchoolTests\test440.sjava		
@@ -456,11 +456,11 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test475.sjava		
 1		1		passed		\SchoolTests\test476.sjava		
 1		1		passed		\SchoolTests\test477.sjava		
-0		1		failed		\SchoolTests\test501.sjava		##################################
+0		0		passed		\SchoolTests\test501.sjava		
 1		1		passed		\SchoolTests\test502.sjava		
 1		1		passed		\SchoolTests\test503.sjava		
 1		1		passed		\SchoolTests\test504.sjava		
 0		0		passed		\SchoolTests\test505.sjava		
 
-passed 436 out of 459 tests.
+passed 443 out of 459 tests.
 

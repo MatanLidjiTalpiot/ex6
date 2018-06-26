@@ -58,7 +58,7 @@ public class MethodBlock extends Block implements Checkable {
                 params.add(new Variable(name, type, isFinal, true));
             }
             else{
-                params.add(new Variable((name,type)));
+                params.add(new Variable(name,type));
             }
             // TODO check if a paremeter can be final in S java, i think it cant
 //            params.add(new Variable(name,type));
