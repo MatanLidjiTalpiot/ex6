@@ -147,5 +147,12 @@ public class Variable {
 
     }
 
+    /**
+     * A method that changes the status of the variable to "assigned", relevent to parameters in methods.
+     */
+    public void treatAsAssigned(){
+        isAssigned = true;
+    }
+
 }
 

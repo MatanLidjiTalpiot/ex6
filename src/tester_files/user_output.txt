@@ -1,4 +1,4 @@
-11:57:35
+12:25:37
 
 school solution#User solution#result#Test name
 
@@ -393,8 +393,8 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test401.sjava		
 1		1		passed		\SchoolTests\test402.sjava		
 1		1		passed		\SchoolTests\test403.sjava		
-0		1		failed		\SchoolTests\test404.sjava		##################################
-0		1		failed		\SchoolTests\test405.sjava		##################################
+0		0		passed		\SchoolTests\test404.sjava		
+0		0		passed		\SchoolTests\test405.sjava		
 1		1		passed		\SchoolTests\test406.sjava		
 1		1		passed		\SchoolTests\test407.sjava		
 1		1		passed		\SchoolTests\test408.sjava		
@@ -455,12 +455,12 @@ school solution#User solution#result#Test name
 1		1		passed		\SchoolTests\test474.sjava		
 1		1		passed		\SchoolTests\test475.sjava		
 1		1		passed		\SchoolTests\test476.sjava		
-1		1		passed		\SchoolTests\test477.sjava		
+1		0		failed		\SchoolTests\test477.sjava		##################################
 0		1		failed		\SchoolTests\test501.sjava		##################################
 1		1		passed		\SchoolTests\test502.sjava		
 1		1		passed		\SchoolTests\test503.sjava		
 1		1		passed		\SchoolTests\test504.sjava		
 0		0		passed		\SchoolTests\test505.sjava		
 
-passed 432 out of 459 tests.
+passed 433 out of 459 tests.
 
