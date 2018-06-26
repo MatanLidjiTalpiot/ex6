@@ -44,6 +44,9 @@ public class MethodBlock extends Block implements Checkable {
         createParam();
         scope.addVariables(params);
         createMethod();
+        for (Variable param : params){
+            param.treatAsAssigned();
+        }
     }
 
     /**
