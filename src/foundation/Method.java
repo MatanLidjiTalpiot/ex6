@@ -11,6 +11,7 @@ public class Method {
     private String methodName;
     private int numberOfVals;
     private MethodBlock methodBlock;
+    private boolean hasBeenChecked = false;
     /**
      * A constructor for A method object
      * @param name the name of the method
@@ -54,5 +55,13 @@ public class Method {
 
     public MethodBlock getMethodBlock() {
         return methodBlock;
+    }
+
+    public void check(){
+        hasBeenChecked = true;
+    }
+
+    public boolean hasBeenChecked(){
+        return hasBeenChecked;
     }
 }

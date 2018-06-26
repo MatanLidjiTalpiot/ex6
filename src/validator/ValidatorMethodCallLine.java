@@ -18,8 +18,14 @@ public class ValidatorMethodCallLine {
             isMethod(scope, line);
             LinkedList<Type> validTypesByOrder = checkParameters(scope, line);
             Method method = scope.getMethodByName(line.getMethodName());
-            return (method.callingMatching(validTypesByOrder) && method.getMethodBlock().check(method
-                    .getMethodBlock().getScope()));
+            if (method.hasBeenChecked()) {
+                return (method.callingMatching(validTypesByOrder));
+            }
+            else {
+                method.check();
+                return (method.callingMatching(validTypesByOrder) && method.getMethodBlock().check(method
+                        .getMethodBlock().getScope()));
+            }
     }
 
     private static void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{
