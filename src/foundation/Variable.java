@@ -1,5 +1,6 @@
 package foundation;
 
+import foundation.exceptions.FinalNotInitializedException;
 import foundation.exceptions.InvalidAssignmentException;
 import foundation.exceptions.InvalidTypeException;
 
@@ -18,12 +19,32 @@ public class Variable {
      * @param name the name of the virable
      * @param type the type of the virable
      */
-    public Variable(String name, Type type, boolean isFinal){
+    public Variable(String name, Type type, boolean isFinal, boolean hasAssignment) throws
+            //TODO use this constructor correctly.
+            FinalNotInitializedException {
+        if (!hasAssignment){
+            throw new FinalNotInitializedException(name);
+        }
         this.name = name;
         this.type = type;
         this.isFinal = isFinal;
     }
 
+    /**
+     * A constructor for Variable
+     * @param name the name of the variable
+     * @param type the type of the variable
+     * @param isFinal whether the variable is final or not, in this constructor it is not supposed to be.
+     * @throws FinalNotInitializedException an exception fot when a final variable is not initialized.
+     */
+    public Variable(String name, Type type, boolean isFinal)throws FinalNotInitializedException{//for
+        // cases when is final is false
+        if (isFinal){
+            throw new FinalNotInitializedException(name);
+        }
+        this.name = name;
+        this.type = type;
+    }
     /**
      * A constructor for variable
      * @param name
