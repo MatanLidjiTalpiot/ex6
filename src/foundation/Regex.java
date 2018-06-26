@@ -39,8 +39,8 @@ public class Regex {
     }
 
     static Matcher isDeclerationLine(String str){
-        Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+);\\s*$");
-        Matcher matcher = ptrn.matcher(str);
+        Pattern ptrn = Pattern.compile("^\\s*(\\S+)\\s+(.+[^,]);\\s*$");
+        Matcher matcher = ptrn.matcher(str.trim());
         matcher.matches();
         return matcher;
     }
