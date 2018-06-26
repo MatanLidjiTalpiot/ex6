@@ -58,7 +58,7 @@ public class Variable {
      * @return true if it is possible, false otherwise.
      */
     public boolean canAssign(Variable toAssign) {
-        if (isFinal){
+        if (isFinal && isAssigned){
             return false;
         }
         if (!toAssign.isAssigned()){
@@ -79,7 +79,7 @@ public class Variable {
         return false;
     }
     public boolean canAssign(Type type){
-        if (isFinal){
+        if (isFinal && isAssigned){
             return false;
         }
         if(type == this.type){
