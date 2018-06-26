@@ -97,28 +97,28 @@ public class Regex {
     }
 
     static boolean isBooleanValue(String str){
-        Pattern ptrn = Pattern.compile("(\\s*true\\s*|\\s*false\\s*)");
-        return ptrn.matcher(str).matches();
+        Pattern ptrn = Pattern.compile("^(true|false)$");
+        return ptrn.matcher(str.trim()).matches();
     }
 
     static boolean isIntValue(String str){
-        Pattern ptrn = Pattern.compile("[\\s]*-?[\\d]+[\\s]*");
-        return ptrn.matcher(str).matches();
+        Pattern ptrn = Pattern.compile("^-?[\\d]+$");
+        return ptrn.matcher(str.trim()).matches();
     }
 
     static boolean isDoubleValue(String str){
-        Pattern ptrn = Pattern.compile("[\\s]*-?[\\d]+.[\\d]*[\\s]*");
-        return ptrn.matcher(str).matches();
+        Pattern ptrn = Pattern.compile("^-?[\\d]+\\.[\\d]*$");
+        return ptrn.matcher(str.trim()).matches();
     }
 
     static boolean isStringValue(String str){
-        Pattern ptrn = Pattern.compile("\\s*\".*\"\\s*");
-        return ptrn.matcher(str).matches();
+        Pattern ptrn = Pattern.compile("^\".*\"$");
+        return ptrn.matcher(str.trim()).matches();
     }
 
     static boolean isCharValue(String str){
-        Pattern ptrn = Pattern.compile("\\s*\'.?\'\\s*");
-        return ptrn.matcher(str).matches();
+        Pattern ptrn = Pattern.compile("^\'.?\'$");
+        return ptrn.matcher(str.trim()).matches();
     }
 
     static Matcher stringFinder(String str){
