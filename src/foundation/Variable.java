@@ -70,9 +70,7 @@ public class Variable {
         if (this.type == Type.DOUBLE && toAssign.getType() == Type.INT) {
             return true;
         }
-        if (this.type == Type.STRING && toAssign.getType() == Type.CHAR) {
-            return true;
-        }
+
         if (this.type == Type.BOOLEAN && (toAssign.getType() == Type.INT || toAssign.getType() == Type.DOUBLE)){
             return true;
         }
@@ -86,9 +84,6 @@ public class Variable {
             return true;
         }
         if (this.type == Type.DOUBLE && type == Type.INT){
-            return true;
-        }
-        if(this.type == Type.STRING && type == Type.CHAR){
             return true;
         }
         if (this.type == Type.BOOLEAN && (type == Type.INT || type == Type.DOUBLE)){
