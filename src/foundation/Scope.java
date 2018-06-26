@@ -136,7 +136,7 @@ public class Scope {
 
     public boolean canAddVar(Variable varToAdd){
         for(Variable var : variablesOfScope){
-            if (var.getName().equals(varToAdd)){
+            if (var.getName().equals(varToAdd.getName())){
                 return false;
             }
         }

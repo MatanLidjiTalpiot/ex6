@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.StrictMath.max;
+
 
 public class Parser {
     //TODO which is static method and which is not
@@ -52,26 +54,37 @@ public class Parser {
         ArrayList<Integer> toDelete = new ArrayList<>();
         int blockOpeners = 0;
         for(int i = 0; i < al.size(); i++){
+            if (Regex.isCommentLine(al.get(i))||Regex.isLineEmpthy(al.get(i))){
+                toDelete.add(i);
+            }else{
+                if(Regex.isReturnLine(al.get(i)) && !Regex.isEndBlockLine(al.get(Math.min(i+1,al.size()-1)))){
+                    toDelete.add(i);
+                }
+            }
 
-            if (Regex.isEndBlockLine(al.get(i))){
-                blockOpeners--;
-            }
-            if ((Regex.isStartBlockLine(al.get(i))).matches()){
-                blockOpeners++;
-            }
             if(Regex.isReturnLine(al.get(i))&& i+1 == al.size()) {
                 throw new SyntaxException(i);
             }
-            if(Regex.isLineEmpthy(al.get(i))||Regex.isCommentLine(al.get(i)) || (Regex.isReturnLine(al.get
-                    (i)) && !Regex.isEndBlockLine(al.get(i+1)))){
-                if(Regex.isReturnLine(al.get(i)) && blockOpeners==0){
-                   throw new SyntaxException(rowNumber);
+        }
+        for (int j = toDelete.size()-1; j >= 0; j--) {
+            al.remove(toDelete.get(j));
+        }
+        for(int i = 0; i < al.size(); i++) {
+            if (Regex.isEndBlockLine(al.get(i))) {
+                blockOpeners--;
+            }else{
+                if ((Regex.isStartBlockLine(al.get(i))).matches()) {
+                    blockOpeners++;
+                }else{
+                    if(Regex.isReturnLine(al.get(i))&& blockOpeners<=0)
+                    {
+                        throw new SyntaxException(0);
+                    }
                 }
-                toDelete.add(i);
             }
         }
-        for(int i = toDelete.size()-1; i >= 0; i--){
-           al.remove(toDelete.get(i));
+        if(blockOpeners!=0){
+            throw new SyntaxException(0);
         }
         return al;
     }
