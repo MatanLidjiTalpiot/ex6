@@ -83,7 +83,7 @@ public class Parser {
             if (Regex.isCommentLine(al.get(i))||Regex.isLineEmpthy(al.get(i))){
                 al.set(i,"");
             }else{
-                if(Regex.isReturnLine(al.get(i)) && !Regex.isEndBlockLine(al.get(Math.min(i+1,al.size()-1)))){
+                if(Regex.isReturnLine(al.get(i)) && !Regex.isEndBlockLine(al.get(min(i+1,al.size()-1)))){
                     al.set(i,"");
                 }
             }
@@ -360,5 +360,13 @@ public class Parser {
                 isFinalByOrder, block.getScope());
         parseBlock(newBlock);
         block.addCheckable(newBlock);
+    }
+
+
+    private int min(int a, int b){
+        if (a < b){
+            return a;
+        }
+        return b;
     }
 }
