@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.lang.StrictMath.max;
-
 /**
  * this is a singleton for parsing the data to our data structure
  */

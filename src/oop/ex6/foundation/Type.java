@@ -1,5 +1,4 @@
 package oop.ex6.foundation;
-import com.sun.deploy.security.ValidationState;
 import oop.ex6.foundation.exceptions.InvalidTypeException;
 
 /**
