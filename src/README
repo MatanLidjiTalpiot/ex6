@@ -4,21 +4,21 @@ alonb31cse
 =============================
 =      File description     =
 =============================
-    blocks package:
+    oop.ex6.blocks package:
 
 Block.java - An abstract class that represents a block in the file.
 ConditionBlock.java - A class that represents a Condition Block.
 MethodBlock.java -  class that represents a method block
 
 
-    lines package:
+    oop.ex6.lines package:
 
 VariableAssignmentLine.java - A class that represent A VariableAssignmentLine
 VariableDeclarationLine.java - A class that represents a VariableDeclarationLine.
 MethodCallLine.java - A class that represents a method call line.
 
 
-    validator package:
+    oop.ex6.validator package:
 
 ValidatorDeclarationLine.java - A singleton class that we compose on the Declaration line in order to do the
 check action.
@@ -27,7 +27,7 @@ ValidatorVariableAssignmentLine.java - A singleton class that is composed in a v
 
 
 
-    foundation package:
+    oop.ex6.foundation package:
 
 Checkable.java - An interface that makes an object checkable.
 Method.java - A class that represents a Method.
@@ -39,7 +39,7 @@ TypesOfCheckable.java - An enum class that represents the possible types of A Ch
 Variable.java - A class that represents a variable.
 
 
-    foundation.exceptions package:
+    oop.ex6.foundation.exceptions package:
 
 AlreadyDeclaredVariableExcpetion.java
 FileException.java - A class that is the father of all the exception we throw
@@ -67,13 +67,13 @@ We chose to davide the process this way in order to let our code to me modular (
 the other reason is that identify to separete types of problems - the first is syntax bases - which occrue in
 the parser. And the other are logic based.
 
-The way we the code is by diving it into blocks that contain a linked list of checkables (blocks and lines).
+The way we the code is by diving it into oop.ex6.blocks that contain a linked list of checkables (oop.ex6.blocks and oop.ex6.lines).
 And the way we check is by calling check on each checkalbe in the main block by there order.
 
-the way we implemented the check in the lines (because at the end the lines determine what is valid and what
+the way we implemented the check in the oop.ex6.lines (because at the end the oop.ex6.lines determine what is valid and what
 is not) is by using another class that checks if the line valid or not - using the composition concept.
 We chose to do it this because if tomorrow we'd like to check by using other conditions for what is valid and
-what is not, we only need to change the validators and nothing in the lines themself (we had in mind the
+what is not, we only need to change the validators and nothing in the oop.ex6.lines themself (we had in mind the
 open closed concept in order to let our code to be more modular).
 
 In order to improve our continuity we used the single-choice concept by defining a enum class of Types, so if
@@ -87,7 +87,7 @@ is add it there (and of course in the regex class).
 =  Implementation details   =
 =============================
 
-the way check the file is by diving it into blocks and lines, all within a main block that holds all of the
+the way check the file is by diving it into oop.ex6.blocks and oop.ex6.lines, all within a main block that holds all of the
 file content. Each block holds a linked list of checkables as i stated in the design. The way each block
 implements the check method is by checking the condition on itself (i.e if the block is a condition block -
 than it will check if the condition is valid), and after that it will go through the linked list of

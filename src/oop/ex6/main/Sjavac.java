@@ -1,8 +1,8 @@
 package oop.ex6.main;
 
-import blocks.Block;
-import foundation.Parser;
-import foundation.exceptions.FileException;
+import oop.ex6.blocks.Block;
+import oop.ex6.foundation.Parser;
+import oop.ex6.foundation.exceptions.FileException;
 
 import java.io.IOException;
 
