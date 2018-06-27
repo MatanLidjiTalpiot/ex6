@@ -49,19 +49,34 @@ public class Variable {
     }
 
 
-
+    /**
+     * A method that gets the name of a variable
+     * @return the name of the variable
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * A method that gets the type of the variable
+     * @return the type of the variable;
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     * A method that gives whether the variable is assigned or not.
+     * @return true if assigned, false otherwise.
+     */
     public boolean isAssigned() {
-        return isAssigned;
+        return this.isAssigned;
     }
 
+    /**
+     * A method that gives whether the variable is final or not.
+     * @return true if the variable is final, false otherwise.
+     */
     public boolean isFinal(){
         return isFinal;
     }
@@ -90,6 +105,12 @@ public class Variable {
         }
         return false;
     }
+
+    /**
+     * A method that checks if it is legal to assign the given type to the vatiable
+     * @param type the type to check
+     * @return true if it legal, false otherwise.
+     */
     public boolean canAssign(Type type){
         if (isFinal && isAssigned){
             return false;
@@ -154,6 +175,9 @@ public class Variable {
         isAssigned = true;
     }
 
+    /**
+     * A method that sets the isAssigned member to false.
+     */
     public void setNotAssigned(){
         isAssigned = false;
     }

@@ -158,7 +158,7 @@ public class Tester_ex6_oop {
 
 	}
 
-//	@Test //TODO
+//	@Test
 //	public void checkCompilationAndPrintFormat(){
 //		compileFiles();
 //	}
