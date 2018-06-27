@@ -41,47 +41,71 @@ Variable.java - A class that represents a variable.
 
     foundation.exceptions package:
 
-AlreadyDeclaredVariableExcpetion.java -
-ConditionBlockInMainBlockException.java -
-FileException.java -
-FinalNotInitializedException.java -
-IllegalParametersException.java -
-InvalidAssignmentException.java -
-InvalidConditionException.java -
-InvalidPlacementForCondition.java -
-InvalidTypeException.java -
-NestedMethodException.java -
-NoSuchMethodException.java -
-NoSuchVariableException.java -
-ParametersDontMatchException.java -
-SyntaxException.java -
+AlreadyDeclaredVariableExcpetion.java
+FileException.java - A class that is the father of all the exception we throw
+FinalNotInitializedException.java
+IllegalParametersException.java
+InvalidAssignmentException.java
+InvalidConditionException.java
+InvalidPlacementForCondition.java
+InvalidTypeException.java
+NestedMethodException.java
+NoSuchMethodException.java
+NoSuchVariableException.java
+ParametersDontMatchException.java
+SyntaxException.java
 
 
 
 =============================
 =          Design           =
 =============================
-I implemented the Tool class in a way that it can be reused between games, meaning that instead of creating a new tool
- every game, I use the previously used tool and just reset it with new parameters.
-I chose this design because it is similar to how tools act like in the real world:
-different players use the same tool after they erased the name of the previous player from it.
+In order to complete the compilation of a given S java file we execute two main actions.
+The first - is parsing
+The second - checking the "logic" of the file.
+We chose to davide the process this way in order to let our code to me modular (decomposition concept) and
+the other reason is that identify to separete types of problems - the first is syntax bases - which occrue in
+the parser. And the other are logic based.
+
+The way we the code is by diving it into blocks that contain a linked list of checkables (blocks and lines).
+And the way we check is by calling check on each checkalbe in the main block by there order.
+
+the way we implemented the check in the lines (because at the end the lines determine what is valid and what
+is not) is by using another class that checks if the line valid or not - using the composition concept.
+We chose to do it this because if tomorrow we'd like to check by using other conditions for what is valid and
+what is not, we only need to change the validators and nothing in the lines themself (we had in mind the
+open closed concept in order to let our code to be more modular).
+
+In order to improve our continuity we used the single-choice concept by defining a enum class of Types, so if
+in the future we would like to add another type that is a valid type in S java the only thing well have to do
+is add it there (and of course in the regex class).
+
 
 
 
 =============================
 =  Implementation details   =
 =============================
-In the Game class, in order to store the different players, I chose the TreeSet dataset because we perform many
- insertion and deletion actions on this dataset, actions which a balanced tree performs efficiently.
+
+the way check the file is by diving it into blocks and lines, all within a main block that holds all of the
+file content. Each block holds a linked list of checkables as i stated in the design. The way each block
+implements the check method is by checking the condition on itself (i.e if the block is a condition block -
+than it will check if the condition is valid), and after that it will go through the linked list of
+checkables that it holds and call the check method on each of the checkables in the order that they apper in
+the linked list.
 
 
 =============================
 =    Answers to questions   =
 =============================
 
-1)
-The smart player picks his moves by simply looking at all the possible valid moves, and picking the
-one that leaves the opponent with the minimal number of possible steps (and which does not make him lose)
+1. We can easily add new variable type to our S java reader by only updating an enum class (Type class), (and
+ of
+course addind a regex that checks the value of the new type).
 
-2)
-On the given example, the run time of the TresSet took 0.3445 seconds, While the run time of the HashSet took 0.56547.
+2. In order to add existing methods of java to our S java reader the only change we'll have to do is to add
+them by default into the main scope (In the methodOfScope linked list of methods).
+
+3. In order to add the feature of inheritance of files - we need to add a fatherScope to the main block that
+we check, the fatherScope of the main scope that we check will the main scope of the other file (of course
+we will have to test the father first and only then test the "son").
