@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import static java.lang.StrictMath.max;
 
 /**
- * this is a singlton for parsing the data to our data structure
+ * this is a singleton for parsing the data to our data structure
  */
 public class Parser {
     private static Parser ourInstance = new Parser();

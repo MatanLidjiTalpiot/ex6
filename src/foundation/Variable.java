@@ -5,7 +5,7 @@ import foundation.exceptions.InvalidAssignmentException;
 import foundation.exceptions.InvalidTypeException;
 
 /**
- * A class that represents a virable
+ * A class that represents a variable
  */
 public class Variable {
 

@@ -31,12 +31,12 @@ ValidatorVariableAssignmentLine.java - A singleton class that is composed in a v
 
 Checkable.java - An interface that makes an object checkable.
 Method.java - A class that represents a Method.
-parse.java -
-Regex.java -
-Scope.java -
-Type.java -
-TypesOfCheckable.java -
-Variable.java -
+parse.java - this is a singleton for parsing the data to our data structure
+Regex.java - This class is holding all the complex regexes for this code.
+Scope.java - A class that represents a Scope.
+Type.java - An enum class that represents all the types that are used in S java
+TypesOfCheckable.java - An enum class that represents the possible types of A Checkable.
+Variable.java - A class that represents a variable.
 
 
     foundation.exceptions package:
