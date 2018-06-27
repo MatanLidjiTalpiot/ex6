@@ -13,7 +13,6 @@ import static java.lang.StrictMath.max;
 
 
 public class Parser {
-    //TODO which is static method and which is not
     private static Parser ourInstance = new Parser();
 
     private Block mainBlock;
@@ -28,7 +27,7 @@ public class Parser {
     private Parser() {
     }
 
-    //TODO i started checking from here
+
     public Block Parse(String fileName) throws IOException, FileException{
         this.fileData = preProcess(fileName);
 
@@ -304,4 +303,3 @@ public class Parser {
         block.addCheckable(newBlock);
     }
 }
-//TODO preprosses

@@ -33,9 +33,8 @@ public class ConditionBlock extends Block implements Checkable{
      * @param conditions A linked list of conditions.
      * @throws InvalidConditionException thrown if the condition is not valid.
      */
-    private void checkConditions(LinkedList<String> conditions)throws InvalidConditionException{
+    private void checkConditions(LinkedList<String> conditions)throws FileException{
         for (String condition:conditions){
-            try {
                 if (Type.isType(condition)) {
                     Type conditionType = Type.getTypeOf(condition);
                     if (!isValidCondition(conditionType)) {
@@ -52,15 +51,8 @@ public class ConditionBlock extends Block implements Checkable{
                     }
                 }
             }
-            catch (InvalidTypeException e){
-                throw new InvalidConditionException(condition);
-            }
-            catch(NoSuchVariableException e){
-                throw new InvalidConditionException("wasn't supposed to be called, check your code");
-                        //TODO remove message after debugging.
-            }
+
         }
-    }
 
     /**
      * A method that checks if the condition is from the right type.

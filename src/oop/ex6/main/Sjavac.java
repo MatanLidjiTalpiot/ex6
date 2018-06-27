@@ -24,12 +24,7 @@ public class Sjavac {
             System.out.println(2);
         }
         catch(FileException e){
-            System.err.println(e.getMessage());//TODO remove after debugging
             System.out.println(1);
-        }
-        catch(Exception e){
-            System.err.println(e.getMessage() + "keep debugging");//TODO remove after debugging.
-            System.out.println(2);
         }
 
     }

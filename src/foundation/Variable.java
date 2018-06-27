@@ -20,7 +20,7 @@ public class Variable {
      * @param type the type of the virable
      */
     public Variable(String name, Type type, boolean isFinal, boolean hasAssignment) throws
-            //TODO use this constructor correctly.
+
             FinalNotInitializedException {
         if (!hasAssignment){
             throw new FinalNotInitializedException(name);

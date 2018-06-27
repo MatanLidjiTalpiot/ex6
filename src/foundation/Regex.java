@@ -139,4 +139,4 @@ public class Regex {
 
 
 }
-//TODO - figure out how and if the ststic functions are cool ; also whitespace and \n are cool ?
+
