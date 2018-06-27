@@ -25,15 +25,23 @@ public class MethodCallLine implements Checkable{
         this.paramsByOrder = parametersByOrder;
     }
 
-
+    /**
+     * A method that gives the name of the method that is called.
+     * @return the name of the method.
+     */
     public String getMethodName() {
         return methodName;
     }
 
+    /**
+     * A method that gives the names parameters in the call of the method.
+     * @return the names of the parameters in the call line.
+     */
     public LinkedList<String> getParamsByOrder() {
         return paramsByOrder;
     }
 
+    @Override
     public boolean check(Scope scope) throws FileException{
         return ValidatorMethodCallLine.validate(scope, this);
     }

@@ -24,15 +24,23 @@ public class VariableAssignmentLine implements Checkable {
         this.right = right;
     }
 
+    /**
+     * a method that gives the right side of the assignment line.
+     * @return the right side of the assignemt line.
+     */
     public String getRight() {
         return right;
     }
 
+    /**
+     * A method that gives the left side of the assignment line.
+     * @return the left side of the assignment line.
+     */
     public String getLeft(){
         return left;
     }
 
-
+    @Override
     public boolean check(Scope scope)throws InvalidAssignmentException{
         return ValidatorVariableAssignmentLine.validate(scope, this);
     }

@@ -32,14 +32,19 @@ public class VariableDeclarationLine implements Checkable {
         variable = new Variable(name, varType);
     }
 
+    /**
+     * A method that gives the variable that is declared
+     * @return the variable that is declared.
+     */
     public Variable getVariable() {
         return variable;
     }
 
+
+    @Override
     public boolean check(Scope scope) throws AlreadyDeclaredVariableExcpetion{
         return ValidatorDeclarationLine.validate(scope,this);
     }
-
     @Override
     public boolean isBlock(){
         return false;

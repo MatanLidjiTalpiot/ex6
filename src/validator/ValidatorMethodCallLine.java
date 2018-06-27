@@ -7,6 +7,9 @@ import foundation.exceptions.NoSuchMethodException;
 import lines.MethodCallLine;
 import java.util.LinkedList;
 
+/**
+ * A singleton class the is composed in the method call line that does the check is delegated to.
+ */
 public class ValidatorMethodCallLine {
     private static ValidatorMethodCallLine ourInstance = new ValidatorMethodCallLine();
 
@@ -14,6 +17,13 @@ public class ValidatorMethodCallLine {
         return ourInstance;
     }
 
+    /**
+     * A method that does the check for a method call line.
+     * @param scope the scope that the line is in.
+     * @param line the method call line to check
+     * @return true if the line is a legal line
+     * @throws FileException exceptions that may accrue if the line is illegal.
+     */
     public static boolean validate(Scope scope, MethodCallLine line)throws FileException{
             isMethod(scope, line);
             LinkedList<Type> validTypesByOrder = checkParameters(scope, line);
@@ -28,11 +38,24 @@ public class ValidatorMethodCallLine {
             }
     }
 
+    /**
+     * A method that checks if the method that is called is accessible from the line that it was called in.
+     * @param scope the scope that the method is called in.
+     * @param line the method call line
+     * @throws NoSuchMethodException an exception the means that there is no access.
+     */
     private static void isMethod(Scope scope, MethodCallLine line) throws NoSuchMethodException{
         scope.containsMethod(line.getMethodName());
 
     }
 
+    /**
+     * A method that checks if the parameters in the method call line are compatible.
+     * @param scope the scope that the line is in
+     * @param line the method call line that we are checking
+     * @return a linked list of the types of the parameters.
+     * @throws FileException excpetion that may accrue that means that the parameters are not compatible.
+     */
     private static LinkedList<Type> checkParameters(Scope scope, MethodCallLine line)throws
             FileException{
         LinkedList<String> parameters = line.getParamsByOrder();

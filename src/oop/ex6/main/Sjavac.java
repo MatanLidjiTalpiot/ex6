@@ -9,6 +9,10 @@ import java.io.IOException;
 public class Sjavac {
     private static Parser parser = Parser.getInstance();
 
+    /**
+     * The main method that acts as a manager, does at the end the S javac action.
+     * @param args the arguments from the cmd.
+     */
     public static void main(String[] args) {
         try {
             if (args.length != 1) {
