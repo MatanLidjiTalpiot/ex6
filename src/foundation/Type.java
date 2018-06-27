@@ -1,4 +1,5 @@
 package foundation;
+import com.sun.deploy.security.ValidationState;
 import foundation.exceptions.InvalidTypeException;
 
 /**
