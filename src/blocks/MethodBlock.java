@@ -109,14 +109,7 @@ public class MethodBlock extends Block implements Checkable {
 
         return true;
     }
-    @Override
-    public boolean isBlock(){
-        return true;
-    }
-    @Override
-    public boolean isLine(){
-        return false;
-    }
+
 
     @Override
     public TypesOfCheckable getTypeOfCheckable() {

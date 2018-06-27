@@ -45,14 +45,7 @@ public class VariableDeclarationLine implements Checkable {
     public boolean check(Scope scope) throws AlreadyDeclaredVariableExcpetion{
         return ValidatorDeclarationLine.validate(scope,this);
     }
-    @Override
-    public boolean isBlock(){
-        return false;
-    }
-    @Override
-    public boolean isLine(){
-        return true;
-    }
+
 
     @Override
     public TypesOfCheckable getTypeOfCheckable() {

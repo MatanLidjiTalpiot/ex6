@@ -1,0 +1,87 @@
+matan_lidji
+alonb31cse
+
+=============================
+=      File description     =
+=============================
+    blocks package:
+
+Block.java - An abstract class that represents a block in the file.
+ConditionBlock.java - A class that represents a Condition Block.
+MethodBlock.java -  class that represents a method block
+
+
+    lines package:
+
+VariableAssignmentLine.java - A class that represent A VariableAssignmentLine
+VariableDeclarationLine.java - A class that represents a VariableDeclarationLine.
+MethodCallLine.java - A class that represents a method call line.
+
+
+    validator package:
+
+ValidatorDeclarationLine.java - A singleton class that we compose on the Declaration line in order to do the
+check action.
+ValidatorMethodCallLine.java - A singleton class the is composed in the method call line that does the check is delegated to.
+ValidatorVariableAssignmentLine.java - A singleton class that is composed in a variable assignment line that the check action is delegated to.
+
+
+
+    foundation package:
+
+Checkable.java - An interface that makes an object checkable.
+Method.java - A class that represents a Method.
+parse.java -
+Regex.java -
+Scope.java -
+Type.java -
+TypesOfCheckable.java -
+Variable.java -
+
+
+    foundation.exceptions package:
+
+AlreadyDeclaredVariableExcpetion.java -
+ConditionBlockInMainBlockException.java -
+FileException.java -
+FinalNotInitializedException.java -
+IllegalParametersException.java -
+InvalidAssignmentException.java -
+InvalidConditionException.java -
+InvalidPlacementForCondition.java -
+InvalidTypeException.java -
+NestedMethodException.java -
+NoSuchMethodException.java -
+NoSuchVariableException.java -
+ParametersDontMatchException.java -
+SyntaxException.java -
+
+
+
+=============================
+=          Design           =
+=============================
+I implemented the Tool class in a way that it can be reused between games, meaning that instead of creating a new tool
+ every game, I use the previously used tool and just reset it with new parameters.
+I chose this design because it is similar to how tools act like in the real world:
+different players use the same tool after they erased the name of the previous player from it.
+
+
+
+=============================
+=  Implementation details   =
+=============================
+In the Game class, in order to store the different players, I chose the TreeSet dataset because we perform many
+ insertion and deletion actions on this dataset, actions which a balanced tree performs efficiently.
+
+
+=============================
+=    Answers to questions   =
+=============================
+
+1)
+The smart player picks his moves by simply looking at all the possible valid moves, and picking the
+one that leaves the opponent with the minimal number of possible steps (and which does not make him lose)
+
+2)
+On the given example, the run time of the TresSet took 0.3445 seconds, While the run time of the HashSet took 0.56547.

@@ -46,14 +46,7 @@ public class MethodCallLine implements Checkable{
         return ValidatorMethodCallLine.validate(scope, this);
     }
 
-    @Override
-    public boolean isBlock(){
-        return false;
-    }
-    @Override
-    public boolean isLine(){
-        return true;
-    }
+
 
     @Override
     public TypesOfCheckable getTypeOfCheckable() {

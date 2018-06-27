@@ -5,7 +5,7 @@ import foundation.Scope;
 import lines.VariableDeclarationLine;
 
 /**
- * A singleton class that we compose on the Declaration line in order to to the check action.
+ * A singleton class that we compose on the Declaration line in order to do the check action.
  */
 public class ValidatorDeclarationLine {
 

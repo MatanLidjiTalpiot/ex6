@@ -68,14 +68,6 @@ public class ConditionBlock extends Block implements Checkable{
         return super.check(this.scope);
     }
 
-    @Override
-    public boolean isBlock(){
-        return true;
-    }
-    @Override
-    public boolean isLine(){
-        return false;
-    }
 
     @Override
     public TypesOfCheckable getTypeOfCheckable(){

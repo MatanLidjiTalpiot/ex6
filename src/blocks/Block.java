@@ -69,13 +69,5 @@ public class Block implements Checkable{
         return typeOfCheckable;
     }
 
-    @Override
-    public boolean isBlock(){
-        return true;
-    }
-    @Override
-    public boolean isLine(){
-        return false;
-    }
 
 }
