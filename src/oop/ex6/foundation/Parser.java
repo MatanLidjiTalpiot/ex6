@@ -35,6 +35,7 @@ public class Parser {
      * @throws FileException
      */
     public Block Parse(String fileName) throws IOException, FileException{
+
         this.fileData = preProcess(fileName);
 
         this.mainBlock = new Block();
@@ -52,7 +53,7 @@ public class Parser {
      * @throws IOException
      * @throws FileException
      */
-    private ArrayList preProcess(String fileName)throws IOException, FileException{
+    private ArrayList<String> preProcess(String fileName)throws IOException, FileException{
 
         File file = new File(fileName);
         FileReader fileReader = new FileReader(file);
@@ -212,7 +213,6 @@ public class Parser {
     /**
      * this method parses the given line to assignment Line
      * @throws FileException
-     * @throws IOException
      */
     private void assignmentLineAction(Matcher matcher, Block block) throws FileException {
         if (Type.isType(matcher.group(2)) || Regex.isVariableName(matcher.group(2))){
@@ -224,7 +224,6 @@ public class Parser {
     /**
      * this method parses the given line to assignment tLine and simple deceleration line
      * @throws FileException
-     * @throws IOException
      */
     private void simpleDeclarationLineAction(boolean isFinal, Type type, String str, Block block) throws
             FileException {
@@ -257,7 +256,6 @@ public class Parser {
     /**
      * this method parses the given line to assignment Line and simple deceleration line
      * @throws FileException
-     * @throws IOException
      */
     private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) throws
             FileException {
@@ -285,7 +283,6 @@ public class Parser {
     /**
      * this method parses the given line to a method call line
      * @throws FileException
-     * @throws IOException
      */
     private void methodeCallLineAction(Matcher matcher, Block block) throws FileException{
 
