@@ -3,6 +3,7 @@ package lines;
 import foundation.Checkable;
 import foundation.Type;
 import foundation.TypesOfCheckable;
+import foundation.exceptions.FileException;
 import foundation.exceptions.InvalidAssignmentException;
 import foundation.Scope;
 import validator.*;
@@ -41,7 +42,7 @@ public class VariableAssignmentLine implements Checkable {
     }
 
     @Override
-    public boolean check(Scope scope)throws InvalidAssignmentException{
+    public boolean check(Scope scope)throws FileException{
         return ValidatorVariableAssignmentLine.validate(scope, this);
     }
 
