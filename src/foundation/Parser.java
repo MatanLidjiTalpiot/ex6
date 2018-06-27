@@ -11,7 +11,9 @@ import java.util.regex.Pattern;
 
 import static java.lang.StrictMath.max;
 
-
+/**
+ * this is a singlton for parsing the data to our data structure
+ */
 public class Parser {
     private static Parser ourInstance = new Parser();
 
@@ -27,18 +29,31 @@ public class Parser {
     private Parser() {
     }
 
-
+    /**
+     *
+     * @param fileName - the name of the file we want to compile
+     * @return the block that represents the main block,the data structure
+     * @throws IOException
+     * @throws FileException
+     */
     public Block Parse(String fileName) throws IOException, FileException{
         this.fileData = preProcess(fileName);
 
         this.mainBlock = new Block();
         this.rowNumber = -1;
 
-        this.parseBlock(this.mainBlock, true);
+        this.parseBlock(this.mainBlock);
 
         return this.mainBlock;
     }
 
+    /**
+     * @param fileName - the name of the file we want to compile
+     * @return an ArrayList that holds the rows of our file, after we processed a rules and simplefy the
+     * file. redundant return line,  comment lines and return only in blocks
+     * @throws IOException
+     * @throws FileException
+     */
     private ArrayList preProcess(String fileName)throws IOException, FileException{
 
         File file = new File(fileName);
@@ -88,7 +103,14 @@ public class Parser {
         return al;
     }
 
-    private void parseBlock(Block block, boolean isMainBlock) throws FileException, IOException {
+    /**
+     *
+     * @param block the block we want to fill with cheackebles
+     * @throws FileException
+     * @throws IOException
+     */
+    private void parseBlock(Block block) throws FileException, IOException {
+        boolean isMainBlock = (TypesOfCheckable.BLOCK == block.getTypeOfCheckable());
         for(;rowNumber < this.fileData.size()-1;){
             rowNumber++;
             if(!isMainBlock && Regex.isEndBlockLine(this.fileData.get(rowNumber))){
@@ -110,6 +132,13 @@ public class Parser {
         }
     }
 
+    /**
+     * this method decides what is the given line and parse if accordingly
+     * @param line the string of the line we want to parse
+     * @param block the block we are working in
+     * @throws FileException
+     * @throws IOException
+     */
     private void rowAction(String line,Block block)throws FileException, IOException {
 
         Matcher matcher  = Regex.isStartBlockLine(line);
@@ -120,7 +149,11 @@ public class Parser {
             this.lineAction(line,block);
         }
     }
-
+    /**
+     * this method decides what block is the given line and parse if accordingly
+     * @throws FileException
+     * @throws IOException
+     */
     private void blockAction(String line,Block block)throws FileException, IOException {
 
         Matcher matcher = Regex.isConditionBlock(line);
@@ -137,7 +170,11 @@ public class Parser {
 
         throw new SyntaxException(rowNumber);
     }
-
+    /**
+     * this method decides what line is the given line and parse if accordingly
+     * @throws FileException
+     * @throws IOException
+     */
     private void lineAction(String line,Block block)throws FileException, IOException{
 
         Matcher matcher  = Regex.isFinalDeclerationLine(line);
@@ -174,7 +211,11 @@ public class Parser {
 
         throw new SyntaxException(rowNumber);
     }
-
+    /**
+     * this method parses the given line to assignment Line
+     * @throws FileException
+     * @throws IOException
+     */
     private void assignmentLineAction(Matcher matcher, Block block) throws FileException {
         if (Type.isType(matcher.group(2)) || Regex.isVariableName(matcher.group(2))){
             block.addCheckable(new VariableAssignmentLine(matcher.group(1).trim(),matcher.group(2).trim()));
@@ -182,7 +223,11 @@ public class Parser {
         }
         throw new SyntaxException(this.rowNumber);
     }
-
+    /**
+     * this method parses the given line to assignment tLine and simple deceleration line
+     * @throws FileException
+     * @throws IOException
+     */
     private void simpleDeclarationLineAction(boolean isFinal, Type type, String str, Block block) throws
             FileException {
         if(Regex.isVariableName(str)) {
@@ -211,7 +256,11 @@ public class Parser {
             }
         }
     }
-
+    /**
+     * this method parses the given line to assignment Line and simple deceleration line
+     * @throws FileException
+     * @throws IOException
+     */
     private void declerationLineAction(Matcher matcher, Block block, boolean isFinal) throws
             FileException {
         Type type1 = Type.INT;
@@ -235,7 +284,11 @@ public class Parser {
             this.simpleDeclarationLineAction(isFinal,type1, parts[i].trim(), block);
         }
     }
-
+    /**
+     * this method parses the given line to a method call line
+     * @throws FileException
+     * @throws IOException
+     */
     private void methodeCallLineAction(Matcher matcher, Block block) throws FileException{
 
         String[] parts = matcher.group(2).split(",");
@@ -251,7 +304,11 @@ public class Parser {
         }
         block.addCheckable(new MethodCallLine(matcher.group(1),param));
     }
-
+    /**
+     * this method parses the given line to condition block, and begin to parse it
+     * @throws FileException
+     * @throws IOException
+     */
     private void conditionBlockAction(Matcher matcher, Block block)throws IOException, FileException{
 
         String[] parts = matcher.group(2).split("&&|\\|\\|");
@@ -265,10 +322,14 @@ public class Parser {
                     throw new SyntaxException(rowNumber);
         }
         ConditionBlock newBlock = new ConditionBlock(conditions, block.getScope());
-        parseBlock(newBlock,false);
+        parseBlock(newBlock);
         block.addCheckable(newBlock);
     }
-
+    /**
+     * this method parses the given line to method block, and begin to parse it
+     * @throws FileException
+     * @throws IOException
+     */
     private void methodeBlockAction(Matcher matcher, Block block)throws FileException, IOException{
 
         LinkedList<String> varNamesByOrder = new LinkedList<>();
@@ -299,7 +360,7 @@ public class Parser {
 
         MethodBlock newBlock = new MethodBlock(matcher.group(1),varNamesByOrder, typeNamesByOrder,
                 isFinalByOrder, block.getScope());
-        parseBlock(newBlock, false);
+        parseBlock(newBlock);
         block.addCheckable(newBlock);
     }
 }
